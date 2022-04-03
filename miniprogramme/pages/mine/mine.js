@@ -6,20 +6,31 @@ Page({
      * 页面的初始数据
      */
     data: {
-        list: [{
-                pagePath: "/pages/index/index",
-                iconPath: "/icons/index.png",
-                selectedIconPath: "/icons/index-selected.png"
+        list: [
+            {
+                pagePath:"/pages/index/index",
+                iconPath:"/icons/index.png",
+                selectedIconPath:"/icons/index-selected.png"
             },
             {
-                pagePath: "/pages/add/add",
-                iconPath: "/icons/add.png",
-                selectedIconPath: ""
+                pagePath:"/pages/books/books",
+                iconPath:"/icons/book .png",
+                selectedIconPath:"/icons/book-selected.png"
             },
             {
-                pagePath: "/pages/mine/mine",
-                iconPath: "/icons/mine.png",
-                selectedIconPath: "/icons/mine-selected.png"
+                pagePath:"/pages/add/add",
+                iconPath:"/icons/add.png",
+                selectedIconPath:""
+            },
+            {
+                pagePath:"/pages/records/records",
+                iconPath:"/icons/record.png",
+                selectedIconPath:"/icons/record-selected.png"
+            },
+            {
+                pagePath:"/pages/mine/mine",
+                iconPath:"/icons/mine.png",
+                selectedIconPath:"/icons/mine-selected.png"
             }
         ],
         openId: '',

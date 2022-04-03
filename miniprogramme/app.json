@@ -2,7 +2,9 @@
     "pages": [
         "pages/index/index",
         "pages/mine/mine",
-        "pages/add/add"
+        "pages/add/add",
+        "pages/books/books",
+        "pages/records/records"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -19,6 +21,10 @@
             "pagePath": "pages/mine/mine"
         },{
             "pagePath": "pages/add/add"
+        },{
+            "pagePath": "pages/books/books"
+        },{
+            "pagePath": "pages/records/records"
         }]
     },
     "usingComponents": {},
