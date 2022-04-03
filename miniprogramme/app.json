@@ -1,13 +1,28 @@
 {
     "pages": [
-        "pages/index/index"
+        "pages/index/index",
+        "pages/mine/mine",
+        "pages/add/add"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
+        "navigationBarTitleText": "小鱼书摘Pro",
         "navigationBarTextStyle": "black"
     },
+
+    "tabBar": {
+        "custom": true,
+        "list": [{
+            "pagePath": "pages/index/index"
+        }, {
+            "pagePath": "pages/mine/mine"
+        },{
+            "pagePath": "pages/add/add"
+        }]
+    },
+    "usingComponents": {},
     "style": "v2",
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
 }

@@ -1,0 +1,26 @@
+/* pages/mine/mine.wxss */
+.photobg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 30vh;
+    background-color: #fff;
+    white-space: pre-wrap;
+}
+.other{
+    margin: 3vh 0;
+    background-color: #fff;
+}
+.l-icon{
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+

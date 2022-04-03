@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<l-tab-bar list="{{list}}" />
 <view class="container">
-  Weixin
+    
 </view>

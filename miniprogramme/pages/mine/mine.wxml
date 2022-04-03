@@ -1,0 +1,30 @@
+<!--pages/mine/mine.wxml-->
+<l-tab-bar list="{{list}}" />
+<view class="container">
+    <view wx:if="{{!isLogin}}">
+        <view class="photobg">
+            <view class="load">
+                <l-avatar size="160" src="/image/avatar.png" text="登录" placement="bottom" open-type="getUserInfo" 
+                bind:lintap="login" />
+            </view>
+        </view>
+        <view class="other">
+            <l-list title="推荐给好友" icon="share" icon-size="30" open-type="share"/>  
+        </view>
+        <!-- <view class="logo"><image src="/image/logo.png" class="logoimg"></image></view> -->
+    </view>
+    <view wx:else="{{isLogin}}">
+        <view class="photobg">
+            <view class="load">
+                <l-avatar size="160" src="{{userInfo.avatarUrl}}" text="{{userInfo.nickName}}" placement="bottom" />
+            </view>
+        </view>
+        <view class="other">
+            <l-list title="账户信息" icon="edit" icon-size="30"/>
+            <l-list title="推荐给好友" icon="share" icon-size="30" open-type="share"/>  
+        </view>
+        <view class="other">
+            <l-button size="long" plain="true" bind:lintap="loginOut">退出登录</l-button>
+        </view>
+    </view>
+</view>

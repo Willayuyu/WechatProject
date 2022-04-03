@@ -1,2 +1,22 @@
 // index.js
-Page({})
+Page({
+    data:{
+        list:[
+            {
+                pagePath:"/pages/index/index",
+                iconPath:"/icons/index.png",
+                selectedIconPath:"/icons/index-selected.png"
+            },
+            {
+                pagePath:"/pages/add/add",
+                iconPath:"/icons/add.png",
+                selectedIconPath:""
+            },
+            {
+                pagePath:"/pages/mine/mine",
+                iconPath:"/icons/mine.png",
+                selectedIconPath:"/icons/mine-selected.png"
+            }
+        ]
+    }
+})
