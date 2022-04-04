@@ -14,7 +14,7 @@ Page({
             },
             {
                 pagePath:"/pages/books/books",
-                iconPath:"/icons/book .png",
+                iconPath:"/icons/book.png",
                 selectedIconPath:"/icons/book-selected.png"
             },
             {

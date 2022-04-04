@@ -1,1 +1,15 @@
 /* pages/books/books.wxss */
+.tabs {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow-y:scroll;
+}
+.bookimg{
+    height: 240rpx;
+    width: 180rpx;
+    border-radius: 20rpx;
+}
+
+

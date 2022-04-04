@@ -1,5 +1,46 @@
 <!--pages/books/books.wxml-->
-<l-tab-bar list="{{list}}" />
 <view class="container">
+    <l-tabs class="tabs" bind:linchange="changeTabs" swipeable="true">
+        <l-tabpanel class="tab" tab="默认" key="one" slot="one">
+            <view class="tab-content">
+                <l-grid l-class="grid" row-num="3" show-border="true">
+                    <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
+                        <l-icon name="{{item.image}}" />
+                        <view class="text">{{item.text}}</view>
+                    </l-grid-item> -->
+                    <l-grid-item key="five" slot="five">
+                        <image class="bookimg" src="/image/add.png"></image>
+                        <view class="text">添加书籍</view>
+                    </l-grid-item>
+                    <l-grid-item key="four" slot="four">
+                        <image class="bookimg" src="/image/example.png"  mode="aspectFit"></image>
+                        <view class="text">沉思录4</view>
+                    </l-grid-item>
+                    <l-grid-item key="one" slot="one">
+                        <image class="bookimg" src="/image/example.png"  mode="aspectFit"></image>
+                        <view class="text">沉思录1</view>
+                    </l-grid-item>
+                    <l-grid-item key="two" slot="two">
+                        <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
+                        <view class="text">沉思录2</view>
+                    </l-grid-item>
+                    <l-grid-item key="three" slot="three">
+                        <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
+                        <view class="text">沉思录3</view>
+                    </l-grid-item>
+                </l-grid>
+            </view>
+        </l-tabpanel>
+        <l-tabpanel class="tab" tab="状态" key="two" slot="two">
+            <view class="tab-content">状态</view>
+        </l-tabpanel>
+        <l-tabpanel class="tab" tab="作者" key="three" slot="three">
+            <view class="tab-content">作者</view>
+        </l-tabpanel>
+        <l-tabpanel class="tab" tab="标签" key="four" slot="four">
+            <view class="tab-content">标签</view>
+        </l-tabpanel>
+    </l-tabs>
 
+    <l-tab-bar list="{{list}}" />
 </view>

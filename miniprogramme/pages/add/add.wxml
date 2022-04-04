@@ -1,2 +1,20 @@
 <!--pages/add/add.wxml-->
-<l-tab-bar list="{{list}}" />
+<l-capsule-bar home-page="/pages/index/index" title="书摘编辑">
+    <view class="container">
+        <view class="choose">
+            <l-list class="list" title="请先选择一本书来保存书摘" icon="order" icon-size="30"/>
+        </view>
+        <view class="choose">
+            <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="200"/>
+        </view>
+        <view class="choose">
+            <l-textarea placeholder="想法" indicator="{{true}}" maxlength="200" />
+        </view>
+        <view class="choose">
+            <l-list title="章节" left-gap="25"/>
+        </view>
+        <view class="choose">
+            <l-list title="标签" left-gap="25"/>
+        </view>
+    </view>
+</l-capsule-bar>

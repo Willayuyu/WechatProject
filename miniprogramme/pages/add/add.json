@@ -1,5 +1,10 @@
 {
   "usingComponents": {
-    "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index"
-  }
+    "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index",
+    "l-capsule-bar":"/miniprogram_npm/lin-ui/capsule-bar/index",
+    "l-list": "/miniprogram_npm/lin-ui/list/index",
+    "l-textarea":"/miniprogram_npm/lin-ui/textarea/index",
+    "l-icon":"/miniprogram_npm/lin-ui/icon/index"
+  },
+  "navigationStyle":"custom"
 }

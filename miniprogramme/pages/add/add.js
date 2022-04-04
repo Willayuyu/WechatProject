@@ -1,4 +1,5 @@
 // pages/add/add.js
+import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 Page({
 
     /**
@@ -6,6 +7,13 @@ Page({
      */
     data: {
 
+    },
+    /**
+     * 获取 CapsuleBar 高度
+     */
+    getNavigationBarHeight() {
+        const capsuleBarHeight = deviceUtil.getNavigationBarHeight()
+        console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
     },
 
     /**

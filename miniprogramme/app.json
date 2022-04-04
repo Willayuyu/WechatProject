@@ -12,23 +12,21 @@
         "navigationBarTitleText": "小鱼书摘Pro",
         "navigationBarTextStyle": "black"
     },
-
     "tabBar": {
         "custom": true,
         "list": [{
             "pagePath": "pages/index/index"
         }, {
             "pagePath": "pages/mine/mine"
-        },{
+        }, {
             "pagePath": "pages/add/add"
-        },{
+        }, {
             "pagePath": "pages/books/books"
-        },{
+        }, {
             "pagePath": "pages/records/records"
         }]
     },
     "usingComponents": {},
     "style": "v2",
-    "sitemapLocation": "sitemap.json",
-    "lazyCodeLoading": "requiredComponents"
+    "sitemapLocation": "sitemap.json"
 }
