@@ -6,7 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        select: false,
+        plain: true,
+        hiddenmodalput: true,
     },
     /**
      * 获取 CapsuleBar 高度
@@ -14,6 +16,23 @@ Page({
     getNavigationBarHeight() {
         const capsuleBarHeight = deviceUtil.getNavigationBarHeight()
         console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
+    },
+
+    onSelect() {
+        let select = this.data.select;
+        let plain = this.data.plain;
+        console.log(select)
+        console.log(plain)
+        this.setData({
+            select: !select,
+            plain: !plain
+        })
+    },
+
+    modalinput(){
+        this.setData({
+            hiddenmodalput: !this.data.hiddenmodalput
+        })
     },
 
     /**

@@ -4,7 +4,13 @@
     "l-capsule-bar":"/miniprogram_npm/lin-ui/capsule-bar/index",
     "l-list": "/miniprogram_npm/lin-ui/list/index",
     "l-textarea":"/miniprogram_npm/lin-ui/textarea/index",
-    "l-icon":"/miniprogram_npm/lin-ui/icon/index"
+    "l-icon":"/miniprogram_npm/lin-ui/icon/index",
+    "l-image-picker":"/miniprogram_npm/lin-ui/image-picker/index",
+    "l-collapse":"/miniprogram_npm/lin-ui/collapse/index",
+    "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index",
+    "l-input":"/miniprogram_npm/lin-ui/input/index",
+    "l-tag":"/miniprogram_npm/lin-ui/tag/index",
+    "l-button":"/miniprogram_npm/lin-ui/button/index"
   },
   "navigationStyle":"custom"
 }

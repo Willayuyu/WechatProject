@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lin-ui": "^0.9.8"
+    "lin-ui": "^0.9.8",
+    "mp-html": "^2.3.0"
   }
 }
