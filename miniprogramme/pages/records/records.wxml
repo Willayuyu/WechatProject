@@ -1,4 +1,6 @@
 <!--pages/records/records.wxml-->
 <l-tab-bar list="{{list}}" />
-<view class="container">
+<view class="container center">
+    <CardSwiper data="{{swiperData}}" bindloadmore="loadMore"> </CardSwiper>
 </view>
+

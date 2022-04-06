@@ -1,0 +1,6 @@
+<view class="card-swiper">
+    <view wx:for="{{swiperData}}" wx:key="content" data-index="{{index}}" class="{{'card-swiper-item curdistance' + (swiperCurIndex + index) +  (!!item.slideClass? item.slideClass: '')}}" bindtap="next" catchtouchstart="touchCard.start" catchtouchmove="touchCard.move" catchtouchend="touchCard.end" catchtouchcancel="touchCard.cancel">
+        <view class="content">{{item.content}}</view>
+        <view class="book">{{item.book}}</view>
+    </view>
+</view>

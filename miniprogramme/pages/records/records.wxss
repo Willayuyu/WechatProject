@@ -1,1 +1,16 @@
 /* pages/records/records.wxss */
+page {
+    height: 100%;
+    overflow: hidden;
+}
+.container {
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

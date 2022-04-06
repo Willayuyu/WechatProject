@@ -4,7 +4,9 @@
         "pages/mine/mine",
         "pages/add/add",
         "pages/books/books",
-        "pages/records/records"
+        "pages/records/records",
+        "pages/search/search",
+        "pages/new/new"
     ],
     "window": {
         "backgroundTextStyle": "light",

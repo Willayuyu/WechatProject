@@ -1,0 +1,9 @@
+<!--pages/search/search.wxml-->
+<view class="search">
+    <l-search-bar placeholder="输入书名、作者、ISBN查询" bg-color="#f6f6f6" shape="circle" cancel-text="搜索" bind:linconfirm="">
+    </l-search-bar>
+    <view class="btns">
+        <l-button class="btn" shape="semicircle" plain="{{true}}" icon="scan" icon-size="30" width="200" height="80">扫描ISBN</l-button>
+        <l-button class="btn" shape="semicircle" plain="{{true}}" icon="add"  icon-size="30" width="200" height="80" bind:lintap="onCreate">手动创建</l-button>
+    </view>
+</view>

@@ -8,7 +8,7 @@
                         <l-icon name="{{item.image}}" />
                         <view class="text">{{item.text}}</view>
                     </l-grid-item> -->
-                    <l-grid-item key="five" slot="five">
+                    <l-grid-item key="five" slot="five" bind:linitemtap="changePage">
                         <image class="bookimg" src="/image/add.png"></image>
                         <view class="text">添加书籍</view>
                     </l-grid-item>

@@ -31,7 +31,49 @@ Page({
                 iconPath:"/icons/mine.png",
                 selectedIconPath:"/icons/mine-selected.png"
             }
-        ]
+        ],
+        currentPage: 0,
+        totalPage: 2,
+        swiperData: [{
+            content: "我对黄昏许愿，希望你永远在我身边。",
+            book:"《沉思录》",
+            picture:"/image/avatar.png"
+        },{
+            content: "我对黄昏许愿，希望你永远在我身边。",
+            book:"《沉思录》"
+        },{
+            content: "我对黄昏许愿，希望你永远在我身边。",
+            book:"《沉思录》"
+        }]
+    },
+    loadMore({detail}){
+        // if(this.data.currentPage >= this.data.totalPage) return; //大于总页数时退出
+        // wx.request({
+        //     url: 'yourApiurl', //仅为示例，并非真实的接口地址
+        //     data: {
+        //         page: this.data.currentPage,
+        //     },
+        //     success (res) {
+        //         detail.addToList(res.data); //调用detail.addToList将新数据累加到组件内部数据
+        //     }
+        // })
+        if(this.data.currentPage >= 1) return; //模拟总页数为3
+        
+        // mock数据（请求api分页数据）
+        setTimeout(()=> {
+            this.data.currentPage++;
+            detail.addToList([
+                {
+                  name: `page: ${JSON.parse(JSON.stringify(this.data.currentPage))}, index: 1`,
+                },
+                {
+                  name: `page: ${JSON.parse(JSON.stringify(this.data.currentPage))}, index: 2`,
+                },
+                {
+                  name: `page: ${JSON.parse(JSON.stringify(this.data.currentPage))}, index: 3`,
+                },
+            ])
+        }, 1000)
     },
 
     /**
