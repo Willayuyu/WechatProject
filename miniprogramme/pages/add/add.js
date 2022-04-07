@@ -8,7 +8,7 @@ Page({
     data: {
         select: false,
         plain: true,
-        hiddenmodalput: true,
+        hiddenmodalput: false,
     },
     /**
      * 获取 CapsuleBar 高度
@@ -32,6 +32,11 @@ Page({
     modalinput(){
         this.setData({
             hiddenmodalput: !this.data.hiddenmodalput
+        })
+    },
+    showExistBook(){
+        wx.navigateTo({
+          url: '/pages/existBooks/existBooks',
         })
     },
 

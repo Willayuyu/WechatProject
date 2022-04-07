@@ -6,7 +6,9 @@
         "pages/books/books",
         "pages/records/records",
         "pages/search/search",
-        "pages/new/new"
+        "pages/new/new",
+        "pages/detail/detail",
+        "pages/existBooks/existBooks"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -18,36 +18,36 @@
         <l-input label="阅读状态" placeholder="在读" clear="{{true}}" />
         <l-input label="书籍类型" placeholder="纸质书" clear="{{true}}" />
     </view> -->
-    <view class="choose">
         <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class">
-            <l-form-item label="书名（必填）:" name="book">
+            <view class="choose">
+            <l-form-item label="书名（必填）:" name="book" label-width="200rpx">
                 <l-input id="book" value="{{book}}" hide-label show-row="{{false}}" required="{{true}}" />
             </l-form-item>
-            <l-form-item label="作者:" name="author">
+            <l-form-item label="作者:" name="author" label-width="200rpx">
                 <l-input id="author" value="{{author}}" hide-label show-row="{{false}}" />
             </l-form-item>
-            <l-form-item label="出版社:" name="press">
+            <l-form-item label="出版社:" name="press" label-width="200rpx">
                 <l-input id="author" value="{{press}}" hide-label show-row="{{false}}" />
             </l-form-item>
-            <l-form-item label="ISBN:" name="isbn">
+            <l-form-item label="ISBN:" name="isbn" label-width="200rpx">
                 <l-input id="isbn" value="{{press}}" hide-label show-row="{{false}}" />
             </l-form-item>
-            
-            <l-form-item label="选择分组:" name="group">
+
+            <l-form-item label="选择分组:" name="group" label-width="200rpx">
                 <l-checkbox-group bind:linchange="change" id="group" placement="row">
                     <l-checkbox l-class="l-checkbox-color" wx:for="{{items}}" wx:key="{{item.id}}" placement="{{position}}" key="{{item.name}}" checked="{{item.checked}}">
                         {{item.name}}
                     </l-checkbox>
                 </l-checkbox-group>
             </l-form-item>
-            <l-form-item label="选择标签:" name="tag">
+            <l-form-item label="选择标签:" name="tag" label-width="200rpx">
                 <l-checkbox-group bind:linchange="change" id="tag" placement="row">
                     <l-checkbox l-class="l-checkbox-color" wx:for="{{items}}" wx:key="{{item.id}}" placement="{{position}}" key="{{item.name}}" checked="{{item.checked}}">
                         {{item.name}}
                     </l-checkbox>
                 </l-checkbox-group>
             </l-form-item>
-            <l-form-item label="阅读状态:" name="state">
+            <l-form-item label="阅读状态:" name="state" label-width="200rpx">
                 <l-radio-group current="{{state}}" id="state" placement="row">
                     <l-radio key="0">
                         想读
@@ -63,7 +63,7 @@
                     </l-radio>
                 </l-radio-group>
             </l-form-item>
-            <l-form-item label="书籍类型:" name="classification">
+            <l-form-item label="书籍类型:" name="classification" label-width="200rpx">
                 <l-radio-group current="{{classification}}" id="classification" placement="row">
                     <l-radio key="0">
                         纸质书
@@ -73,14 +73,15 @@
                     </l-radio>
                 </l-radio-group>
             </l-form-item>
-
-            <view slot="submit">
-                <l-button>添加</l-button>
             </view>
-            <view slot="reset">
-                <l-button type="default" plain>重置</l-button>
+            <view class="btns">
+                <view slot="submit">
+                    <l-button>添加</l-button>
+                </view>
+                <view slot="reset">
+                    <l-button type="default" plain>重置</l-button>
+                </view>
             </view>
         </l-form>
-    </view>
 
 </view>

@@ -1,0 +1,28 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail">
+    <l-card l-class="card" type="primary" l-img-class="right-card" position="right" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
+        <view class="content card-content">
+            <view class="author">{{author}}</view>
+            <view class="press">{{press}}</view>
+            <view class="number">{{number}}条书摘</view>
+        </view>
+    </l-card>
+    <view class="notes">
+        <l-collapse>
+            <l-collapse-item title="书摘">
+                <view class="album">
+                    <l-avatar class="avatar" size='80' shape="square" src="{{userInfo.avatarUrl}}" />
+                    <view class="right">
+                        <view class="name">{{userInfo.nickName}}</view>
+                        <view class='content'>多张图片展示，自动按照朋友圈显示规则排序。</view>
+                        <l-album urls='{{urls}}'key='newUrl'></l-album>
+                    </view>
+                </view>
+                <view class="line"></view>
+            </l-collapse-item>
+        </l-collapse>
+    </view>
+    <view class="btns">
+        <l-button class="btn" shape="semicircle" plain="{{true}}" icon="add" icon-size="30" width="200" height="80" bind:lintap="onCreate" l-icon-class="icon-special">记书摘</l-button>
+    </view>
+</view>

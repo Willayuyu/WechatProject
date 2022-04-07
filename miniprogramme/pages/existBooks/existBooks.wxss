@@ -1,0 +1,36 @@
+/* pages/existBooks/existBooks.wxss */
+.search{
+    height: 100vh;
+    font-size: 28rpx;
+    color: #394044 !important;
+}
+
+.book-title {
+    font-size: 36rpx !important;
+    margin: 0rpx 10rpx 20rpx;
+}
+
+.card-content {
+    font-size: 28rpx;
+    margin: 20rpx 10rpx;
+}
+
+.radio-card {
+    margin-left: 20rpx !important;
+}
+
+.line {
+    height: 1px;
+    border-top: solid Silver 1px;
+    margin-bottom: 40rpx;
+    margin-top: 30rpx;
+}
+
+.btns{
+    position:fixed; 
+    right:30rpx;
+    bottom:50rpx;
+}
+.btn{
+    margin: auto 20rpx;
+}

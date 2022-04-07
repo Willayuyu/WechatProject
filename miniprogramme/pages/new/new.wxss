@@ -27,3 +27,11 @@
     border-radius: 10rpx;
     border: 1rpx solid #d8dee5
 }
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20rpx;
+}

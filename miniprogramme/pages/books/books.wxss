@@ -3,13 +3,31 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    overflow-y:scroll;
+}
+.tab-content{
+    overflow-y: scroll;
 }
 .bookimg{
     height: 240rpx;
     width: 180rpx;
     border-radius: 20rpx;
 }
+.choose{
+    width: 98%;
+    margin: 1vh 1vw;
+    background-color: #fff;
+    border-radius: 10rpx;
+    border: 1rpx solid #d8dee5
+}
+.l-icon{
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
 
+.line {
+    height: 1px;
+    border-top: solid Silver 1px;
+
+}
 
 

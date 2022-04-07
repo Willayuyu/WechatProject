@@ -5,14 +5,56 @@ Page({
      * 页面的初始数据
      */
     data: {
+        items: [{
+                id: 1,
+                name: '青瓷',
+                checked: false
+            },
+            {
+                id: 2,
+                name: '双棍',
+                checked: false
+            },
+            {
+                id: 3,
+                name: '明天',
+                checked: false
+            },
+            {
+                id: 4,
+                name: '后来',
+                checked: false
+            },
+            {
+                id: 5,
+                name: '晴天',
+                checked: false
+            },
+            {
+                id: 6,
+                name: '再见悲哀',
+                checked: false
+            }
+        ]
 
     },
 
+    change(e) {
+        let items = this.data.items;
+        items.forEach(item => {
+            if (item.name == e.detail.key) {
+                item.checked = e.detail.checked;
+            }
+        });
+        this.setData({
+            items: items
+        });
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        wx.lin.initValidateForm(this)
     },
 
     /**

@@ -1,0 +1,72 @@
+/* pages/detail/detail.wxss */
+.detail {
+    height: 100vh;
+    background-color: #F0F2F7;
+    color: #394044 !important;
+}
+
+.book-title {
+    font-size: 40rpx !important;
+    margin: 20rpx 40rpx;
+}
+
+.card-content {
+    font-size: 28rpx;
+    margin: 20rpx 40rpx;
+}
+
+.notes {
+    width: 100vw;
+    margin: 1vh auto;
+    background-color: #fff;
+    border-radius: 10rpx;
+    border: 1rpx solid #d8dee5
+}
+
+.l-icon {
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.btns {
+    position: fixed;
+    right: 30rpx;
+    bottom: 50rpx;
+}
+
+.icon-special {
+    margin: auto 0 !important;
+}
+
+.album {
+    display: flex;
+    flex-direction: row;
+}
+
+.avatar {
+    margin-left: 20rpx;
+}
+
+.right {
+    margin-left: 20rpx;
+}
+
+.name {
+    color: rgb(91, 108, 160);
+    font-weight: 450;
+}
+
+.content {
+    margin-top: 7rpx;
+    margin-right: 10rpx;
+    color: black;
+    font-weight: 445;
+    margin-bottom: 15rpx;
+}
+
+.line {
+    height: 1px;
+    border-top: solid Silver 1px;
+    margin-bottom: 40rpx;
+    margin-top: 30rpx;
+}

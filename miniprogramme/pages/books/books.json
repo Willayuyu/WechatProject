@@ -5,6 +5,9 @@
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
     "l-grid-item":"/miniprogram_npm/lin-ui/grid-item/index",
     "l-tabs": "/miniprogram_npm/lin-ui/tabs/index",
-    "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index"
-  }
+    "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index",
+    "l-collapse":"/miniprogram_npm/lin-ui/collapse/index",
+    "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index"
+  },
+  "disableScroll":false
 }

@@ -28,7 +28,8 @@
     align-items: center;
 }
 .buttons{
-    margin: 2vh auto;
+    position: fixed;
+    bottom: 2vh;
 }
 .btn{
     margin:auto 5vw;
