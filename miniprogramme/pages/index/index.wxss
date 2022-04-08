@@ -1,19 +1,74 @@
 /**index.wxss**/
-.photobg {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.show{
+    color: #394044 !important;
+    font-size: 32rpx;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.describe-container{
+    text-align: center;
+    width: 80vw;
+
+    background-color: #fff;
+    border-style: outset;
+    border-color: #e7f2f8;
+    border-width: 5rpx;
+}
+
+.right-card{
+    height: 150rpx !important;
+    width: 120rpx !important;
+}
+.book-title {
+    font-size: 32rpx !important;
+    text-align: left;
+}
+
+.card-content {
+    font-size: 28rpx;
+    text-align: left;
+    margin-top: 35rpx;
+}
+
+.card-contents {
+    font-size: 24rpx;
+    text-align: left;
+}
+
+.counts{
+    background-color: #F0F2F7;
     width: 100vw;
-    height: 30vh;
-    background-color: #fff;
-    white-space: pre-wrap;
+    height: 240rpx;
+    margin: 0rpx auto 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
 }
-.other{
-    margin: 3vh 0;
+.count{
+    width: 45%;
+    height: 200rpx;
     background-color: #fff;
+    border-radius: 10rpx;
 }
-.l-icon{
-    margin-left: 5vw;
-    margin-right: 5vw;
+.title{
+    font-size: 32rpx;
+    margin:20rpx 30rpx 5rpx;
+}
+.img{
+    width: 40rpx !important;
+    height: 40rpx !important;
+    margin-left: 100rpx;
+}
+.date{
+    font-size: 20rpx !important;
+    color: #aeb0b6 !important;
+    margin-left: 30rpx;
+}
+.num{
+    font-size: 28rpx;
+    margin-left: 30rpx;
+    margin-top: 40rpx;
 }

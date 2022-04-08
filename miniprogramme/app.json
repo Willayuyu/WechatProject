@@ -32,5 +32,11 @@
     },
     "usingComponents": {},
     "style": "v2",
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "plugins": {
+        "paddlejs-plugin": {
+            "version": "2.0.1",
+            "provider": "wx7138a7bb793608c3"
+        }
+    }
 }

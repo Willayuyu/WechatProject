@@ -1,5 +1,5 @@
 /**index.wxss**/
-  .card-swiper{
+.card-swiper{
     position: relative;
     width: 600rpx;
     height: 1000rpx;

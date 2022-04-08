@@ -1,6 +1,6 @@
 <!--pages/books/books.wxml-->
 <view class="container">
-    <l-tabs class="tabs" bind:linchange="changeTabs" swipeable="true">
+    <l-tabs class="tabs" bind:linchange="changeTabs" swipeable="true" active-color="#2c61b4">
         <l-tabpanel class="tab" tab="默认" key="one" slot="one">
             <view class="tab-content">
                 <l-grid l-class="grid" row-num="3" show-border="true">

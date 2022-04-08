@@ -1,4 +1,10 @@
 // app.js
+// const plugin = requirePlugin("paddlejs-plugin");
+// import * as ocr from '@paddlejs-models/ocr';
+// import * as paddlejs from '@paddlejs/paddlejs-core';
+// import '@paddlejs/paddlejs-backend-webgl';
+// plugin.register(paddlejs, wx);
+
 App({
     onLaunch: function () {
         console.log("Let's begin!")
@@ -21,5 +27,6 @@ App({
     globalData: {
         userInfo: '',
         openId: '',
-    }
+    },
+    
 })

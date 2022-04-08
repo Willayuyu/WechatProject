@@ -9,7 +9,7 @@ Page({
         title: "沉思录",
         author: "马可·奥勒留",
         press: "中央编译出版社",
-        number: "2",
+        number: "1",
         userInfo: "",
         urls: [{
             newUrl: 'https://th.bing.com/th/id/OIP.GORpTfgdZKqcezZu4srqMwHaLd?pid=ImgDet&rs=1',

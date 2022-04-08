@@ -43,8 +43,8 @@
     font-size: 28rpx;
     color: #333;
     width: 100%;
-    height: 350rpx;
     display: flex;
+    height: 350rpx;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;

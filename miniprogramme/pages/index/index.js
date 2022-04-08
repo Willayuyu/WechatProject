@@ -27,6 +27,11 @@ Page({
                 iconPath:"/icons/mine.png",
                 selectedIconPath:"/icons/mine-selected.png"
             }
-        ]
+        ],
+        time:"2019-9-25 11:30",
+        state:"在读",
+        title: "沉思录",
+        author: "马可·奥勒留",
+        press: "中央编译出版社",
     }
 })

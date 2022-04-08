@@ -1,7 +1,10 @@
 {
   "usingComponents": {
-    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
-    "l-list": "/miniprogram_npm/lin-ui/list/index",
-    "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index"
+    "l-steps":"/miniprogram_npm/lin-ui/steps/index",
+    "l-step":"/miniprogram_npm/lin-ui/step/index",
+    "l-card":"/miniprogram_npm/lin-ui/card/index",
+    "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index",
+    "l-tabs": "/miniprogram_npm/lin-ui/tabs/index",
+    "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index"
   }
 }

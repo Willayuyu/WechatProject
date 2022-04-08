@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index",
-    "CardSwiper": "/miniprogram_npm/cardSwiper/cardSwiper"
+    "CardSwiper": "/components/cardSwiper/cardSwiper"
   }
 }
