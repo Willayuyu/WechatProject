@@ -8,10 +8,42 @@ Page({
 
     },
 
-    onCreate(){
+    onCreate() {
         wx.navigateTo({
-          url: '/pages/new/new',
+            url: '/pages/new/new',
         })
+    },
+
+    onScan() {
+        console.log(1)
+        // 允许从相机和相册扫码
+        wx.scanCode({
+            onlyFromCamera: true,
+            scanType: ['barCode'],
+            success: res => {
+                console.log(res.result)
+
+                //
+                wx.cloud.callFunction({
+                    // 要调用的云函数名称
+                    name: 'bookinfo',
+                    // 传递给云函数的参数
+                    data: {
+                        isbn: res.result
+                    },
+                    success: res => {
+                        console.log(res)
+                    },
+                    fail: err => {
+                        console.error(res)
+                    }
+                })
+            },
+            fail: err => {
+                console.log(err);
+            }
+        })
+
     },
 
     /**
