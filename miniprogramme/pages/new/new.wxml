@@ -5,7 +5,7 @@
             <image class="pickimg" src="/icons/book.png" mode="aspectFit" />
         </view>
     </l-image-picker>
-    <view>设置封面</view>
+    <view class="text">设置封面</view>
     <!-- <view class="choose">
         <l-input label="书名(必填)" placeholder="输入书籍名称" required="{{true}}" clear="{{true}}" />
         <l-input label="作者" placeholder="输入作者名字" clear="{{true}}" />
@@ -20,17 +20,23 @@
     </view> -->
         <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class">
             <view class="choose">
-            <l-form-item label="书名（必填）:" name="book" label-width="200rpx">
-                <l-input id="book" value="{{book}}" hide-label show-row="{{false}}" required="{{true}}" />
+            <l-form-item label="书名（必填）:" name="title" label-width="200rpx">
+                <l-input id="title" value="{{title}}" hide-label show-row="{{false}}" required="{{true}}" />
             </l-form-item>
             <l-form-item label="作者:" name="author" label-width="200rpx">
                 <l-input id="author" value="{{author}}" hide-label show-row="{{false}}" />
             </l-form-item>
-            <l-form-item label="出版社:" name="press" label-width="200rpx">
-                <l-input id="author" value="{{press}}" hide-label show-row="{{false}}" />
+            <l-form-item label="出版社:" name="publish" label-width="200rpx">
+                <l-input id="publish" value="{{publish}}" hide-label show-row="{{false}}" />
+            </l-form-item>
+            <l-form-item label="出版时间:" name="publishDate" label-width="200rpx">
+                <l-input id="publishDate" value="{{publishDate}}" hide-label show-row="{{false}}" />
             </l-form-item>
             <l-form-item label="ISBN:" name="isbn" label-width="200rpx">
-                <l-input id="isbn" value="{{press}}" hide-label show-row="{{false}}" />
+                <l-input id="isbn" value="{{isbn}}" hide-label show-row="{{false}}" />
+            </l-form-item>
+            <l-form-item label="书籍简介:" name="book_intro" label-width="200rpx">
+                <l-textarea id="book_intro" value="{{book_intro}}" border="{{false}}" />
             </l-form-item>
 
             <l-form-item label="选择分组:" name="group" label-width="200rpx">

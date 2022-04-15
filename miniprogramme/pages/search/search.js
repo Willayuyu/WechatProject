@@ -22,7 +22,6 @@ Page({
             scanType: ['barCode'],
             success: res => {
                 console.log(res.result)
-
                 //
                 wx.cloud.callFunction({
                     // 要调用的云函数名称
@@ -33,6 +32,8 @@ Page({
                     },
                     success: res => {
                         console.log(res)
+                        var bookString=res.result;
+                        console.log(JSON.parse(bookString))
                     },
                     fail: err => {
                         console.error(res)
