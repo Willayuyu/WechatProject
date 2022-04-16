@@ -1,18 +1,20 @@
 /* pages/existBooks/existBooks.wxss */
-.search{
+.search {
     height: 100vh;
     font-size: 28rpx;
     color: #394044 !important;
 }
 
 .book-title {
-    font-size: 36rpx !important;
+    font-size: 32rpx !important;
     margin: 0rpx 10rpx 20rpx;
 }
 
 .card-content {
-    font-size: 28rpx;
-    margin: 10rpx 10rpx;
+    font-size: 28rpx !important;
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    padding-right: 80rpx;
 }
 
 .radio-card {
@@ -22,19 +24,22 @@
 .line {
     height: 1px;
     border-top: solid Silver 1px;
-    margin-bottom: 20rpx;
-    margin-top: 30rpx;
+    margin-bottom: 10rpx;
+    margin-top: 10rpx;
 }
 
-.btns{
-    position:fixed; 
-    right:30rpx;
-    bottom:50rpx;
+.btns {
+    position: fixed;
+    right: 30rpx;
+    bottom: 50rpx;
 }
-.btn{
+
+.btn {
     margin: auto 20rpx;
 }
-.right-card{
-    width: 150rpx !important;
-    height: 200rpx !important;
+
+.right-card {
+    width: 200rpx !important;
+    height: 180rpx !important;
+    margin-right: 0rpx !important;
 }

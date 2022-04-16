@@ -30,13 +30,13 @@
                 <l-input id="publish" value="{{publish}}" hide-label show-row="{{false}}" />
             </l-form-item>
             <l-form-item label="出版时间:" name="publishDate" label-width="200rpx">
-                <l-input id="publishDate" value="{{publishDate}}" hide-label show-row="{{false}}" />
+                <l-input id="publishDate" value="{{publishDate}}" hide-label show-row="{{false}}" placeholder="YYYY-MM-DD"/>
             </l-form-item>
             <l-form-item label="ISBN:" name="isbn" label-width="200rpx">
                 <l-input id="isbn" value="{{isbn}}" hide-label show-row="{{false}}" />
             </l-form-item>
             <l-form-item label="书籍简介:" name="book_intro" label-width="200rpx">
-                <l-textarea id="book_intro" value="{{book_intro}}" border="{{false}}" />
+                <l-textarea id="book_intro" value="{{book_intro}}" border="{{false}}" l-class="intro_text" />
             </l-form-item>
 
             <l-form-item label="选择分组:" name="group" label-width="200rpx">

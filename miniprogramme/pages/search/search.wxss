@@ -15,3 +15,30 @@
 .btn{
     margin: auto 20rpx;
 }
+.book-title {
+    font-size: 32rpx !important;
+    margin: 0rpx 10rpx 20rpx;
+}
+
+.card-content {
+    font-size: 28rpx !important;
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    padding-right: 80rpx;
+}
+
+.radio-card {
+    margin-left: 20rpx !important;
+}
+
+.line {
+    height: 1px;
+    border-top: solid Silver 1px;
+    margin-bottom: 10rpx;
+    margin-top: 10rpx;
+}
+.right-card {
+    width: 200rpx !important;
+    height: 180rpx !important;
+    margin-right: 0rpx !important;
+}
