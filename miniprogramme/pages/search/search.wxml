@@ -1,13 +1,13 @@
 <!--pages/search/search.wxml-->
 <view class="search">
-    <l-search-bar placeholder="输入书名、作者、ISBN查询" bg-color="#f6f6f6" shape="circle" show-cancel="{{false}}" bind:linconfirm="onSearch">
+    <l-search-bar placeholder="输入书名、ISBN查询" bg-color="#f6f6f6" shape="circle" show-cancel="{{false}}" bind:linconfirm="onSearch">
     </l-search-bar>
     <view class="result" wx:if="{{isSearchISBN}}">
         <l-radio-group current="{{state}}" id="state" placement="column">
             <l-radio l-class="radio-card" key="{{bookList.id}}">
                 <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{bookList.cover_url}}" l-title-class="book-title" title="{{bookList.title}}" image-mode="aspectFit" full="{{true}}">
                     <view class="content card-content">
-                        <view class="author" wx:for="{{bookList.author}}">作者：{{item}}</view>
+                        <view class="author"> 作者：<text wx:for="{{bookList.author}}"class="item">{{item+';'}}</text></view>
                         <view class="publish">出版社：{{bookList.publish}}</view>
                         <view class="publishDate">出版时间：{{bookList.publishDate}}</view>
                     </view>
@@ -21,7 +21,7 @@
             <l-radio l-class="radio-card" key="{{index}}" wx:for="{{bookList}}">
                 <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{item.cover_url}}" l-title-class="book-title" title="{{item.title}}" image-mode="aspectFit" full="{{true}}">
                     <view class="content card-content">
-                        <view class="author">作者：{{item.author}}</view>
+                        <view class="author"> 作者：<text wx:for="{{item.author}}" wx:for-item="items"class="item">{{items+';'}}</text></view>
                         <view class="publish">出版社：{{item.publish}}</view>
                         <view class="publishDate">出版时间：{{item.publishDate}}</view>
                     </view>

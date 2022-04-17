@@ -24,7 +24,7 @@
     font-size: 28rpx !important;
     margin-top: 10rpx;
     margin-left: 10rpx;
-    padding-right: 80rpx;
+    max-width: 60vw;
 }
 
 .radio-card {
@@ -39,6 +39,12 @@
 }
 .right-card {
     width: 200rpx !important;
-    height: 180rpx !important;
+    min-height: 150rpx !important;
+    max-height: 200rpx;
     margin-right: 0rpx !important;
+    vertical-align:middle !important;
+}
+.item{
+    word-break: break-all;
+    margin-right: 5rpx;
 }
