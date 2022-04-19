@@ -37,7 +37,7 @@
             </l-collapse>
         </view>
         <view class="buttons">
-            <l-button class="btn" size="medium" plain="true" bind:lintap="">OCR</l-button>
+            <l-button class="btn" size="medium" plain="true" bind:lintap="onOCR">OCR</l-button>
             <l-button class="btn" size="medium" plain="true" bind:lintapa="">保存</l-button>
         </view>
     </view>

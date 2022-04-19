@@ -41,6 +41,31 @@ Page({
     },
 
     /**
+     * 获取百度access_token
+     */
+    onOCR(){
+        var APIKEY = "GXKpgeLUVYpqvbtoB65U9s7L"
+        var SECKEY = "tAAZOR8BzVH4bKWdqMa7lvYR1zGeCW5e"
+        wx.cloud.callFunction({
+            // 要调用的云函数名称
+            name: 'getBaiduToken',
+            // 传递给云函数的参数
+            data: {
+                apikey:APIKEY,
+                seckey:SECKEY
+            },
+            success: res=>{
+                console.log(res)
+                
+            },
+            fail:err=>{
+                console.error(res)
+            }
+        })
+
+    },
+
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {

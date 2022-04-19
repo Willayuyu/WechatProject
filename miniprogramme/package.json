@@ -13,6 +13,8 @@
         "@paddlejs-models/ocr": "^1.2.3",
         "lin-ui": "^0.9.8",
         "mp-html": "^2.3.0",
-        "paddlejs": "^1.0.17"
+        "paddlejs": "^1.0.17",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.6"
     }
 }
