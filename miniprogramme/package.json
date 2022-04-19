@@ -12,11 +12,7 @@
         "@paddlejs-mediapipe/opencv": "^0.0.4",
         "@paddlejs-models/ocr": "^1.2.3",
         "lin-ui": "^0.9.8",
-        "paddlejs": "^1.0.17",
-        "@paddlejs/paddlejs-backend-webgl": "^1.2.0",
-        "@paddlejs/paddlejs-core": "^2.1.18",
-        "d3-polygon": "2.0.0",
-        "js-clipper": "1.0.1",
-        "number-precision": "1.5.2"
+        "mp-html": "^2.3.0",
+        "paddlejs": "^1.0.17"
     }
 }
