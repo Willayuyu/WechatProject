@@ -195,10 +195,10 @@ Page({
                                     console.log(JSON.parse(detailString).data)
                                     detail.push(JSON.parse(detailString).data)
                                     console.log(detail)
-                                    that.setData({
-                                        bookList: detail,
-                                        isSearchContent: true
-                                    })
+                                    // that.setData({
+                                    //     bookList: detail,
+                                    //     isSearchContent: true
+                                    // })
                                     db.collection('books').where({
                                         isbn: JSON.parse(detailString).data.isbn
                                     }).get({

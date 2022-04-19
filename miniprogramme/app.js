@@ -1,9 +1,9 @@
 // app.js
-// const plugin = requirePlugin("paddlejs-plugin");
-// import * as ocr from '@paddlejs-models/ocr';
-// import * as paddlejs from '@paddlejs/paddlejs-core';
-// import '@paddlejs/paddlejs-backend-webgl';
-// plugin.register(paddlejs, wx);
+import * as paddlejs from '@paddlejs/paddlejs-core';
+import '@paddlejs/paddlejs-backend-webgl';
+// eslint-disable-next-line no-undef
+const plugin = requirePlugin('paddlejs-plugin');
+plugin.register(paddlejs, wx);
 
 App({
     onLaunch: function () {
@@ -27,6 +27,7 @@ App({
     globalData: {
         userInfo: '',
         openId: '',
+        Paddlejs: paddlejs.Runner
     },
     
 })
