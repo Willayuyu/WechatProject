@@ -61,7 +61,6 @@ Page({
                                             group: '',
                                             id: JSON.parse(bookString).data.id,
                                             isbn: JSON.parse(bookString).data.isbn,
-                                            labels: '',
                                             publish: JSON.parse(bookString).data.publish,
                                             publishDate: JSON.parse(bookString).data.publishDate,
                                             status: '',
@@ -134,7 +133,6 @@ Page({
                                         group: '',
                                         id: JSON.parse(bookString).data.id,
                                         isbn: JSON.parse(bookString).data.isbn,
-                                        labels: '',
                                         publish: JSON.parse(bookString).data.publish,
                                         publishDate: JSON.parse(bookString).data.publishDate,
                                         status: '',
@@ -195,10 +193,10 @@ Page({
                                     console.log(JSON.parse(detailString).data)
                                     detail.push(JSON.parse(detailString).data)
                                     console.log(detail)
-                                    // that.setData({
-                                    //     bookList: detail,
-                                    //     isSearchContent: true
-                                    // })
+                                    that.setData({
+                                        bookList: detail,
+                                        isSearchContent: true
+                                    })
                                     db.collection('books').where({
                                         isbn: JSON.parse(detailString).data.isbn
                                     }).get({
@@ -213,7 +211,6 @@ Page({
                                                         group: '',
                                                         id: JSON.parse(detailString).data.id,
                                                         isbn: JSON.parse(detailString).data.isbn,
-                                                        labels: '',
                                                         publish: JSON.parse(detailString).data.publish,
                                                         publishDate: JSON.parse(detailString).data.publishDate,
                                                         status: '',
@@ -247,6 +244,27 @@ Page({
             })
 
         }
+    },
+
+    showDetail: function (e) {
+        console.log(e.currentTarget.id)
+        const db = wx.cloud.database({});
+        db.collection('books').where({
+            isbn: e.currentTarget.id
+        }).get({
+            success: res => {
+                console.log(res.data[0])
+                var dataList=encodeURIComponent(JSON.stringify(res.data[0]));
+                wx.navigateTo({
+                    url: '/pages/new/new?dataList=' + dataList,
+                })
+            },
+            fail: err => {
+                console.error(res)
+            }
+
+
+        })
     },
 
     /**

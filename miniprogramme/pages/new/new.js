@@ -5,7 +5,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        items: [{
+        dataList:[],
+        defaultImg:'/icons/book.png',
+        group: [{
                 id: 1,
                 name: '青瓷',
                 checked: false
@@ -25,17 +27,8 @@ Page({
                 name: '后来',
                 checked: false
             },
-            {
-                id: 5,
-                name: '晴天',
-                checked: false
-            },
-            {
-                id: 6,
-                name: '再见悲哀',
-                checked: false
-            }
-        ]
+        ],
+        hiddenmodalput: false,
 
     },
 
@@ -50,11 +43,24 @@ Page({
             items: items
         });
     },
+
+    modalinput() {
+        this.setData({
+            hiddenmodalput: !this.data.hiddenmodalput
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
         wx.lin.initValidateForm(this)
+        console.log(options.dataList)
+        var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
+        var dataList = JSON.parse(dataTemp);
+        console.log(dataList)
+        this.setData({
+            dataList:dataList
+        })
     },
 
     /**

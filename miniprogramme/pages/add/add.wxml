@@ -26,9 +26,6 @@
                     <view class="tagList">
                         <l-tag plain="{{plain}}" select="{{select}}" l-select-class="select" bindtap="onSelect">标签</l-tag>
                         <l-icon name="add" size="40" bindtap="modalinput" />
-                        <!-- <modal hidden="{{hiddenmodalput}}" title="请输入想要添加的标签" confirm-text="提交" cancel-text="取消" bindcancel="modalinput" bindconfirm="confirm" confirm-color="#2c61b4">
-                            <l-input placeholder="新的标签" hide-label="{{true}}" />
-                        </modal> -->
                         <l-dialog show="{{hiddenmodalput}}" type="confirm" title="请输入想要添加的标签" confirm-text="提交" cancel-text="取消" bind:lincancel="modelinput" bind:linconfirm="confirm">
                             <l-input placeholder="新的标签" hide-label="{{true}}" />
                         </l-dialog>

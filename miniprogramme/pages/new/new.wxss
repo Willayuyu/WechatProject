@@ -43,3 +43,6 @@
     margin-top: 20rpx;
     margin-bottom: 30rpx;
 }
+.addInput{
+    text-align: center !important;
+}

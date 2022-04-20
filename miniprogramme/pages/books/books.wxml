@@ -128,7 +128,7 @@
             </view>
 
         </l-tabpanel>
-        <l-tabpanel class="tab" tab="标签" key="four" slot="four">
+        <l-tabpanel class="tab" tab="分组" key="four" slot="four">
             <view class="tab-content">
                 <view class="choose">
                     <l-collapse>
