@@ -5,7 +5,7 @@
             <l-list class="list" title="请先选择一本书来保存书摘" icon="order" icon-size="30" />
         </view>
         <view class="choose">
-            <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="200" />
+            <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="200" value="{{words}}"></l-textarea>
         </view>
         <!-- <view class="choose">
             <l-textarea placeholder="想法" indicator="{{true}}" maxlength="200" />
