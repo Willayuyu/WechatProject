@@ -6,8 +6,8 @@
         </view>
     </l-image-picker>
     <view class="text">设置封面</view>
+    <view class="choose">
     <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class">
-        <view class="choose">
             <l-form-item label="书名（必填）:" name="title" label-width="200rpx">
                 <l-input id="title" value="{{dataList.title}}" hide-label show-row="{{false}}" required="{{true}}" />
             </l-form-item>
@@ -25,7 +25,7 @@
             </l-form-item>
             <l-form-item label="选择分组:" name="group" label-width="200rpx">
                 <l-checkbox-group bind:linchange="change" id="group" placement="row">
-                    <l-checkbox l-class="l-checkbox-color" wx:for="{{group}}" wx:key="{{item.id}}" key="{{item.name}}" checked="{{item.checked}}">
+                    <l-checkbox l-class="l-checkbox-color" wx:for="{{groups}}" wx:key="{{item.id}}" key="{{item.name}}" checked="{{item.checked}}">
                         {{item.name}}
                     </l-checkbox>
                     <!-- <l-icon name="add" size="40" bindtap="modalinput" />
@@ -42,10 +42,10 @@
                     <l-radio key="1">
                         在读
                     </l-radio>
-                    <l-radio key="3">
+                    <l-radio key="2">
                         读完
                     </l-radio>
-                    <l-radio key="4">
+                    <l-radio key="3">
                         弃读
                     </l-radio>
                 </l-radio-group>
@@ -62,16 +62,15 @@
             </l-form-item>
             <l-form-item label="豆瓣链接:" name="url" label-width="200rpx">
                 <l-input id="url" value="{{dataList.url}}" hide-label show-row="{{false}}" />
+                <!-- <text class="doubanUrl">{{dataList.url}}</text> -->
             </l-form-item>
-        </view>
-        <view class="btns">
             <view slot="submit">
-                <l-button>添加</l-button>
+                <l-button >添加</l-button>
             </view>
             <view slot="reset">
                 <l-button type="default" plain>重置</l-button>
             </view>
-        </view>
     </l-form>
+</view>
 
 </view>

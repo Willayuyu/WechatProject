@@ -1,48 +1,18 @@
 <!--pages/existBooks/existBooks.wxml-->
 <view class="search">
-    <l-search-bar placeholder="输入书名、作者、ISBN查询" bg-color="#f6f6f6" shape="circle" cancel-text="搜索" bind:linconfirm="">
+    <l-search-bar placeholder="输入书名、作者、ISBN查询" bg-color="#f6f6f6" shape="circle" show-cancel="{{false}}" bind:linconfirm="onSearch">
     </l-search-bar>
-    <l-radio-group current="{{state}}" id="state" placement="column">
-        <l-radio l-class="radio-card" key="0">
-            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
+    <l-radio-group id="state" placement="column">
+        <l-radio l-class="radio-card" key="{{index}}" wx:for="{{defaultBook}}" wx:key="{{index}}" bindtap="showDetail" id="{{item.isbn}}">
+            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{item.cover_url}}" l-title-class="book-title" title="{{item.title}}" image-mode="aspectFit" full="{{true}}">
                 <view class="content card-content">
-                    <view class="author">作者：{{author}}</view>
-                    <view class="press">出版社：{{press}}</view>
-                    <view class="published">出版时间：{{published}}</view>
+                    <view class="author"> 作者：{{item.author}}</view>
+                    <view class="publish">出版社：{{item.publish}}</view>
+                    <view class="publishDate">出版时间：{{item.publishDate}}</view>
                 </view>
             </l-card>
         </l-radio>
         <view class="line"></view>
-        <l-radio l-class="radio-card" key="1">
-            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
-                <view class="content card-content">
-                    <view class="author">作者：{{author}}</view>
-                    <view class="press">出版社：{{press}}</view>
-                    <view class="published">出版时间：{{published}}</view>
-                </view>
-            </l-card>
-        </l-radio>
-        <view class="line"></view>
-        <l-radio l-class="radio-card" key="3">
-            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
-                <view class="content card-content">
-                    <view class="author">作者：{{author}}</view>
-                    <view class="press">出版社：{{press}}</view>
-                    <view class="published">出版时间：{{published}}</view>
-                </view>
-                <view class="line"></view>
-            </l-card>
-        </l-radio>
-        <l-radio l-class="radio-card" key="4">
-            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
-                <view class="content card-content">
-                    <view class="author">作者：{{author}}</view>
-                    <view class="press">出版社：{{press}}</view>
-                    <view class="published">出版时间：{{published}}</view>
-                </view>
-                <view class="line"></view>
-            </l-card>
-        </l-radio>
     </l-radio-group>
     <view class="btns">
         <l-button class="btn" shape="semicircle" plain="{{true}}" icon="add" icon-size="30" size="mini" bind:lintap="onShowSearch"></l-button>

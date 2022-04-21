@@ -1,33 +1,37 @@
 /* pages/new/new.wxss */
-.detail{
+.detail {
     background-color: #F0F2F7;
     height: 100vh;
     width: 100vw;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     text-align: end;
     font-size: 28rpx;
     color: #394044 !important;
 }
-.lin-image-picker__item{
+
+.lin-image-picker__item {
     width: 220rpx !important;
     padding-bottom: 250rpx !important;
 }
-.text{
+
+.text {
     text-align: center !important;
 }
 
-.intro_text{
+.intro_text {
     text-align: start !important;
 }
 
 .lin-image-picker__item {
     margin: 20rpx auto;
 }
-.pickimg{
+
+.pickimg {
     width: 200rpx;
 }
-.choose{
+
+.choose {
     width: 96vw;
     margin: 1vh 2vw 0.5vh;
     background-color: #fff;
@@ -35,7 +39,7 @@
     border: 1rpx solid #d8dee5;
 }
 
-.btns{
+.l-form-btn-class {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -43,6 +47,13 @@
     margin-top: 20rpx;
     margin-bottom: 30rpx;
 }
-.addInput{
+
+.addInput {
     text-align: center !important;
+}
+
+.doubanUrl {
+    white-space: pre-line !important;
+    word-break: break-all !important;
+    word-wrap: break-word !important;
 }

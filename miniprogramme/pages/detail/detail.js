@@ -6,10 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title: "沉思录",
-        author: "马可·奥勒留",
-        press: "中央编译出版社",
-        number: "1",
+        dataList:[],
         userInfo: "",
         urls: [{
             newUrl: 'https://th.bing.com/th/id/OIP.GORpTfgdZKqcezZu4srqMwHaLd?pid=ImgDet&rs=1',
@@ -28,10 +25,15 @@ Page({
      */
     onLoad(options) {
         let userInfo = app.globalData.userInfo
+        console.log(userInfo)
+        console.log(options.dataList)
+        var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
+        var dataList = JSON.parse(dataTemp);
+        console.log(dataList)
         this.setData({
+            dataList: dataList,
             userInfo: userInfo
         })
-        console.log(userInfo)
     },
 
     /**

@@ -14,18 +14,12 @@
     font-size: 28rpx !important;
     margin-top: 10rpx;
     margin-left: 10rpx;
-    padding-right: 80rpx;
+    max-width: 60vw;
+    width: 60vw;
 }
 
 .radio-card {
     margin-left: 20rpx !important;
-}
-
-.line {
-    height: 1px;
-    border-top: solid Silver 1px;
-    margin-bottom: 10rpx;
-    margin-top: 10rpx;
 }
 
 .btns {
@@ -38,8 +32,20 @@
     margin: auto 20rpx;
 }
 
+
+.line {
+    height: 1px;
+    border-top: solid Silver 1px;
+    margin-bottom: 10rpx;
+    margin-top: 10rpx;
+}
 .right-card {
-    width: 200rpx !important;
-    height: 180rpx !important;
-    margin-right: 0rpx !important;
+    width: 150rpx !important;
+    height: 200rpx !important;
+    margin-right: 20rpx !important;
+    vertical-align:middle !important;
+}
+.item{
+    word-break: break-all;
+    margin-right: 5rpx;
 }

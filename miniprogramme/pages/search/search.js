@@ -1,5 +1,6 @@
 // pages/search/search.js
 const app = getApp()
+const db = wx.cloud.database({});
 Page({
 
     /**
@@ -8,7 +9,8 @@ Page({
     data: {
         bookList: [],
         isSearchISBN: false,
-        isSearchContent: false
+        isSearchContent: false,
+        searchValue: ''
     },
 
     onCreate() {
@@ -44,12 +46,12 @@ Page({
                         })
                         console.log(JSON.parse(bookString).data.author)
                         //云数据库初始化
-                        const db = wx.cloud.database({});
                         const book = db.collection('books')
                         db.collection('books').where({
                             isbn: isbn
                         }).get({
                             success: res => {
+                                console.log(res.data)
                                 if (res.data.length == 0) {
                                     db.collection('books').add({
                                         // data 字段表示需新增的 JSON 数据
@@ -69,6 +71,12 @@ Page({
                                         }
                                     }).then(res => {
                                         console.log(res)
+                                        db.collection('books').where({
+                                            isbn: isbn
+                                        }).get({
+                                            success: result => {
+                                            }
+                                        })
                                     }).catch(err => {
                                         console.log(err)
                                     })
@@ -77,6 +85,7 @@ Page({
                                 }
                             }
                         })
+
 
                     },
                     fail: err => {
@@ -93,6 +102,9 @@ Page({
     onSearch: function (e) {
         var that = this
         console.log(e.detail.value)
+        that.setData({
+            searchValue: e.detail.value
+        })
         const value = encodeURI(e.detail.value)
         console.log(value)
         //正则表达式验证是否为ISBN
@@ -114,9 +126,7 @@ Page({
                         bookList: JSON.parse(bookString).data,
                         isSearchISBN: true
                     })
-                    console.log(JSON.parse(bookString).data.author)
                     //云数据库初始化
-                    const db = wx.cloud.database({});
                     const book = db.collection('books')
                     db.collection('books').where({
                         isbn: isbn
@@ -156,7 +166,8 @@ Page({
                 }
             })
 
-        } else {
+        } 
+        else {
             wx.cloud.callFunction({
                 // 要调用的云函数名称
                 name: 'search',
@@ -168,14 +179,8 @@ Page({
                     console.log(res)
                     var bookString = res.result;
                     console.log(JSON.parse(bookString).data)
-                    // that.setData({
-                    //     bookList: JSON.parse(bookString).data,
-                    //     isSearchContent: true
-                    // })
                     console.log(JSON.parse(bookString).data.length)
-                    //云数据库初始化
-                    const db = wx.cloud.database({});
-                    const book = db.collection('books')
+
                     var detail = new Array();
                     for (let i = 0; i < JSON.parse(bookString).data.length; i++) {
                         console.log(JSON.parse(bookString).data[i].id)
@@ -219,11 +224,20 @@ Page({
                                                     }
                                                 }).then(res => {
                                                     console.log(res)
+                                                    db.collection('books').where({
+                                                        title: e.detail.value
+                                                    }).get({
+                                                        success: res => {
+                                                            console.log(res.data)
+                                                        }
+                                                    })
                                                 }).catch(err => {
                                                     console.log(err)
                                                 })
                                             } else {
                                                 console.log("此书已存在！")
+                                                // console.log(res.data[0])
+                                                // detail.push(res.data[0])  
                                             }
                                         },
                                         fail: err => {
@@ -237,12 +251,12 @@ Page({
                             })
                         }
                     }
+
                 },
                 fail: err => {
                     console.error(res)
                 }
             })
-
         }
     },
 
@@ -254,7 +268,7 @@ Page({
         }).get({
             success: res => {
                 console.log(res.data[0])
-                var dataList=encodeURIComponent(JSON.stringify(res.data[0]));
+                var dataList = encodeURIComponent(JSON.stringify(res.data[0]));
                 wx.navigateTo({
                     url: '/pages/new/new?dataList=' + dataList,
                 })

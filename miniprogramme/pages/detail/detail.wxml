@@ -1,9 +1,9 @@
 <!--pages/detail/detail.wxml-->
 <view class="detail">
-    <l-card l-class="card" type="primary" l-img-class="right-card" position="right" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
+    <l-card l-class="card" type="primary" l-img-class="right-card" position="right" image="{{dataList.cover_url}}" l-title-class="book-title" title="{{dataList.title}}" image-mode="aspectFit" full="{{true}}">
         <view class="content card-content">
-            <view class="author">{{author}}</view>
-            <view class="press">{{press}}</view>
+            <view class="author">{{dataList.author}}</view>
+            <view class="press">{{dataList.publish}}</view>
             <view class="number">{{number}}条书摘</view>
         </view>
     </l-card>

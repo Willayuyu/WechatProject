@@ -1,13 +1,17 @@
 // pages/new/new.js
+const db = wx.cloud.database()
+const app = getApp()
+var util = require('../utils/utils.js')
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        dataList:[],
-        defaultImg:'/icons/book.png',
-        group: [{
+        dataList: [],
+        defaultImg: '/icons/book.png',
+        bookImage:'',
+        groups: [{
                 id: 0,
                 name: '文学',
                 checked: false
@@ -42,15 +46,23 @@ Page({
 
     },
 
+    onChangeTap(e){
+        console.log(e.detail.current)
+        var that = this
+        that.setData({
+            bookImage:e.detail.current
+        })
+    },
+
     change(e) {
-        let items = this.data.items;
-        items.forEach(item => {
+        let groups = this.data.groups;
+        groups.forEach(item => {
             if (item.name == e.detail.key) {
                 item.checked = e.detail.checked;
             }
         });
         this.setData({
-            items: items
+            groups: groups
         });
     },
 
@@ -60,9 +72,75 @@ Page({
         })
     },
 
-    confirm:function(e){
-        console.log(e.detail.value)
-        console.log(e)
+    submit: function (e) {
+        const {
+            detail
+        } = e;
+        var that = this
+        console.log(detail.values)
+        console.log(app.globalData.openId)
+        console.log(that.data.bookImage)
+        const bookData = detail.values
+        console.log(bookData.group[0].value)
+        console.log(util.formatTime(new Date()))
+
+        const group = new Array()
+        for (let i = 0; i < bookData.group.length; i++) {
+            group.push(bookData.group[i].value)
+        }
+        console.log(group)
+        db.collection('mybook').where({
+            _openid: app.globalData.openId,
+            isbn: bookData.isbn
+        }).get({
+            success: res => {
+                if (res.data.length == 0) {
+                    db.collection('mybook').add({
+                        data: {
+                            author: bookData.author,
+                            category: bookData.category,
+                            cover_url:that.data.bookImage,
+                            group: group,
+                            isbn: bookData.isbn,
+                            publish: bookData.publish,
+                            publishDate: bookData.publishDate,
+                            status: bookData.status,
+                            title: bookData.title,
+                            url: bookData.url,
+                            date: util.formatTime(new Date())
+                        },
+                        success: res => {
+                            wx.showToast({
+                                title: '新增记录成功',
+                            })
+                            console.log('[mybook] [新增记录] 成功，记录 _id: ', res._id)
+                            wx.navigateBack({
+                                delta: 1,
+                            })
+                        },
+                        fail: err => {
+                            wx.showToast({
+                                title: '新增记录失败'
+                            })
+                            console.error('[mybook] [新增记录] 失败：', err)
+                            wx.navigateBack({
+                                delta: 1,
+                            })
+                        }
+                    })
+                } else {
+                    console.log('本书已加入书架')
+                    wx.navigateBack({
+                        delta: 1,
+                    })
+                }
+            },
+            fail: err => {
+                console.log(err)
+            }
+
+        })
+
     },
     /**
      * 生命周期函数--监听页面加载
@@ -74,7 +152,8 @@ Page({
         var dataList = JSON.parse(dataTemp);
         console.log(dataList)
         this.setData({
-            dataList:dataList
+            dataList: dataList,
+            bookImage:dataList.cover_url
         })
     },
 

@@ -4,29 +4,13 @@
         <l-tabpanel class="tab" tab="默认" key="one" slot="one">
             <view class="tab-content">
                 <l-grid l-class="grid" row-num="3" show-border="true">
-                    <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                    <l-grid-item key="five" slot="five" bind:linitemtap="changePage">
+                    <l-grid-item key="100" slot="100" bind:linitemtap="changePage">
                         <image class="bookimg" src="/image/add.png"></image>
                         <view class="text">添加书籍</view>
                     </l-grid-item>
-                    <l-grid-item key="four" slot="four">
-                        <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                        <view class="text">沉思录4</view>
-                    </l-grid-item>
-                    <l-grid-item key="one" slot="one" bind:linitemtap="onShowDetail">
-                        <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                        <view class="text">沉思录1</view>
-                    </l-grid-item>
-                    <l-grid-item key="two" slot="two">
-                        <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                        <view class="text">沉思录2</view>
-                    </l-grid-item>
-                    <l-grid-item key="three" slot="three">
-                        <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                        <view class="text">沉思录3</view>
+                    <l-grid-item wx:for="{{defaultBook}}" wx:key="index" key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                        <image class="bookimg" src="{{item.cover_url}}" />
+                        <view class="text">{{item.title}}</view>
                     </l-grid-item>
                 </l-grid>
             </view>
@@ -36,61 +20,37 @@
                 <view class="choose">
                     <l-collapse>
                         <l-collapse-item title="想读">
-                            <l-grid l-class="grid" row-num="3" show-border="true">
-                                <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                                <l-grid-item key="one" slot="one">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录1</view>
-                                </l-grid-item>
-                                <l-grid-item key="two" slot="two">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录2</view>
-                                </l-grid-item>
-                                <l-grid-item key="three" slot="three">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录3</view>
+                            <l-grid l-class="grid" row-num="3" show-border="true" bind:lintap="onShowDetail">
+                                <l-grid-item wx:if="{{item.status==0}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
                         <l-collapse-item title="在读">
                             <l-grid l-class="grid" row-num="3" show-border="true">
-                                <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                                <l-grid-item key="one" slot="one">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录1</view>
+                                <l-grid-item wx:if="{{item.status==1}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
                         <l-collapse-item title="读完">
                             <l-grid l-class="grid" row-num="3" show-border="true">
-                                <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                                <l-grid-item key="one" slot="one">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录1</view>
+                                <l-grid-item wx:if="{{item.status==2}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
                         <l-collapse-item title="弃读">
                             <l-grid l-class="grid" row-num="3" show-border="true">
-                                <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                                <l-grid-item key="one" slot="one">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录1</view>
+                                <l-grid-item wx:if="{{item.status==3}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
@@ -98,61 +58,87 @@
                 </view>
             </view>
         </l-tabpanel>
-        <l-tabpanel class="tab" tab="作者" key="three" slot="three">
+        <l-tabpanel class="tab" tab="类型" key="three" slot="three">
             <view class="tab-content">
                 <view class="choose">
                     <l-collapse>
-                        <l-collapse-item title="作者1">
-                            <l-grid l-class="grid" row-num="3" show-border="true">
-                                <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                                <l-grid-item key="one" slot="one">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录1</view>
-                                </l-grid-item>
-                                <l-grid-item key="two" slot="two">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录2</view>
-                                </l-grid-item>
-                                <l-grid-item key="three" slot="three">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录3</view>
+                        <l-collapse-item title="纸质书">
+                                <l-grid l-class="grid" row-num="3" show-border="true">
+                                <l-grid-item wx:if="{{item.category==0}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
-                        <view class="line"></view>
+                        <l-collapse-item title="电子书">
+                                <l-grid l-class="grid" row-num="3" show-border="true">
+                                <l-grid-item wx:if="{{item.category==1}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
+                                </l-grid-item>
+                            </l-grid>
+                        </l-collapse-item>
                     </l-collapse>
                 </view>
             </view>
-
         </l-tabpanel>
         <l-tabpanel class="tab" tab="分组" key="four" slot="four">
             <view class="tab-content">
                 <view class="choose">
                     <l-collapse>
-                        <l-collapse-item title="标签1">
+                        <l-collapse-item title="文学">
                             <l-grid l-class="grid" row-num="3" show-border="true">
-                                <!-- <l-grid-item wx:for="{{grids2}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-                        <l-icon name="{{item.image}}" />
-                        <view class="text">{{item.text}}</view>
-                    </l-grid-item> -->
-                                <l-grid-item key="one" slot="one">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录1</view>
-                                </l-grid-item>
-                                <l-grid-item key="two" slot="two">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录2</view>
-                                </l-grid-item>
-                                <l-grid-item key="three" slot="three">
-                                    <image class="bookimg" src="/image/example.png" mode="aspectFit"></image>
-                                    <view class="text">沉思录3</view>
+                                <l-grid-item wx:for="{{book_1}}" wx:key="index" key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
+                        <l-collapse-item title="流行">
+                            <l-grid l-class="grid" row-num="3" show-border="true">
+                                <l-grid-item wx:for="{{book_2}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
+                                </l-grid-item>
+                            </l-grid>
+                        </l-collapse-item>
+                        <view class="line"></view>
+                        <l-collapse-item title="文化">
+                            <l-grid l-class="grid" row-num="3" show-border="true">
+                                <l-grid-item wx:for="{{book_3}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
+                                </l-grid-item>
+                            </l-grid>
+                        </l-collapse-item>
+                        <view class="line"></view>
+                        <l-collapse-item title="生活">
+                            <l-grid l-class="grid" row-num="3" show-border="true">
+                                <l-grid-item wx:for="{{book_4}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
+                                </l-grid-item>
+                            </l-grid>
+                        </l-collapse-item>
+                        <view class="line"></view>
+                        <l-collapse-item title="经管">
+                            <l-grid l-class="grid" row-num="3" show-border="true">
+                                <l-grid-item wx:for="{{book_5}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
+                                </l-grid-item>
+                            </l-grid>
+                        </l-collapse-item>
+                        <view class="line"></view>
+                        <l-collapse-item title="科技">
+                            <l-grid l-class="grid" row-num="3" show-border="true">
+                                    <l-grid-item wx:for="{{book_6}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
+                                    <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
+                                    <view class="text">{{item.title}}</view>
+                                </l-grid-item>
+                            </l-grid>
+                        </l-collapse-item>
                     </l-collapse>
                 </view>
             </view>

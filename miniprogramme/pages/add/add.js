@@ -1,5 +1,7 @@
 // pages/add/add.js
 import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
+const app = getApp()
+const db = wx.cloud.database({});
 Page({
 
     /**
@@ -9,7 +11,9 @@ Page({
         select: false,
         plain: true,
         hiddenmodalput: false,
-        words:''
+        words:'',
+        bookList:[],
+        choosed:''
     },
     /**
      * 获取 CapsuleBar 高度
@@ -132,8 +136,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-
+    onLoad: function (options) { 
     },
 
     /**
@@ -147,6 +150,15 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        var that = this
+        if(app.globalData.choosed!=''){
+            that.setData({
+                bookList: JSON.parse(app.globalData.bookList),
+                choosed:app.globalData.choosed
+            })
+            app.globalData.bookList=''
+            app.globalData.choosed=''
+        }
 
     },
 
