@@ -8,23 +8,33 @@ Page({
         dataList:[],
         defaultImg:'/icons/book.png',
         group: [{
+                id: 0,
+                name: '文学',
+                checked: false
+            },
+            {
                 id: 1,
-                name: '青瓷',
+                name: '流行',
                 checked: false
             },
             {
                 id: 2,
-                name: '双棍',
+                name: '文化',
                 checked: false
             },
             {
                 id: 3,
-                name: '明天',
+                name: '生活',
                 checked: false
             },
             {
                 id: 4,
-                name: '后来',
+                name: '经管',
+                checked: false
+            },
+            {
+                id: 5,
+                name: '科技',
                 checked: false
             },
         ],
@@ -48,6 +58,11 @@ Page({
         this.setData({
             hiddenmodalput: !this.data.hiddenmodalput
         })
+    },
+
+    confirm:function(e){
+        console.log(e.detail.value)
+        console.log(e)
     },
     /**
      * 生命周期函数--监听页面加载
