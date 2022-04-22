@@ -10,7 +10,7 @@ Page({
     data: {
         dataList: [],
         defaultImg: '/icons/book.png',
-        bookImage:'',
+        bookImage: '',
         groups: [{
                 id: 0,
                 name: '文学',
@@ -46,11 +46,11 @@ Page({
 
     },
 
-    onChangeTap(e){
+    onChangeTap(e) {
         console.log(e.detail.current)
         var that = this
         that.setData({
-            bookImage:e.detail.current
+            bookImage: e.detail.current
         })
     },
 
@@ -81,9 +81,7 @@ Page({
         console.log(app.globalData.openId)
         console.log(that.data.bookImage)
         const bookData = detail.values
-        console.log(bookData.group[0].value)
         console.log(util.formatTime(new Date()))
-
         const group = new Array()
         for (let i = 0; i < bookData.group.length; i++) {
             group.push(bookData.group[i].value)
@@ -94,12 +92,13 @@ Page({
             isbn: bookData.isbn
         }).get({
             success: res => {
-                if (res.data.length == 0) {
-                    db.collection('mybook').add({
+                console.log(res.data)
+                console.log(res.data[0]._id)
+                db.collection('mybook').doc(res.data[0]._id).update({
                         data: {
                             author: bookData.author,
                             category: bookData.category,
-                            cover_url:that.data.bookImage,
+                            cover_url: that.data.bookImage,
                             group: group,
                             isbn: bookData.isbn,
                             publish: bookData.publish,
@@ -109,41 +108,32 @@ Page({
                             url: bookData.url,
                             date: util.formatTime(new Date())
                         },
-                        success: res => {
-                            wx.showToast({
-                                title: '新增记录成功',
-                            })
-                            console.log('[mybook] [新增记录] 成功，记录 _id: ', res._id)
-                            wx.navigateBack({
-                                delta: 1,
-                            })
-                        },
-                        fail: err => {
-                            wx.showToast({
-                                title: '新增记录失败'
-                            })
-                            console.error('[mybook] [新增记录] 失败：', err)
-                            wx.navigateBack({
-                                delta: 1,
-                            })
-                        }
+                    }).then(res => {
+                        console.log('更新数据成功')
+                        wx.showToast({
+                            title: '更新记录成功'
+                        })
+                        wx.navigateBack({
+                            delta: 1,
+                        })
                     })
-                } else {
-                    console.log('本书已加入书架')
-                    wx.navigateBack({
-                        delta: 1,
+                    .catch(err => {
+                        console.log('更新数据失败')
+                        wx.showToast({
+                            title: '更新记录失败'
+                        })
+                        wx.navigateBack({
+                            delta: 1,
+                        })
                     })
-                }
+
+
             },
             fail: err => {
                 console.log(err)
             }
 
         })
-
-    },
-
-    reset(){
 
     },
     /**
@@ -155,9 +145,19 @@ Page({
         var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
         var dataList = JSON.parse(dataTemp);
         console.log(dataList)
+        // var group = dataList.group
+        // var groupList = this.data.groups
+        // for(let i = 0; i<group.length;i++){
+        //     for(let j = 0; j<groupList.length;j++){
+        //         if(group[i]==groupList[j].name){
+        //             groupList[j].checked=true
+        //         }
+        //     }
+        // }
         this.setData({
             dataList: dataList,
-            bookImage:dataList.cover_url
+            bookImage: dataList.cover_url,
+            // groups:groupList
         })
     },
 

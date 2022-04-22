@@ -33,55 +33,54 @@ Page({
                 selectedIconPath: "/icons/mine-selected.png"
             }
         ],
-        noteNumber: '',
-        noteList: [],
+        noteNumber:'',
+        noteList:[],
         currentPage: 0,
-        totalPage:1 ,
+        totalPage: 2,
         swiperData: [{
-            content: " 世界上没有相同的两片叶子，也就不可能有相同的两个人。我们都是独一无二的奇迹，因为我们都曾经是千千万万中独独存活下来的那一个。",
-            book: "《沉思录》",
-            picture: "/image/avatar.png"
+            words:"你的书摘"
+        }, {
+           words:"上下滑动切换卡片"
         }]
     },
-
+    
     loadMore({
         detail
     }) {
-        // if (this.data.currentPage >= this.data.totalPage) return; //大于总页数时退出
+        if(this.data.currentPage >= this.data.totalPage) return; //大于总页数时退出
+        detail.addToList(this.data.noteList); 
+        // wx.request({
+        //     url: 'yourApiurl', //仅为示例，并非真实的接口地址
+        //     data: {
+        //         page: this.data.currentPage,
+        //     },
+        //     success (res) {
+        //         detail.addToList(res.data); //调用detail.addToList将新数据累加到组件内部数据
+        //     }
+        // })
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        var that = this
         db.collection("notes").where({
             _openid: app.globalData.openId,
         }).get({
             success: res => {
                 console.log(res.data)
                 console.log(res.data.length)
-                detail.addToList(res.data);
+                that.setData({
+                    noteNumber: res.data.length,
+                    noteList: res.data
+                })
             },
             fail: err => {
                 console.error(err)
             }
         })
-        // if (this.data.currentPage >= 1) return; //模拟总页数为3
-
-        // mock数据（请求api分页数据）
-        // setTimeout(() => {
-        //     this.data.currentPage++;
-        //     detail.addToList([{
-        //             name: `page: ${JSON.parse(JSON.stringify(this.data.currentPage))}, index: 1`,
-        //         },
-        //         {
-        //             name: `page: ${JSON.parse(JSON.stringify(this.data.currentPage))}, index: 2`,
-        //         },
-        //         {
-        //             name: `page: ${JSON.parse(JSON.stringify(this.data.currentPage))}, index: 3`,
-        //         },
-        //     ])
-        // }, 1000)
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {},
 
     /**
      * 生命周期函数--监听页面初次渲染完成

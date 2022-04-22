@@ -7,10 +7,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        dataList:[],
+        dataList: [],
         userInfo: '',
-        number:'',
-        noteList:[],
+        number: '',
+        noteList: [],
     },
 
     /**
@@ -20,8 +20,7 @@ Page({
         var that = this
         let userInfo = app.globalData.userInfo
         console.log(userInfo)
-        console.log(options.dataList)
-        var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
+        var dataTemp = decodeURIComponent(options.bookList); //函数可把字符串作为 URI 组件进行解码。
         var dataList = JSON.parse(dataTemp);
         console.log(dataList)
         that.setData({
@@ -29,20 +28,28 @@ Page({
             userInfo: userInfo
         })
         db.collection("notes").where({
-            _openid:app.globalData.openId,
-            isbn:dataList.isbn
+            _openid: app.globalData.openId,
+            isbn: dataList.isbn
         }).get({
-            success:res=>{
+            success: res => {
                 console.log(res.data)
                 console.log(res.data.length)
                 that.setData({
-                    number:res.data.length,
-                    noteList:res.data
-                }) 
+                    number: res.data.length,
+                    noteList: res.data
+                })
             },
             fail: err => {
                 console.error(err)
             }
+        })
+    },
+    showBooks: function (e) {
+        console.log(1)
+        var that = this
+        var dataList = encodeURIComponent(JSON.stringify(that.data.dataList));
+        wx.navigateTo({
+            url: '/pages/updateBooks/updateBooks?dataList=' + dataList,
         })
     },
 
@@ -57,6 +64,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        this.onLoad()
 
     },
 

@@ -7,12 +7,12 @@
     </l-image-picker>
     <view class="text">设置封面</view>
     <view class="choose">
-    <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class" bind:linreset="reset">
+        <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class">
             <l-form-item label="书名（必填）:" name="title" label-width="200rpx">
                 <l-input id="title" value="{{dataList.title}}" hide-label show-row="{{false}}" required="{{true}}" />
             </l-form-item>
             <l-form-item label="作者:" name="author" label-width="200rpx">
-                <l-input id="author" value="{{dataList.author}}" hide-label show-row="{{false}}"/>
+                <l-input id="author" value="{{dataList.author}}" hide-label show-row="{{false}}" />
             </l-form-item>
             <l-form-item label="出版社:" name="publish" label-width="200rpx">
                 <l-input id="publish" value="{{dataList.publish}}" hide-label show-row="{{false}}" />
@@ -51,7 +51,7 @@
                 </l-radio-group>
             </l-form-item>
             <l-form-item label="书籍类型:" name="category" label-width="200rpx">
-                <l-radio-group current="{{category}}" id="category" placement="row">
+                <l-radio-group current="{{dataList.category}}" id="category" placement="row">
                     <l-radio key="0">
                         纸质书
                     </l-radio>
@@ -65,12 +65,11 @@
                 <!-- <text class="doubanUrl">{{dataList.url}}</text> -->
             </l-form-item>
             <view slot="submit">
-                <l-button>添加</l-button>
+                <l-button>更新</l-button>
             </view>
             <view slot="reset">
                 <l-button type="default" plain>重置</l-button>
             </view>
-    </l-form>
-</view>
-
+        </l-form>
+    </view>
 </view>

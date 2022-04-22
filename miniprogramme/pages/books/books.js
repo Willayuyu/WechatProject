@@ -54,9 +54,9 @@ Page({
         }).get({
             success: res => {
                 console.log(res.data[0])
-                var dataList = encodeURIComponent(JSON.stringify(res.data[0]));
+                var bookList = encodeURIComponent(JSON.stringify(res.data[0]));
                 wx.navigateTo({
-                    url: '/pages/detail/detail?dataList=' + dataList,
+                    url: '/pages/detail/detail?bookList=' + bookList,
                 })
             },
             fail: err => {

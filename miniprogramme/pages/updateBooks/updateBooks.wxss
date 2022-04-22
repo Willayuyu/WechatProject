@@ -57,7 +57,3 @@
     word-break: break-all !important;
     word-wrap: break-word !important;
 }
-
-/* .l-form-btn-class{
-   justify-content: center !important;
-} */

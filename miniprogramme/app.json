@@ -8,7 +8,9 @@
         "pages/search/search",
         "pages/new/new",
         "pages/detail/detail",
-        "pages/existBooks/existBooks"
+        "pages/existBooks/existBooks",
+        "pages/updateNotes/updateNotes",
+        "pages/updateBooks/updateBooks"
     ],
     "window": {
         "backgroundTextStyle": "light",
