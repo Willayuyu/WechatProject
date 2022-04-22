@@ -34,3 +34,6 @@
 .btn{
     margin:auto 5vw;
 }
+.tags{
+    margin-right: 5rpx !important;
+}

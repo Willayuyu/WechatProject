@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 const app = getApp();
+const db = wx.cloud.database({});
 Page({
 
     /**
@@ -7,32 +8,41 @@ Page({
      */
     data: {
         dataList:[],
-        userInfo: "",
-        urls: [{
-            newUrl: 'https://th.bing.com/th/id/OIP.GORpTfgdZKqcezZu4srqMwHaLd?pid=ImgDet&rs=1',
-            key: 'key1',
-            value:1
-        }, {
-            newUrl: '/image/example.png',
-            key: 'key2',
-            value: 2
-        }]
-
+        userInfo: '',
+        number:'',
+        noteList:[],
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        var that = this
         let userInfo = app.globalData.userInfo
         console.log(userInfo)
         console.log(options.dataList)
         var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
         var dataList = JSON.parse(dataTemp);
         console.log(dataList)
-        this.setData({
+        that.setData({
             dataList: dataList,
             userInfo: userInfo
+        })
+        db.collection("notes").where({
+            _openid:app.globalData.openId,
+            isbn:dataList.isbn
+        }).get({
+            success:res=>{
+                console.log(res.data)
+                console.log(res.data.length)
+                that.setData({
+                    number:res.data.length,
+                    noteList:res.data
+                }) 
+            },
+            fail: err => {
+                console.error(err)
+            }
         })
     },
 

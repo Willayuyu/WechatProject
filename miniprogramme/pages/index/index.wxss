@@ -4,6 +4,7 @@
     font-size: 32rpx;
     height: 100vh;
     min-height: 100vh;
+    max-height: auto;
 }
 
 .describe-container{
@@ -21,14 +22,14 @@
     width: 120rpx !important;
 }
 .book-title {
-    font-size: 32rpx !important;
+    font-size: 30rpx !important;
     text-align: left;
 }
 
 .card-content {
     font-size: 28rpx;
     text-align: left;
-    margin-top: 35rpx;
+    margin-top: 10rpx;
 }
 
 .card-contents {

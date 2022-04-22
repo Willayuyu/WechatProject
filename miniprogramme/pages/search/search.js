@@ -224,13 +224,6 @@ Page({
                                                     }
                                                 }).then(res => {
                                                     console.log(res)
-                                                    db.collection('books').where({
-                                                        title: e.detail.value
-                                                    }).get({
-                                                        success: res => {
-                                                            console.log(res.data)
-                                                        }
-                                                    })
                                                 }).catch(err => {
                                                     console.log(err)
                                                 })

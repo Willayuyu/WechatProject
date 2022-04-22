@@ -2,6 +2,7 @@
 import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 const app = getApp()
 const db = wx.cloud.database({});
+var util = require('../utils/utils.js')
 Page({
 
     /**
@@ -11,9 +12,11 @@ Page({
         select: false,
         plain: true,
         hiddenmodalput: false,
-        words:'',
-        bookList:[],
-        choosed:''
+        words: '',
+        bookList: [],
+        choosed: '',
+        tagList: [],
+        bookImage:[]
     },
     /**
      * 获取 CapsuleBar 高度
@@ -23,15 +26,20 @@ Page({
         console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
     },
 
-    onSelect() {
-        let select = this.data.select;
-        let plain = this.data.plain;
-        console.log(select)
-        console.log(plain)
-        this.setData({
-            select: !select,
-            plain: !plain
+    onSelect(e) {
+        var that = this;
+        console.log(e.detail.name)
+        var list = that.data.tagList
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].name == e.detail.name) {
+                list[i].select = !list[i].select
+                list[i].plain = !list[i].plain
+            }
+        }
+        that.setData({
+            tagList: list,
         })
+        console.log(that.data.tagList)
     },
 
     modalinput() {
@@ -44,6 +52,68 @@ Page({
             url: '/pages/existBooks/existBooks',
         })
     },
+
+    confirmTag: function (e) {
+        var that = this
+        console.log(e.detail.value)
+        var obj = {
+            name: e.detail.value,
+            select: false,
+            plain: true
+        }
+        app.globalData.tag.push(obj)
+        console.log(app.globalData.tag)
+        e.detail.value = ''
+        that.onLoad()
+    },
+
+    getContent:function(e){
+        var that=this
+        console.log(e.detail.value)
+        that.setData({
+            words:e.detail.value
+        })
+    },
+
+    onChangeTap:function(e){
+        console.log(e.detail.all)
+        var that = this
+        that.setData({
+            bookImage:e.detail.all
+        })
+    },
+
+    onSave:function(e){
+        var that = this
+        console.log(that.data.bookList)
+        console.log(that.data.words)
+        console.log(that.data.bookImage)
+        console.log(that.data.tagList)
+        var tags=new Array()
+        for(let i=0;i<that.data.tagList.length;i++){
+            if(that.data.tagList[i].select){
+                tags.push(that.data.tagList[i].name)
+            }
+        }
+        db.collection("notes").add({
+            data:{
+                isbn:that.data.bookList.isbn,
+                title:that.data.bookList.title,
+                words:that.data.words,
+                image:that.data.bookImage,
+                tags:tags,
+                date: util.formatTime(new Date())
+            }
+        }).then(res => {
+            console.log(res)
+            wx.switchTab({
+                url: '/pages/index/index',
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    },
+
 
     /**
      * 获取百度access_token
@@ -95,10 +165,10 @@ Page({
                     name: 'getImgInfo',
                     // 传递给云函数的参数
                     data: {
-                        url:detectUrl,
-                        image:imageData
+                        url: detectUrl,
+                        image: imageData
                     },
-                    success:res=>{
+                    success: res => {
                         console.log(res.result)
                         //将 res.data.words_result数组中的内容加入到words中
                         // that.setData({
@@ -106,7 +176,7 @@ Page({
                         // })
                         console.log(JSON.parse(res.result).words_result)
                         var word = new Array()
-                        for (let i = 0; i < JSON.parse(res.result).words_result_num; i++){
+                        for (let i = 0; i < JSON.parse(res.result).words_result_num; i++) {
                             word.push(JSON.parse(res.result).words_result[i].words)
                         }
                         console.log(word)
@@ -136,8 +206,12 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) { 
+    onLoad: function (options) {
+        this.setData({
+            tagList: app.globalData.tag
+        })
     },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -151,13 +225,13 @@ Page({
      */
     onShow: function () {
         var that = this
-        if(app.globalData.choosed!=''){
+        if (app.globalData.choosed != '') {
             that.setData({
                 bookList: JSON.parse(app.globalData.bookList),
-                choosed:app.globalData.choosed
+                choosed: app.globalData.choosed
             })
-            app.globalData.bookList=''
-            app.globalData.choosed=''
+            app.globalData.bookList = ''
+            app.globalData.choosed = ''
         }
 
     },

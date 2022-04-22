@@ -32,7 +32,8 @@ App({
         userInfo: '',
         openId: '',
         bookList:[],
-        choosed:''
+        choosed:'',
+        tag:[]
     },
     
 })

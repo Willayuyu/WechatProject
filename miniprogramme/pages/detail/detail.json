@@ -5,6 +5,7 @@
         "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index",
         "l-button":"/miniprogram_npm/lin-ui/button/index",
         "l-album":"/miniprogram_npm/lin-ui/album/index",
-        "l-avatar":"/miniprogram_npm/lin-ui/avatar/index"
+        "l-avatar":"/miniprogram_npm/lin-ui/avatar/index",
+        "l-tag":"/miniprogram_npm/lin-ui/tag/index"
     }
 }

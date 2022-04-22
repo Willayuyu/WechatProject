@@ -70,3 +70,11 @@
     margin-bottom: 40rpx;
     margin-top: 30rpx;
 }
+.tags{
+    margin-top: 10rpx;
+    display: flex;
+    flex-direction: row;
+}
+.tag{
+    margin-right: 10rpx !important;
+}

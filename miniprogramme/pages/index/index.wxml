@@ -6,37 +6,27 @@
             <view class="title">书摘数量 <image class="img" src="/icons/notes.png" mode="aspectFit"></image>
             </view>
             <view class="date">所有时间</view>
-            <view class="num">n条</view>
+            <view class="num">{{noteNumber}}条</view>
         </view>
         <view class="count">
             <view class="title">已读书籍 <image class="img" src="/icons/books.png" mode="aspectFit"></image>
             </view>
             <view class="date">所有时间</view>
-            <view class="num">n本</view>
+            <view class="num">{{bookNumber}}本</view>
         </view>
     </view>
     <l-tabs bind:linchange="changeTabs" swipeable="{{true}}" active-color="#2c61b4">
         <l-tabpanel tab="书摘时间线" key="one" slot="one">
             <view class="tab-content">
-                <l-steps direction="column" active-index="2" reverse="flase">
-                    <l-step title="{{time +'  '+ title}}">
+                <l-steps direction="column" active-index="{{noteNumber-1}}" reverse="flase">
+                    <l-step title="{{item.date +'  '+ item.title}}" wx:for="{{noteList}}">
                         <view class="describe-container" slot="describe">
-                            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="/image/example.png" l-title-class="book-title" image-mode="aspectFit" full="{{true}}">
+                            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{item.image[0]}}" l-title-class="book-title" image-mode="aspectFit" full="{{true}}">
                                 <view class="content card-contents">
-                                   世界上没有相同的两片叶子，也就不可能有相同的两个人。我们都是独一无二的奇迹，因为我们都曾经是千千万万中独独存活下来的那一个。
+                                   {{item.words}}
                                 </view>
                                 <view class="line"></view>
                             </l-card>
-                        </view>
-                    </l-step>
-                    <l-step title="2019-10-05 12:30">
-                        <view class="describe-container" slot="describe">
-                            拾玖重构步骤条
-                        </view>
-                    </l-step>
-                    <l-step title="2019-10-25 13:30">
-                        <view class="describe-container" slot="describe">
-                            步骤条更新完成😄
                         </view>
                     </l-step>
                 </l-steps>
@@ -44,26 +34,17 @@
         </l-tabpanel>
         <l-tabpanel tab="书籍时间线" key="two" slot="two">
             <view class="tab-content">
-                <l-steps direction="column" active-index="2" reverse="flase">
-                    <l-step title="{{time +'  '+ state}}">
+                <l-steps direction="column" active-index="{{number-1}}" reverse="flase">
+                    <l-step title="{{item.date +'  '+ item.status}}" wx:for="{{bookList}}">
                         <view class="describe-container" slot="describe">
-                            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="/image/example.png" l-title-class="book-title" title="{{title}}" image-mode="aspectFit" full="{{true}}">
+                            <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{item.cover_url}}" l-title-class="book-title" title="{{item.title}}" image-mode="aspectFit" full="{{true}}">
                                 <view class="content card-content">
-                                    <view class="author">作者：{{author}}</view>
-                                    <view class="press">出版社：{{press}}</view>
+                                    <view class="author">作者:{{item.author}}</view>
+                                    <view class="publish">出版社：{{item.publish}}</view>
+                                    <view class="publishDate">出版社：{{item.publishDate}}</view>
                                 </view>
                                 <view class="line"></view>
                             </l-card>
-                        </view>
-                    </l-step>
-                    <l-step title="2019-10-05 12:30">
-                        <view class="describe-container" slot="describe">
-                            拾玖重构步骤条
-                        </view>
-                    </l-step>
-                    <l-step title="2019-10-25 13:30">
-                        <view class="describe-container" slot="describe">
-                            步骤条更新完成😄
                         </view>
                     </l-step>
                 </l-steps>

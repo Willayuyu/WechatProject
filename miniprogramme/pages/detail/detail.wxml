@@ -10,12 +10,13 @@
     <view class="notes">
         <l-collapse>
             <l-collapse-item title="书摘">
-                <view class="album">
+                <view class="album" wx:for="{{noteList}}">
                     <l-avatar class="avatar" size='80' shape="square" src="{{userInfo.avatarUrl}}" />
                     <view class="right">
                         <view class="name">{{userInfo.nickName}}</view>
-                        <view class='content'>多张图片展示，自动按照朋友圈显示规则排序。</view>
-                        <l-album urls='{{urls}}'key='newUrl'></l-album>
+                        <view class='content'>{{item.words}}</view>
+                        <l-album urls='{{item.image}}' multiple-mode='scaleToFill' single-size="300"></l-album>
+                        <view class="tags"><l-tag plain="{{true}}" size="super-mini" wx:for="{{item.tags}}" wx:for-item="items" l-class="tag">{{items}}</l-tag></view>
                     </view>
                 </view>
                 <view class="line"></view>
