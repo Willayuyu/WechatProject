@@ -31,6 +31,7 @@ Page({
         ],
         noteNumber: '',
         bookNumber: '',
+        openId:'',
         noteList: [],
         bookList: []
     },
@@ -39,8 +40,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        if (app.globalData.openId!='') {
         var that = this
+        if (app.globalData.openId!='') {
         console.log(app.globalData.openId)
             db.collection("notes").where({
                 _openid: app.globalData.openId,
@@ -91,6 +92,13 @@ Page({
             })
         }
         else{
+            that.setData({
+                noteNumber: '',
+                noteList: '',
+                bookNumber: '',
+                bookList: '',
+                number: ''
+            })
             wx.showToast({
               title: '请先登录',
             })

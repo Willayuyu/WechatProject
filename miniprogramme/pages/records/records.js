@@ -64,8 +64,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var that = this
         if (app.globalData.openId!=''){
-            var that = this
             db.collection("notes").where({
                 _openid: app.globalData.openId,
             }).get({
@@ -83,6 +83,10 @@ Page({
             })
         }
         else{
+            that.setData({
+                noteNumber:'',
+                noteList: ''
+            })
             wx.showToast({
               title: '请先登录',
             })

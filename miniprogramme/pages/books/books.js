@@ -46,10 +46,9 @@ Page({
             wx.navigateTo({
                 url: '/pages/search/search',
             })
-        }
-        else{
+        } else {
             wx.showToast({
-              title: '请先登录',
+                title: '请先登录',
             })
             // wx.switchTab({
             //   url: '/pages/mine/mine',
@@ -85,13 +84,13 @@ Page({
      */
     onLoad: function (options) {
         var that = this
-        var book_1 = new Array()
-        var book_2 = new Array()
-        var book_3 = new Array()
-        var book_4 = new Array()
-        var book_5 = new Array()
-        var book_6 = new Array()
         if (app.globalData.openId != '') {
+            var book_1 = new Array()
+            var book_2 = new Array()
+            var book_3 = new Array()
+            var book_4 = new Array()
+            var book_5 = new Array()
+            var book_6 = new Array()
             db.collection('mybook').where({
                 _openid: app.globalData.openId,
             }).get({
@@ -134,6 +133,21 @@ Page({
                 }
             })
 
+        }
+        else{
+            that.setData({
+                defaultBook: '',
+                book_1: '',
+                book_2: '',
+                book_3: '',
+                book_4: '',
+                book_5: '',
+                book_6: '',
+            })
+            wx.showToast({
+              title: '请先登录',
+            })
+            
         }
 
     },
