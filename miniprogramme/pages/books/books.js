@@ -42,30 +42,42 @@ Page({
     },
 
     changePage() {
-        wx.navigateTo({
-            url: '/pages/search/search',
-        })
+        if (app.globalData.openId != '') {
+            wx.navigateTo({
+                url: '/pages/search/search',
+            })
+        }
+        else{
+            wx.showToast({
+              title: '请先登录',
+            })
+            // wx.switchTab({
+            //   url: '/pages/mine/mine',
+            // })
+        }
     },
     onShowDetail(e) {
         console.log(e.detail)
-        db.collection('mybook').where({
-            _openid: app.globalData.openId,
-            isbn: e.detail.key
-        }).get({
-            success: res => {
-                console.log(res.data[0])
-                var bookList = encodeURIComponent(JSON.stringify(res.data[0]));
-                wx.navigateTo({
-                    url: '/pages/detail/detail?bookList=' + bookList,
-                })
-            },
-            fail: err => {
-                console.error(res)
-            }
-        })
-        // wx.navigateTo({
-        //     url: '/pages/detail/detail',
-        // })
+        if (app.globalData.openId != '') {
+            db.collection('mybook').where({
+                _openid: app.globalData.openId,
+                isbn: e.detail.key
+            }).get({
+                success: res => {
+                    console.log(res.data[0])
+                    var bookList = encodeURIComponent(JSON.stringify(res.data[0]));
+                    wx.navigateTo({
+                        url: '/pages/detail/detail?bookList=' + bookList,
+                    })
+                },
+                fail: err => {
+                    console.error(res)
+                }
+            })
+            // wx.navigateTo({
+            //     url: '/pages/detail/detail',
+            // })
+        }
     },
 
     /**
@@ -79,48 +91,50 @@ Page({
         var book_4 = new Array()
         var book_5 = new Array()
         var book_6 = new Array()
-
-        db.collection('mybook').where({
-            _openid: app.globalData.openId,
-        }).get({
-            success: res => {
-                console.log(res.data)
-                for (let i = 0; i < res.data.length; i++) {
-                    for (let j = 0; j < res.data[i].group.length; j++) {
-                        if (res.data[i].group[j] == '文化') {
-                            book_1.push(res.data[i])
-                        }
-                        if (res.data[i].group[j] == '流行') {
-                            book_2.push(res.data[i])
-                        }
-                        if (res.data[i].group[j] == '文化') {
-                            book_3.push(res.data[i])
-                        }
-                        if (res.data[i].group[j] == '生活') {
-                            book_4.push(res.data[i])
-                        }
-                        if (res.data[i].group[j] == '经管') {
-                            book_5.push(res.data[i])
-                        }
-                        if (res.data[i].group[j] == '科技') {
-                            book_6.push(res.data[i])
+        if (app.globalData.openId != '') {
+            db.collection('mybook').where({
+                _openid: app.globalData.openId,
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    for (let i = 0; i < res.data.length; i++) {
+                        for (let j = 0; j < res.data[i].group.length; j++) {
+                            if (res.data[i].group[j] == '文化') {
+                                book_1.push(res.data[i])
+                            }
+                            if (res.data[i].group[j] == '流行') {
+                                book_2.push(res.data[i])
+                            }
+                            if (res.data[i].group[j] == '文化') {
+                                book_3.push(res.data[i])
+                            }
+                            if (res.data[i].group[j] == '生活') {
+                                book_4.push(res.data[i])
+                            }
+                            if (res.data[i].group[j] == '经管') {
+                                book_5.push(res.data[i])
+                            }
+                            if (res.data[i].group[j] == '科技') {
+                                book_6.push(res.data[i])
+                            }
                         }
                     }
+                    that.setData({
+                        defaultBook: res.data,
+                        book_1: book_1,
+                        book_2: book_2,
+                        book_3: book_3,
+                        book_4: book_4,
+                        book_5: book_5,
+                        book_6: book_6,
+                    })
+                },
+                fail: err => {
+                    console.error(err)
                 }
-                that.setData({
-                    defaultBook: res.data,
-                    book_1: book_1,
-                    book_2: book_2,
-                    book_3: book_3,
-                    book_4: book_4,
-                    book_5: book_5,
-                    book_6: book_6,
-                })
-            },
-            fail: err => {
-                console.error(err)
-            }
-        })
+            })
+
+        }
 
     },
 
@@ -135,6 +149,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.onLoad()
 
     },
 

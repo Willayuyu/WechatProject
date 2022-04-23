@@ -9,7 +9,7 @@
             </view>
         </view>
         <view class="other">
-            <l-list title="推荐给好友" icon="share" icon-size="30" open-type="share"/>  
+            <l-button size="long" plain="true" open-type="share">推荐给好友</l-button>
         </view>
         <!-- <view class="logo"><image src="/image/logo.png" class="logoimg"></image></view> -->
     </view>
@@ -20,8 +20,10 @@
             </view>
         </view>
         <view class="other">
-            <l-list title="账户信息" icon="edit" icon-size="30"/>
-            <l-list title="推荐给好友" icon="share" icon-size="30" open-type="share"/>  
+            <!-- <l-list title="账户信息" icon="edit" icon-size="30"/>-->
+        </view>
+        <view class="other">
+            <l-button size="long" plain="true" open-type="share">推荐给好友</l-button>
         </view>
         <view class="other">
             <l-button size="long" plain="true" bind:lintap="loginOut">退出登录</l-button>

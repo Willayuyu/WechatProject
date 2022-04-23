@@ -48,9 +48,18 @@ Page({
         })
     },
     showExistBook() {
-        wx.navigateTo({
-            url: '/pages/existBooks/existBooks',
-        })
+        if (app.globalData.openId != '') {
+            wx.navigateTo({
+                url: '/pages/existBooks/existBooks',
+            })
+        }else{
+            wx.showToast({
+              title: '请先登录',
+            })
+            // wx.switchTab({
+            //   url: '/pages/mine/mine',
+            // })
+        }
     },
 
     confirmTag: function (e) {
@@ -84,34 +93,44 @@ Page({
     },
 
     onSave:function(e){
-        var that = this
-        console.log(that.data.bookList)
-        console.log(that.data.words)
-        console.log(that.data.bookImage)
-        console.log(that.data.tagList)
-        var tags=new Array()
-        for(let i=0;i<that.data.tagList.length;i++){
-            if(that.data.tagList[i].select){
-                tags.push(that.data.tagList[i].name)
+        if (app.globalData.openId != '') {
+            var that = this
+            console.log(that.data.bookList)
+            console.log(that.data.words)
+            console.log(that.data.bookImage)
+            console.log(that.data.tagList)
+            var tags=new Array()
+            for(let i=0;i<that.data.tagList.length;i++){
+                if(that.data.tagList[i].select){
+                    tags.push(that.data.tagList[i].name)
+                }
             }
-        }
-        db.collection("notes").add({
-            data:{
-                isbn:that.data.bookList.isbn,
-                title:that.data.bookList.title,
-                words:that.data.words,
-                image:that.data.bookImage,
-                tags:tags,
-                date: util.formatTime(new Date())
-            }
-        }).then(res => {
-            console.log(res)
-            wx.switchTab({
-                url: '/pages/index/index',
+            db.collection("notes").add({
+                data:{
+                    isbn:that.data.bookList.isbn,
+                    title:that.data.bookList.title,
+                    words:that.data.words,
+                    image:that.data.bookImage,
+                    tags:tags,
+                    date: util.formatTime(new Date())
+                }
+            }).then(res => {
+                console.log(res)
+                wx.switchTab({
+                    url: '/pages/index/index',
+                })
+            }).catch(err => {
+                console.log(err)
             })
-        }).catch(err => {
-            console.log(err)
-        })
+        }else{
+            wx.showToast({
+              title: '请先登录',
+            })
+            // wx.switchTab({
+            //   url: '/pages/mine/mine',
+            // })
+        }
+        
     },
 
 

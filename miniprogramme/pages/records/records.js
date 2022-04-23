@@ -64,22 +64,29 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that = this
-        db.collection("notes").where({
-            _openid: app.globalData.openId,
-        }).get({
-            success: res => {
-                console.log(res.data)
-                console.log(res.data.length)
-                that.setData({
-                    noteNumber: res.data.length,
-                    noteList: res.data
-                })
-            },
-            fail: err => {
-                console.error(err)
-            }
-        })
+        if (app.globalData.openId!=''){
+            var that = this
+            db.collection("notes").where({
+                _openid: app.globalData.openId,
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    console.log(res.data.length)
+                    that.setData({
+                        noteNumber: res.data.length,
+                        noteList: res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+        }
+        else{
+            wx.showToast({
+              title: '请先登录',
+            })
+        }
     },
 
     /**
@@ -93,6 +100,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.onLoad()
 
     },
 

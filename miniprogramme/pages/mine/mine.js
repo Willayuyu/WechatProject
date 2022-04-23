@@ -6,34 +6,32 @@ Page({
      * 页面的初始数据
      */
     data: {
-        list: [
-            {
-                pagePath:"/pages/index/index",
-                iconPath:"/icons/index.png",
-                selectedIconPath:"/icons/index-selected.png"
+        list: [{
+                pagePath: "/pages/index/index",
+                iconPath: "/icons/index.png",
+                selectedIconPath: "/icons/index-selected.png"
             },
             {
-                pagePath:"/pages/books/books",
-                iconPath:"/icons/book.png",
-                selectedIconPath:"/icons/book-selected.png"
+                pagePath: "/pages/books/books",
+                iconPath: "/icons/book.png",
+                selectedIconPath: "/icons/book-selected.png"
             },
             {
-                pagePath:"/pages/add/add",
-                iconPath:"/icons/add.png",
-                selectedIconPath:""
+                pagePath: "/pages/add/add",
+                iconPath: "/icons/add.png",
+                selectedIconPath: ""
             },
             {
-                pagePath:"/pages/records/records",
-                iconPath:"/icons/record.png",
-                selectedIconPath:"/icons/record-selected.png"
+                pagePath: "/pages/records/records",
+                iconPath: "/icons/record.png",
+                selectedIconPath: "/icons/record-selected.png"
             },
             {
-                pagePath:"/pages/mine/mine",
-                iconPath:"/icons/mine.png",
-                selectedIconPath:"/icons/mine-selected.png"
+                pagePath: "/pages/mine/mine",
+                iconPath: "/icons/mine.png",
+                selectedIconPath: "/icons/mine-selected.png"
             }
         ],
-        openId: '',
         userInfo: '',
         isLogin: false,
     },
@@ -41,7 +39,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.getOpenId();
         let userInfo = app.globalData.userInfo;
         let isLogin = app.globalData.isLogin;
         let openId = app.globalData.openId;
@@ -59,7 +56,7 @@ Page({
                 console.log('[云函数] [login] user openid: ', res.result.openid)
                 app.globalData.openId = res.result.openid
                 console.log(app.globalData.openId)
-                wx.setStorageSync('openId', app.globalData.openId);
+                // wx.setStorageSync('openId', app.globalData.openId);
             },
             fail: err => {
                 console.error('[云函数] [login] 调用失败', err)
@@ -68,6 +65,7 @@ Page({
     },
     login: function (e) {
         let that = this;
+        that.getOpenId()
         let openId = app.globalData.openId;
         let userInfo = that.data.userInfo;
         console.log(openId)
@@ -121,7 +119,21 @@ Page({
         })
         //清理本地缓存
         wx.setStorageSync('user', null)
+        app.globalData.openId=''
         console.log("退出登录！")
+    },
+
+    onShareAppMessage: function (res) {
+        //可以通过res.from来判断是button分享还是menu分享（右上角）
+        console.log(res);
+        return {
+            // 分享的标题如果没有则自定义为小程序名称全写
+            // title: "我是分享界面",
+            //分享之后的路径如果没有则自定义为首页可以用模板字符串语法加入变量
+            // path: `pages/index/index`,
+            //分享图片的本地地址如果不写则为默认当前屏幕截图可以是网络地址
+            imageUrl: '/image/logo.png'
+        }
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

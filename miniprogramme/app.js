@@ -3,13 +3,13 @@ App({
     onLaunch: function () {
         console.log("Let's begin!")
         const userInfo = wx.getStorageSync('user')
-        const openId = wx.getStorageSync('openId')
+        // const openId = wx.getStorageSync('openId')
         if (userInfo) {
             console.log(userInfo)
             console.log(openId)
             this.globalData.userInfo = userInfo,
             this.globalData.isLogin = true
-            this.globalData.openId = openId
+            // this.globalData.openId = openId
         } else {
             console.log('no userInfo');
         }
