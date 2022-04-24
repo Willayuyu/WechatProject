@@ -199,10 +199,6 @@ router.get('/isbn/:isbn', async (ctx, next) => {
   }
 });
 
-router.get('/', (ctx, next) => {
-  ctx.body = 'hello';
-});
-
 app
   .use(cors())
   .use(logger())
