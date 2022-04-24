@@ -31,7 +31,7 @@ Page({
         ],
         noteNumber: '',
         bookNumber: '',
-        openId: '',
+        openId:'',
         noteList: [],
         bookList: []
     },
@@ -41,19 +41,8 @@ Page({
      */
     onLoad(options) {
         var that = this
-        if (app.globalData.openId == '') {
-            that.setData({
-                noteNumber: '',
-                noteList: '',
-                bookNumber: '',
-                bookList: '',
-                number: ''
-            })
-            wx.showToast({
-                title: '请先登录',
-            })
-        } else {
-            console.log(app.globalData.openId)
+        if (app.globalData.openId!='') {
+        console.log(app.globalData.openId)
             db.collection("notes").where({
                 _openid: app.globalData.openId,
             }).get({
@@ -102,7 +91,18 @@ Page({
                 }
             })
         }
-
+        else{
+            that.setData({
+                noteNumber: '',
+                noteList: '',
+                bookNumber: '',
+                bookList: '',
+                number: ''
+            })
+            wx.showToast({
+              title: '请先登录',
+            })
+        }
 
     },
 
