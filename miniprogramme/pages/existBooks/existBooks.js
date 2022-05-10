@@ -20,7 +20,7 @@ Page({
     showDetail: function (e) {
         console.log(e.currentTarget.id)
         const db = wx.cloud.database({});
-        db.collection('mybook').where({
+        db.collection('myBook').where({
             _openid: app.globalData.openId,
             isbn: e.currentTarget.id
         }).get({
@@ -34,7 +34,7 @@ Page({
                 })
             },
             fail: err => {
-                console.error(res)
+                console.error(err)
             }
 
 
@@ -45,7 +45,7 @@ Page({
      */
     onLoad(options) {
         var that = this
-        db.collection('mybook').where({
+        db.collection('myBook').where({
             _openid: app.globalData.openId,
         }).get({
             success: res => {

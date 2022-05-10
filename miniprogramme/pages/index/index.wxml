@@ -18,7 +18,7 @@
     <l-tabs bind:linchange="changeTabs" swipeable="{{true}}" active-color="#2c61b4">
         <l-tabpanel tab="书摘时间线" key="one" slot="one">
             <view class="tab-content">
-                <l-steps direction="column" active-index="{{noteNumber-1}}" reverse="flase">
+                <l-steps direction="column" active-index="{{recordNumber-1}}" reverse="flase">
                     <l-step title="{{item.date +'  '+ item.title}}" wx:for="{{noteList}}">
                         <view class="describe-container" slot="describe">
                             <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{item.image[0]}}" l-title-class="book-title" image-mode="aspectFit" full="{{true}}">
@@ -34,7 +34,7 @@
         </l-tabpanel>
         <l-tabpanel tab="书籍时间线" key="two" slot="two">
             <view class="tab-content">
-                <l-steps direction="column" active-index="{{number-1}}" reverse="flase">
+                <l-steps direction="column" active-index="{{readNumber-1}}" reverse="flase">
                     <l-step title="{{item.date +'  '+ item.status}}" wx:for="{{bookList}}">
                         <view class="describe-container" slot="describe">
                             <l-card l-class="card" type="primary" l-img-class="right-card" position="left" image="{{item.cover_url}}" l-title-class="book-title" title="{{item.title}}" image-mode="aspectFit" full="{{true}}">

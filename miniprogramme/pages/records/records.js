@@ -66,7 +66,7 @@ Page({
     onLoad: function (options) {
         var that = this
         if (app.globalData.openId!=''){
-            db.collection("notes").where({
+            db.collection("myNote").where({
                 _openid: app.globalData.openId,
             }).get({
                 success: res => {

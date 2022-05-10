@@ -31,7 +31,9 @@ Page({
         ],
         noteNumber: '',
         bookNumber: '',
-        openId:'',
+        recordNumber:'',
+        readNumber:'',
+        openId: '',
         noteList: [],
         bookList: []
     },
@@ -41,8 +43,21 @@ Page({
      */
     onLoad(options) {
         var that = this
-        if (app.globalData.openId!='') {
-        console.log(app.globalData.openId)
+        if (app.globalData.isLogin) {
+            console.log(app.globalData.openId)
+            db.collection("myNote").where({
+                _openid: app.globalData.openId,
+            }).get({
+                success: res => {
+                    console.log(res.data.length)
+                    that.setData({
+                        noteNumber: res.data.length,
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
             db.collection("notes").where({
                 _openid: app.globalData.openId,
             }).get({
@@ -50,16 +65,18 @@ Page({
                     console.log(res.data)
                     console.log(res.data.length)
                     that.setData({
-                        noteNumber: res.data.length,
-                        noteList: res.data
+                        noteList: res.data,
+                        recordNumber:res.data.length
                     })
                 },
                 fail: err => {
                     console.error(err)
                 }
             })
+
+            
             let n = 0
-            db.collection("mybook").where({
+            db.collection("myBook").where({
                 _openid: app.globalData.openId,
             }).get({
                 success: res => {
@@ -81,26 +98,55 @@ Page({
                     }
                     that.setData({
                         bookNumber: n,
-                        bookList: res.data,
-                        number: res.data.length
+                        // bookList: res.data,
+                        // number: res.data.length
                     })
-                    console.log(that.data.bookNumber)
+                    // console.log(that.data.bookNumber)
                 },
                 fail: err => {
                     console.error(err)
                 }
             })
-        }
-        else{
+            db.collection("books").where({
+                _openid: app.globalData.openId,
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    for (let i = 0; i < res.data.length; i++) {
+                        if (res.data[i].status == 0) {
+                            res.data[i].status = '想读'
+                        }
+                        if (res.data[i].status == 1) {
+                            res.data[i].status = '在读'
+                        }
+                        if (res.data[i].status == 2) {
+                            res.data[i].status = '读完'
+                        }
+                        if (res.data[i].status == 1) {
+                            res.data[i].status = '弃读'
+                        }
+                    }
+                    that.setData({
+                       bookList: res.data,
+                       readNumber: res.data.length
+                    })
+                    // console.log(that.data.bookNumber)
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+        } else {
             that.setData({
                 noteNumber: '',
-                noteList: '',
+                noteList: [],
+                recordNumber:'',
                 bookNumber: '',
-                bookList: '',
-                number: ''
+                bookList: [],
+                readNumber: ''
             })
             wx.showToast({
-              title: '请先登录',
+                title: '请先登录',
             })
         }
 
@@ -117,7 +163,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.onLoad()
+        var that = this
+        that.onLoad()
 
     },
 

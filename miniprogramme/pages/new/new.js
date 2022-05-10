@@ -10,7 +10,7 @@ Page({
     data: {
         dataList: [],
         defaultImg: '/icons/book.png',
-        bookImage:'',
+        bookImage: '',
         groups: [{
                 id: 0,
                 name: '文学',
@@ -46,11 +46,11 @@ Page({
 
     },
 
-    onChangeTap(e){
+    onChangeTap(e) {
         console.log(e.detail.current)
         var that = this
         that.setData({
-            bookImage:e.detail.current
+            bookImage: e.detail.current
         })
     },
 
@@ -89,17 +89,17 @@ Page({
             group.push(bookData.group[i].value)
         }
         console.log(group)
-        db.collection('mybook').where({
+        db.collection('myBook').where({
             _openid: app.globalData.openId,
             isbn: bookData.isbn
         }).get({
             success: res => {
                 if (res.data.length == 0) {
-                    db.collection('mybook').add({
+                    db.collection('myBook').add({
                         data: {
                             author: bookData.author,
                             category: bookData.category,
-                            cover_url:that.data.bookImage,
+                            cover_url: that.data.bookImage,
                             group: group,
                             isbn: bookData.isbn,
                             publish: bookData.publish,
@@ -110,12 +110,42 @@ Page({
                             date: util.formatTime(new Date())
                         },
                         success: res => {
-                            wx.showToast({
-                                title: '新增记录成功',
-                            })
+                            // wx.showToast({
+                            //     title: '新增记录成功',
+                            // })
                             console.log('[mybook] [新增记录] 成功，记录 _id: ', res._id)
-                            wx.navigateBack({
-                                delta: 1,
+                            // wx.navigateBack({
+                            //     delta: 1,
+                            // })
+                            db.collection('books').add({
+                                data: {
+                                    author: bookData.author,
+                                    cover_url: that.data.bookImage,
+                                    isbn: bookData.isbn,
+                                    publish: bookData.publish,
+                                    publishDate: bookData.publishDate,
+                                    status: bookData.status,
+                                    title: bookData.title,
+                                    date: util.formatTime(new Date())
+                                },
+                                success: res => {
+                                    wx.showToast({
+                                        title: '新增记录成功',
+                                    })
+                                    console.log('[read] [新增记录] 成功，记录 _id: ', res._id)
+                                    wx.navigateBack({
+                                        delta: 2,
+                                    })
+                                },
+                                fail: err => {
+                                    wx.showToast({
+                                        title: '新增记录失败'
+                                    })
+                                    console.error('[read] [新增记录] 失败：', err)
+                                    wx.navigateBack({
+                                        delta: 2,
+                                    })
+                                }
                             })
                         },
                         fail: err => {
@@ -124,7 +154,7 @@ Page({
                             })
                             console.error('[mybook] [新增记录] 失败：', err)
                             wx.navigateBack({
-                                delta: 1,
+                                delta: 2,
                             })
                         }
                     })
@@ -143,7 +173,7 @@ Page({
 
     },
 
-    reset(){
+    reset() {
 
     },
     /**
@@ -157,7 +187,7 @@ Page({
         console.log(dataList)
         this.setData({
             dataList: dataList,
-            bookImage:dataList.cover_url
+            bookImage: dataList.cover_url
         })
     },
 

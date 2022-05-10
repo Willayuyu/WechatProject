@@ -7,7 +7,7 @@
     </l-image-picker>
     <view class="text">设置封面</view>
     <view class="choose">
-        <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class">
+        <l-form name="form" bind:linsubmit="submit" l-form-btn-class="l-form-btn-class" bind:linreset="delete">
             <l-form-item label="书名（必填）:" name="title" label-width="200rpx">
                 <l-input id="title" value="{{dataList.title}}" hide-label show-row="{{false}}" required="{{true}}" />
             </l-form-item>
@@ -68,7 +68,7 @@
                 <l-button>更新</l-button>
             </view>
             <view slot="reset">
-                <l-button type="default" plain>重置</l-button>
+                <l-button type="default" plain>删除</l-button>
             </view>
         </l-form>
     </view>

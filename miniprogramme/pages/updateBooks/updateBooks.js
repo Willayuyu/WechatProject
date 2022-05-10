@@ -81,20 +81,21 @@ Page({
         console.log(app.globalData.openId)
         console.log(that.data.bookImage)
         const bookData = detail.values
-        console.log(util.formatTime(new Date()))
+        console.log(bookData)
         const group = new Array()
         for (let i = 0; i < bookData.group.length; i++) {
             group.push(bookData.group[i].value)
         }
         console.log(group)
-        db.collection('mybook').where({
+        db.collection('myBook').where({
             _openid: app.globalData.openId,
             isbn: bookData.isbn
         }).get({
             success: res => {
                 console.log(res.data)
                 console.log(res.data[0]._id)
-                db.collection('mybook').doc(res.data[0]._id).update({
+
+                db.collection('myBook').doc(res.data[0]._id).update({
                         data: {
                             author: bookData.author,
                             category: bookData.category,
@@ -113,9 +114,34 @@ Page({
                         wx.showToast({
                             title: '更新记录成功'
                         })
-                        wx.navigateBack({
-                            delta: 1,
-                        })
+                        console.log(that.data.status)
+                        console.log(bookData.status)
+                        if (that.data.status != bookData.status) {
+                            db.collection('books').add({
+                                data: {
+                                    author: bookData.author,
+                                    cover_url: that.data.bookImage,
+                                    isbn: bookData.isbn,
+                                    publish: bookData.publish,
+                                    publishDate: bookData.publishDate,
+                                    status: bookData.status,
+                                    title: bookData.title,
+                                    date: util.formatTime(new Date())
+                                },
+                            }).then(res => {
+                                console.log(res)
+                                wx.navigateBack({
+                                    delta: 1,
+                                })
+                            }).catch(err => {
+                                console.log(err)
+                                wx.navigateBack({
+                                    delta: 1,
+                                })
+                            })
+                        }
+
+
                     })
                     .catch(err => {
                         console.log('更新数据失败')
@@ -126,8 +152,58 @@ Page({
                             delta: 1,
                         })
                     })
+            },
+            fail: err => {
+                console.log(err)
+            }
 
+        })
 
+    },
+
+    delete: function (e) {
+        var that = this
+        db.collection('myBook').where({
+            _openid: app.globalData.openId,
+            isbn: that.data.dataList.isbn
+        }).get({
+            success: res => {
+                console.log(res.data)
+                console.log(res.data[0]._id)
+                db.collection('myBook').doc(res.data[0]._id).remove()
+                    .then(res => {
+                        console.log('删除数据成功')
+                        wx.showToast({
+                            title: '删除成功'
+                        })
+                        db.collection('books').where({
+                            _openid: app.globalData.openId,
+                            isbn: that.data.dataList.isbn
+                        }).get({
+                            success: res => {
+                                console.log(res.data)
+                                for (let i = 0; i < res.data.length; i++) {
+                                    db.collection('books').doc(res.data[i]._id).remove()
+                                        .then(res => {
+                                            console.log(res)
+                                            wx.navigateBack({
+                                                delta: 1,
+                                            })
+                                        }).catch(err => {
+                                            console.log(err)
+                                            wx.navigateBack({
+                                                delta: 1,
+                                            })
+                                        })
+                                }
+                            },
+                            fail: err => {
+                                console.log(err)
+                            }
+                        })
+                    }).catch(err => {
+                        console.log('删除数据失败')
+                    })
             },
             fail: err => {
                 console.log(err)
@@ -145,8 +221,8 @@ Page({
         var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
         var dataList = JSON.parse(dataTemp);
         console.log(dataList)
-        // var group = dataList.group
-        // var groupList = this.data.groups
+        var group = dataList.group
+        var groupList = this.data.groups
         // for(let i = 0; i<group.length;i++){
         //     for(let j = 0; j<groupList.length;j++){
         //         if(group[i]==groupList[j].name){
@@ -154,9 +230,11 @@ Page({
         //         }
         //     }
         // }
+
         this.setData({
             dataList: dataList,
             bookImage: dataList.cover_url,
+            status: dataList.status
             // groups:groupList
         })
     },
@@ -172,6 +250,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        this.onLoad()
 
     },
 

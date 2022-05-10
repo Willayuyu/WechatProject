@@ -46,37 +46,28 @@ Page({
                         })
                         console.log(JSON.parse(bookString).data.author)
                         //云数据库初始化
-                        const book = db.collection('books')
-                        db.collection('books').where({
+
+                        db.collection('searchBook').where({
                             isbn: isbn
                         }).get({
                             success: res => {
                                 console.log(res.data)
                                 if (res.data.length == 0) {
-                                    db.collection('books').add({
+                                    db.collection('searchBook').add({
                                         // data 字段表示需新增的 JSON 数据
                                         // data: JSON.parse(bookString).data,
                                         data: {
                                             author: JSON.parse(bookString).data.author,
-                                            category: '',
                                             cover_url: JSON.parse(bookString).data.cover_url,
-                                            group: '',
                                             id: JSON.parse(bookString).data.id,
                                             isbn: JSON.parse(bookString).data.isbn,
                                             publish: JSON.parse(bookString).data.publish,
                                             publishDate: JSON.parse(bookString).data.publishDate,
-                                            status: '',
                                             title: JSON.parse(bookString).data.title,
                                             url: JSON.parse(bookString).data.url
                                         }
                                     }).then(res => {
                                         console.log(res)
-                                        db.collection('books').where({
-                                            isbn: isbn
-                                        }).get({
-                                            success: result => {
-                                            }
-                                        })
                                     }).catch(err => {
                                         console.log(err)
                                     })
@@ -85,11 +76,9 @@ Page({
                                 }
                             }
                         })
-
-
                     },
                     fail: err => {
-                        console.error(res)
+                        console.error(err)
                     }
                 })
             },
@@ -127,25 +116,21 @@ Page({
                         isSearchISBN: true
                     })
                     //云数据库初始化
-                    const book = db.collection('books')
-                    db.collection('books').where({
+                    db.collection('searchBook').where({
                         isbn: isbn
                     }).get({
                         success: res => {
                             if (res.data.length == 0) {
-                                db.collection('books').add({
+                                db.collection('searchBook').add({
                                     // data 字段表示需新增的 JSON 数据
                                     // data: JSON.parse(bookString).data,
                                     data: {
                                         author: JSON.parse(bookString).data.author,
-                                        category: '',
                                         cover_url: JSON.parse(bookString).data.cover_url,
-                                        group: '',
                                         id: JSON.parse(bookString).data.id,
                                         isbn: JSON.parse(bookString).data.isbn,
                                         publish: JSON.parse(bookString).data.publish,
                                         publishDate: JSON.parse(bookString).data.publishDate,
-                                        status: '',
                                         title: JSON.parse(bookString).data.title,
                                         url: JSON.parse(bookString).data.url
                                     }
@@ -159,10 +144,9 @@ Page({
                             }
                         }
                     })
-
                 },
                 fail: err => {
-                    console.error(res)
+                    console.error(err)
                 }
             })
 
@@ -202,23 +186,20 @@ Page({
                                         bookList: detail,
                                         isSearchContent: true
                                     })
-                                    db.collection('books').where({
+                                    db.collection('searchBook').where({
                                         isbn: JSON.parse(detailString).data.isbn
                                     }).get({
                                         success: res => {
                                             if (res.data.length == 0) {
-                                                db.collection('books').add({
+                                                db.collection('searchBook').add({
                                                     // data 字段表示需新增的 JSON 数据
                                                     data: {
                                                         author: JSON.parse(detailString).data.author,
-                                                        category: '',
                                                         cover_url: JSON.parse(detailString).data.cover_url,
-                                                        group: '',
                                                         id: JSON.parse(detailString).data.id,
                                                         isbn: JSON.parse(detailString).data.isbn,
                                                         publish: JSON.parse(detailString).data.publish,
                                                         publishDate: JSON.parse(detailString).data.publishDate,
-                                                        status: '',
                                                         title: JSON.parse(detailString).data.title,
                                                         url: JSON.parse(detailString).data.url
                                                     }
@@ -229,17 +210,15 @@ Page({
                                                 })
                                             } else {
                                                 console.log("此书已存在！")
-                                                // console.log(res.data[0])
-                                                // detail.push(res.data[0])  
                                             }
                                         },
                                         fail: err => {
-                                            console.error(res)
+                                            console.error(err)
                                         }
                                     })
                                 },
                                 fail: err => {
-                                    console.error(res)
+                                    console.error(err)
                                 }
                             })
                         }
@@ -247,7 +226,7 @@ Page({
 
                 },
                 fail: err => {
-                    console.error(res)
+                    console.error(err)
                 }
             })
         }
@@ -256,7 +235,7 @@ Page({
     showDetail: function (e) {
         console.log(e.currentTarget.id)
         const db = wx.cloud.database({});
-        db.collection('books').where({
+        db.collection('searchBook').where({
             isbn: e.currentTarget.id
         }).get({
             success: res => {
@@ -267,7 +246,7 @@ Page({
                 })
             },
             fail: err => {
-                console.error(res)
+                console.error(err)
             }
 
 
@@ -278,12 +257,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        let that = this
-        that.setData({
-            bookList: app.globalData.bookList,
-            isSearchISBN: app.globalData.isSearchISBN,
-            isSearchContent: app.globalData.isSearchContent
-        })
     },
 
     /**

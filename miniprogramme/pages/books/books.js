@@ -42,7 +42,7 @@ Page({
     },
 
     changePage() {
-        if (app.globalData.openId != '') {
+        if (app.globalData.isLogin) {
             wx.navigateTo({
                 url: '/pages/search/search',
             })
@@ -57,26 +57,21 @@ Page({
     },
     onShowDetail(e) {
         console.log(e.detail)
-        if (app.globalData.openId != '') {
-            db.collection('mybook').where({
-                _openid: app.globalData.openId,
-                isbn: e.detail.key
-            }).get({
-                success: res => {
-                    console.log(res.data[0])
-                    var bookList = encodeURIComponent(JSON.stringify(res.data[0]));
-                    wx.navigateTo({
-                        url: '/pages/detail/detail?bookList=' + bookList,
-                    })
-                },
-                fail: err => {
-                    console.error(res)
-                }
-            })
-            // wx.navigateTo({
-            //     url: '/pages/detail/detail',
-            // })
-        }
+        db.collection('myBook').where({
+            _openid: app.globalData.openId,
+            isbn: e.detail.key
+        }).get({
+            success: res => {
+                console.log(res.data[0])
+                var bookList = encodeURIComponent(JSON.stringify(res.data[0]));
+                wx.navigateTo({
+                    url: '/pages/detail/detail?bookList=' + bookList,
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
     },
 
     /**
@@ -84,14 +79,14 @@ Page({
      */
     onLoad: function (options) {
         var that = this
-        if (app.globalData.openId != '') {
-            var book_1 = new Array()
-            var book_2 = new Array()
-            var book_3 = new Array()
-            var book_4 = new Array()
-            var book_5 = new Array()
-            var book_6 = new Array()
-            db.collection('mybook').where({
+        var book_1 = new Array()
+        var book_2 = new Array()
+        var book_3 = new Array()
+        var book_4 = new Array()
+        var book_5 = new Array()
+        var book_6 = new Array()
+        if (app.globalData.isLogin) {
+            db.collection('myBook').where({
                 _openid: app.globalData.openId,
             }).get({
                 success: res => {
@@ -132,22 +127,20 @@ Page({
                     console.error(err)
                 }
             })
-
         }
         else{
             that.setData({
-                defaultBook: '',
-                book_1: '',
-                book_2: '',
-                book_3: '',
-                book_4: '',
-                book_5: '',
-                book_6: '',
+                defaultBook: [],
+                book_1: [],
+                book_2: [],
+                book_3: [],
+                book_4: [],
+                book_5: [],
+                book_6: [],
             })
             wx.showToast({
               title: '请先登录',
             })
-            
         }
 
     },

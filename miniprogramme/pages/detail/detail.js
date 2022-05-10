@@ -27,7 +27,8 @@ Page({
             dataList: dataList,
             userInfo: userInfo
         })
-        db.collection("notes").where({
+        
+        db.collection("myNote").where({
             _openid: app.globalData.openId,
             isbn: dataList.isbn
         }).get({
@@ -50,6 +51,17 @@ Page({
         var dataList = encodeURIComponent(JSON.stringify(that.data.dataList));
         wx.navigateTo({
             url: '/pages/updateBooks/updateBooks?dataList=' + dataList,
+        })
+    },
+
+    showNotes:function(e){
+        console.log(e)
+    },
+
+    onCreate:function(e){
+
+        wx.switchTab({
+              url: '/pages/add/add',
         })
     },
 

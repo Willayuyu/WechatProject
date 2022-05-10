@@ -16,7 +16,7 @@ Page({
         bookList: [],
         choosed: '',
         tagList: [],
-        bookImage:[]
+        bookImage: []
     },
     /**
      * 获取 CapsuleBar 高度
@@ -48,13 +48,13 @@ Page({
         })
     },
     showExistBook() {
-        if (app.globalData.openId != '') {
+        if (app.globalData.isLogin) {
             wx.navigateTo({
                 url: '/pages/existBooks/existBooks',
             })
-        }else{
+        } else {
             wx.showToast({
-              title: '请先登录',
+                title: '请先登录',
             })
             // wx.switchTab({
             //   url: '/pages/mine/mine',
@@ -76,61 +76,71 @@ Page({
         that.onLoad()
     },
 
-    getContent:function(e){
-        var that=this
+    getContent: function (e) {
+        var that = this
         console.log(e.detail.value)
         that.setData({
-            words:e.detail.value
+            words: e.detail.value
         })
     },
 
-    onChangeTap:function(e){
+    onChangeTap: function (e) {
         console.log(e.detail.all)
         var that = this
         that.setData({
-            bookImage:e.detail.all
+            bookImage: e.detail.all
         })
     },
 
-    onSave:function(e){
-        if (app.globalData.openId != '') {
+    onSave: function (e) {
+        if (app.globalData.isLogin) {
             var that = this
             console.log(that.data.bookList)
             console.log(that.data.words)
             console.log(that.data.bookImage)
             console.log(that.data.tagList)
-            var tags=new Array()
-            for(let i=0;i<that.data.tagList.length;i++){
-                if(that.data.tagList[i].select){
+            var tags = new Array()
+            for (let i = 0; i < that.data.tagList.length; i++) {
+                if (that.data.tagList[i].select) {
                     tags.push(that.data.tagList[i].name)
                 }
             }
-            db.collection("notes").add({
-                data:{
-                    isbn:that.data.bookList.isbn,
-                    title:that.data.bookList.title,
-                    words:that.data.words,
-                    image:that.data.bookImage,
-                    tags:tags,
+            db.collection("myNote").add({
+                data: {
+                    isbn: that.data.bookList.isbn,
+                    title: that.data.bookList.title,
+                    words: that.data.words,
+                    tags: tags,
+                    image: that.data.bookImage,
                     date: util.formatTime(new Date())
                 }
             }).then(res => {
                 console.log(res)
-                wx.switchTab({
-                    url: '/pages/index/index',
+                db.collection("notes").add({
+                    data: {
+                        isbn: that.data.bookList.isbn,
+                        title: that.data.bookList.title,
+                        words: that.data.words,
+                        image: that.data.bookImage,
+                        date: util.formatTime(new Date())
+                    }
+                }).then(res => {
+                    console.log(res)
+                    wx.switchTab({
+                        url: '/pages/index/index',
+                    })
+                }).catch(err => {
+                    console.log(err)
                 })
             }).catch(err => {
                 console.log(err)
             })
-        }else{
+        } else {
             wx.showToast({
-              title: '请先登录',
+                title: '请先登录',
             })
-            // wx.switchTab({
-            //   url: '/pages/mine/mine',
-            // })
         }
-        
+
     },
 
 
@@ -244,7 +254,7 @@ Page({
      */
     onShow: function () {
         var that = this
-        if (app.globalData.choosed != '') {
+        if (app.globalData.choosed) {
             that.setData({
                 bookList: JSON.parse(app.globalData.bookList),
                 choosed: app.globalData.choosed

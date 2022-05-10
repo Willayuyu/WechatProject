@@ -41,11 +41,9 @@ Page({
     onLoad: function (options) {
         let userInfo = app.globalData.userInfo;
         let isLogin = app.globalData.isLogin;
-        let openId = app.globalData.openId;
         this.setData({
             userInfo: userInfo,
             isLogin: isLogin,
-            openId: openId
         })
     },
     getOpenId: function (e) {
@@ -56,7 +54,7 @@ Page({
                 console.log('[云函数] [login] user openid: ', res.result.openid)
                 app.globalData.openId = res.result.openid
                 console.log(app.globalData.openId)
-                // wx.setStorageSync('openId', app.globalData.openId);
+                wx.setStorageSync('openId', app.globalData.openId);
             },
             fail: err => {
                 console.error('[云函数] [login] 调用失败', err)
@@ -67,7 +65,7 @@ Page({
         let that = this;
         that.getOpenId()
         let openId = app.globalData.openId;
-        let userInfo = that.data.userInfo;
+        let userInfo = app.globalData.userInfo;
         console.log(openId)
         if (userInfo == '') {
             wx.getUserProfile({
@@ -78,9 +76,9 @@ Page({
                         isLogin: true
                     })
                     console.log(that.data.userInfo)
-                    that.data.userInfo.openId = openId
-                    console.log(that.data.userInfo)
+                    // that.data.userInfo.openId = openId
                     wx.setStorageSync('user', res.userInfo)
+                    app.globalData.isLogin = true
                     db.collection('user').where({
                             _openid: openId
                         })
@@ -92,7 +90,6 @@ Page({
                                         data: {
                                             nickName: userInfo.nickName,
                                             avatarUrl: userInfo.avatarUrl,
-                                            time: new Date(),
                                         },
                                         success: res => {
                                             console.log('用户信息已保存到数据库', res)
@@ -119,7 +116,9 @@ Page({
         })
         //清理本地缓存
         wx.setStorageSync('user', null)
-        app.globalData.openId=''
+        // app.globalData.openId = ''
+        wx.setStorageSync('openId', null)
+        app.globalData.isLogin = false
         console.log("退出登录！")
     },
 
