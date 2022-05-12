@@ -8,8 +8,9 @@
         </view>
     </l-card>
     <view class="notes">
-        <l-collapse bind:linexpand="showNotes">
-            <l-collapse-item title="书摘" wx:for="{{noteList}}" item-id="{{item._id}}">
+        <l-collapse> 
+            <l-collapse-item title="书摘">
+                <view  wx:for="{{noteList}}" bindtap="showNotes" id="{{item._id}}">
                 <view class="album">
                     <l-avatar class="avatar" size='80' shape="square" src="{{userInfo.avatarUrl}}" />
                     <view class="right">
@@ -20,6 +21,7 @@
                     </view>
                 </view>
                 <view class="line"></view>
+            </view>
             </l-collapse-item>
         </l-collapse>
     </view>

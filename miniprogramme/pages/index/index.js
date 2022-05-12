@@ -52,27 +52,28 @@ Page({
                     console.log(res.data.length)
                     that.setData({
                         noteNumber: res.data.length,
-                    })
-                },
-                fail: err => {
-                    console.error(err)
-                }
-            })
-            db.collection("notes").where({
-                _openid: app.globalData.openId,
-            }).get({
-                success: res => {
-                    console.log(res.data)
-                    console.log(res.data.length)
-                    that.setData({
                         noteList: res.data,
-                        recordNumber:res.data.length
                     })
                 },
                 fail: err => {
                     console.error(err)
                 }
             })
+            // db.collection("notes").where({
+            //     _openid: app.globalData.openId,
+            // }).get({
+            //     success: res => {
+            //         console.log(res.data)
+            //         console.log(res.data.length)
+            //         that.setData({
+            //             noteList: res.data,
+            //             recordNumber:res.data.length
+            //         })
+            //     },
+            //     fail: err => {
+            //         console.error(err)
+            //     }
+            // })
 
             
             let n = 0

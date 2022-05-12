@@ -2,7 +2,7 @@
 <l-capsule-bar home-page="/pages/index/index" title="书摘编辑">
     <view class="container">
         <view class="choose" bindtap="showExistBook">
-            <l-list class="list" title="{{bookList.title}}" icon="order" icon-size="30"/>
+            <l-list class="list" title="{{noteList.title}}" icon="order" icon-size="30"/>
         </view>
         <view class="choose">
             <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="200" value="{{words}}" bind:linblur="getContent"></l-textarea>
@@ -10,7 +10,7 @@
         <view class="choose">
             <l-collapse>
                 <l-collapse-item title="图片">
-                    <l-image-picker count="3" size="3" bind:linchange="onChangeTap" size-type="compressed" />
+                    <l-image-picker count="3" size="3" bind:linchange="onChangeTap" size-type="compressed" urls="{{images}}" />
                 </l-collapse-item>
             </l-collapse>
         </view>
@@ -31,7 +31,8 @@
         </view>
         <view class="buttons">
             <l-button class="btn" size="medium" plain="true" bind:lintap="onOCR">OCR</l-button>
-            <l-button class="btn" size="medium" plain="true" bind:lintap="onSave">保存</l-button>
+            <l-button class="btn" size="medium" plain="true" bind:lintap="onSave">更新</l-button>
+            <l-button class="btn" size="medium" plain="true" bind:lintap="onDelete">删除</l-button>
         </view>
     </view>
 </l-capsule-bar>

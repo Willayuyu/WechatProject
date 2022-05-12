@@ -87,129 +87,112 @@ Page({
             group.push(bookData.group[i].value)
         }
         console.log(group)
-        db.collection('myBook').where({
-            _openid: app.globalData.openId,
-            isbn: bookData.isbn
-        }).get({
-            success: res => {
-                console.log(res.data)
-                console.log(res.data[0]._id)
-
-                db.collection('myBook').doc(res.data[0]._id).update({
+        db.collection('myBook').doc(that.data.dataList._id).update({
+                data: {
+                    author: bookData.author,
+                    category: bookData.category,
+                    cover_url: that.data.bookImage,
+                    group: group,
+                    isbn: bookData.isbn,
+                    publish: bookData.publish,
+                    publishDate: bookData.publishDate,
+                    status: bookData.status,
+                    title: bookData.title,
+                    url: bookData.url,
+                    date: util.formatTime(new Date())
+                },
+            }).then(res => {
+                console.log('更新数据成功')
+                wx.showToast({
+                    title: '更新记录成功'
+                })
+                console.log(that.data.status)
+                console.log(bookData.status)
+                if (that.data.status != bookData.status) {
+                    db.collection('books').add({
                         data: {
                             author: bookData.author,
-                            category: bookData.category,
                             cover_url: that.data.bookImage,
-                            group: group,
                             isbn: bookData.isbn,
                             publish: bookData.publish,
                             publishDate: bookData.publishDate,
                             status: bookData.status,
                             title: bookData.title,
-                            url: bookData.url,
                             date: util.formatTime(new Date())
                         },
                     }).then(res => {
-                        console.log('更新数据成功')
-                        wx.showToast({
-                            title: '更新记录成功'
+                        console.log(res)
+                        wx.navigateBack({
+                            delta: 1,
                         })
-                        console.log(that.data.status)
-                        console.log(bookData.status)
-                        if (that.data.status != bookData.status) {
-                            db.collection('books').add({
-                                data: {
-                                    author: bookData.author,
-                                    cover_url: that.data.bookImage,
-                                    isbn: bookData.isbn,
-                                    publish: bookData.publish,
-                                    publishDate: bookData.publishDate,
-                                    status: bookData.status,
-                                    title: bookData.title,
-                                    date: util.formatTime(new Date())
-                                },
-                            }).then(res => {
-                                console.log(res)
-                                wx.navigateBack({
-                                    delta: 1,
-                                })
-                            }).catch(err => {
-                                console.log(err)
-                                wx.navigateBack({
-                                    delta: 1,
-                                })
-                            })
-                        }
-
-
-                    })
-                    .catch(err => {
-                        console.log('更新数据失败')
-                        wx.showToast({
-                            title: '更新记录失败'
-                        })
+                    }).catch(err => {
+                        console.log(err)
                         wx.navigateBack({
                             delta: 1,
                         })
                     })
-            },
-            fail: err => {
-                console.log(err)
-            }
+                } else {
+                    wx.navigateBack({
+                        delta: 1,
+                    })
+                }
 
-        })
 
+            })
+            .catch(err => {
+                console.log('更新数据失败')
+                wx.showToast({
+                    title: '更新记录失败'
+                })
+                wx.navigateBack({
+                    delta: 1,
+                })
+            })
     },
+
 
     delete: function (e) {
         var that = this
-        db.collection('myBook').where({
-            _openid: app.globalData.openId,
-            isbn: that.data.dataList.isbn
-        }).get({
-            success: res => {
-                console.log(res.data)
-                console.log(res.data[0]._id)
-                db.collection('myBook').doc(res.data[0]._id).remove()
-                    .then(res => {
-                        console.log('删除数据成功')
-                        wx.showToast({
-                            title: '删除成功'
-                        })
-                        db.collection('books').where({
-                            _openid: app.globalData.openId,
-                            isbn: that.data.dataList.isbn
-                        }).get({
-                            success: res => {
-                                console.log(res.data)
-                                for (let i = 0; i < res.data.length; i++) {
-                                    db.collection('books').doc(res.data[i]._id).remove()
-                                        .then(res => {
-                                            console.log(res)
-                                            wx.navigateBack({
-                                                delta: 1,
-                                            })
-                                        }).catch(err => {
-                                            console.log(err)
-                                            wx.navigateBack({
-                                                delta: 1,
-                                            })
-                                        })
-                                }
-                            },
-                            fail: err => {
-                                console.log(err)
-                            }
-                        })
-                    }).catch(err => {
-                        console.log('删除数据失败')
-                    })
-            },
-            fail: err => {
-                console.log(err)
-            }
-
-        })
+        db.collection('myBook').doc(that.data.dataList._id).remove()
+            .then(res => {
+                console.log('删除数据成功')
+                wx.showToast({
+                    title: '删除成功'
+                })
+                db.collection('books').where({
+                    _openid: app.globalData.openId,
+                    isbn: that.data.dataList.isbn
+                }).get({
+                    success: res => {
+                        console.log(res.data)
+                        for (let i = 0; i < res.data.length; i++) {
+                            db.collection('books').doc(res.data[i]._id).remove()
+                                .then(res => {
+                                    console.log(res)
+                                    wx.navigateBack({
+                                        delta: 1,
+                                    })
+                                }).catch(err => {
+                                    console.log(err)
+                                    wx.navigateBack({
+                                        delta: 1,
+                                    })
+                                })
+                        }
+                    },
+                    fail: err => {
+                        console.log(err)
+                    }
+                })
+            }).catch(err => {
+                console.log('删除数据失败')
+                wx.showToast({
+                    title: '删除失败'
+                })
+                wx.navigateBack({
+                    delta: 1,
+                })
+            })
 
     },
     /**

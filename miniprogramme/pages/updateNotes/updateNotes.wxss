@@ -32,7 +32,7 @@
     bottom: 2vh;
 }
 .btn{
-    margin:auto 5vw;
+    margin:auto 3vw;
 }
 .tags{
     margin-right: 5rpx !important;

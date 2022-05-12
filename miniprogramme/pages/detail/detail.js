@@ -25,9 +25,9 @@ Page({
         console.log(dataList)
         that.setData({
             dataList: dataList,
-            userInfo: userInfo
+            userInfo: userInfo,
         })
-        
+
         db.collection("myNote").where({
             _openid: app.globalData.openId,
             isbn: dataList.isbn
@@ -54,14 +54,30 @@ Page({
         })
     },
 
-    showNotes:function(e){
-        console.log(e)
+    showNotes: function (e) {
+        console.log(e.currentTarget)
+        db.collection('myNote').where({
+            _openid: app.globalData.openId,
+            _id: e.currentTarget.id
+        }).get({
+            success: res => {
+                console.log(res.data[0])
+                var dataList = encodeURIComponent(JSON.stringify(res.data[0]));
+                wx.navigateTo({
+                    url: '/pages/updateNotes/updateNotes?dataList=' + dataList,
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
+
     },
 
-    onCreate:function(e){
+    onCreate: function (e) {
 
         wx.switchTab({
-              url: '/pages/add/add',
+            url: '/pages/add/add',
         })
     },
 
@@ -76,7 +92,38 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.onLoad()
+        var that = this 
+        db.collection("myNote").where({
+            _openid: app.globalData.openId,
+            isbn: that.data.dataList.isbn
+        }).get({
+            success: res => {
+                console.log(res.data)
+                console.log(res.data.length)
+                that.setData({
+                    number: res.data.length,
+                    noteList: res.data
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
+        db.collection("myBook").where({
+            _openid: app.globalData.openId,
+            isbn: that.data.dataList.isbn
+        }).get({
+            success: res => {
+                console.log(res.data)
+                console.log(res.data.length)
+                that.setData({
+                    dataList: res.data[0]
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
 
     },
 

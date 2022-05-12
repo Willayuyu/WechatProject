@@ -116,22 +116,30 @@ Page({
                 }
             }).then(res => {
                 console.log(res)
-                db.collection("notes").add({
-                    data: {
-                        isbn: that.data.bookList.isbn,
-                        title: that.data.bookList.title,
-                        words: that.data.words,
-                        image: that.data.bookImage,
-                        date: util.formatTime(new Date())
-                    }
-                }).then(res => {
-                    console.log(res)
-                    wx.switchTab({
-                        url: '/pages/index/index',
-                    })
-                }).catch(err => {
-                    console.log(err)
+                that.setData({
+                    words: '',
+                    bookList: [],
+                    choosed: '',
+                    tagList: [],
+                    bookImage: []
                 })
+                wx.switchTab({
+                    url: '/pages/index/index',
+                })
+                // db.collection("notes").add({
+                //     data: {
+                //         isbn: that.data.bookList.isbn,
+                //         title: that.data.bookList.title,
+                //         words: that.data.words,
+                //         image: that.data.bookImage,
+                //         date: util.formatTime(new Date())
+                //     }
+                // }).then(res => {
+                //     console.log(res)
+                    
+                // }).catch(err => {
+                //     console.log(err)
+                // })
             }).catch(err => {
                 console.log(err)
             })
