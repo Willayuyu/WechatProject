@@ -86,63 +86,109 @@ Page({
                 tags.push(that.data.tagList[i].name)
             }
         }
-        db.collection('myNote').doc(that.data.noteList._id).update({
-            data: {
-                isbn: that.data.noteList.isbn,
-                title: that.data.noteList.title,
-                words: that.data.words,
-                tags: tags,
-                image: that.data.bookImage,
-                date: util.formatTime(new Date())
-            }
+        db.collection('myNote').doc(that.data.noteList._id).remove()
+            .then(res => {
+                console.log('删除数据成功')
+                db.collection('myNote').add({
+                    data: {
+                        isbn: that.data.noteList.isbn,
+                        title: that.data.noteList.title,
+                        words: that.data.words,
+                        tags: tags,
+                        image: that.data.bookImage,
+                        date: util.formatTime(new Date())
+                    }
+                }).then(res => {
+                    console.log(res)
+                    console.log('更新数据成功')
+                    wx.showToast({
+                        title: '更新记录成功'
+                    })
+                    that.setData({
+                        words: '',
+                        noteList: [],
+                        choosed: '',
+                        tagList: [],
+                        bookImage: []
+                    })
+                    wx.navigateBack({
+                        delta: 1,
+                    })
+                }).catch(err => {
+                    console.log('更新数据失败')
+                    wx.showToast({
+                        title: '更新记录失败'
+                    })
+                    wx.navigateBack({
+                        delta: 1,
+                    })
+                })
+            }).catch(err => {
+                console.log('删除数据失败')
+                wx.showToast({
+                    title: '删除失败'
+                })
+                wx.navigateBack({
+                    delta: 1,
+                })
+            })
+        // db.collection('myNote').doc(that.data.noteList._id).update({
+        //     data: {
+        //         isbn: that.data.noteList.isbn,
+        //         title: that.data.noteList.title,
+        //         words: that.data.words,
+        //         tags: tags,
+        //         image: that.data.bookImage,
+        //         date: util.formatTime(new Date())
+        //     }
 
-        }).then(res => {
-            console.log(res)
-            console.log('更新数据成功')
-            wx.showToast({
-                title: '更新记录成功'
-            })
-            that.setData({
-                words: '',
-                noteList: [],
-                choosed: '',
-                tagList: [],
-                bookImage: []
-            })
-            wx.navigateBack({
-                delta: 1,
-            })
+        // }).then(res => {
+        //     console.log(res)
+        //     console.log('更新数据成功')
+        //     wx.showToast({
+        //         title: '更新记录成功'
+        //     })
+        //     that.setData({
+        //         words: '',
+        //         noteList: [],
+        //         choosed: '',
+        //         tagList: [],
+        //         bookImage: []
+        //     })
+        //     wx.navigateBack({
+        //         delta: 1,
+        //     })
 
-            // db.collection("notes").add({
-            //     data: {
-            //         isbn: that.data.noteList.isbn,
-            //         title: that.data.noteList.title,
-            //         words: that.data.words,
-            //         image: that.data.bookImage,
-            //         date: util.formatTime(new Date())
-            //     }
-            // }).then(res => {
-            //     console.log(res)
-            //     that.setData({
-            //         words: '',
-            //         noteList: [],
-            //         choosed: '',
-            //         tagList: [],
-            //         bookImage: []
-            //     })
+        //     // db.collection("notes").add({
+        //     //     data: {
+        //     //         isbn: that.data.noteList.isbn,
+        //     //         title: that.data.noteList.title,
+        //     //         words: that.data.words,
+        //     //         image: that.data.bookImage,
+        //     //         date: util.formatTime(new Date())
+        //     //     }
+        //     // }).then(res => {
+        //     //     console.log(res)
+        //     //     that.setData({
+        //     //         words: '',
+        //     //         noteList: [],
+        //     //         choosed: '',
+        //     //         tagList: [],
+        //     //         bookImage: []
+        //     //     })
 
-            // }).catch(err => {
-            //     console.log(err)
-            // })
-        }).catch(err => {
-            console.log('更新数据失败')
-            wx.showToast({
-                title: '更新记录失败'
-            })
-            wx.navigateBack({
-                delta: 1,
-            })
-        })
+        //     // }).catch(err => {
+        //     //     console.log(err)
+        //     // })
+        // }).catch(err => {
+        //     console.log('更新数据失败')
+        //     wx.showToast({
+        //         title: '更新记录失败'
+        //     })
+        //     wx.navigateBack({
+        //         delta: 1,
+        //     })
+        // })
 
     },
 
@@ -166,13 +212,13 @@ Page({
                     delta: 1,
                 })
             })
-},
+    },
 
 
-/**
- * 获取百度access_token
- */
-onOCR() {
+    /**
+     * 获取百度access_token
+     */
+    onOCR() {
         var that = this
         wx.chooseImage({
             sizeType: ['original', 'compressed'],
