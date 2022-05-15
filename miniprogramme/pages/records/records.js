@@ -33,31 +33,17 @@ Page({
                 selectedIconPath: "/icons/mine-selected.png"
             }
         ],
-        noteNumber:'',
-        noteList:[],
-        currentPage: 0,
-        totalPage: 2,
-        swiperData: [{
-            words:"你的书摘"
-        }, {
-           words:"上下滑动切换卡片"
-        }]
+        noteNumber: '',
+        noteList: [],
+        currentSwiperIndex:0
+
     },
-    
-    loadMore({
-        detail
-    }) {
-        if(this.data.currentPage >= this.data.totalPage) return; //大于总页数时退出
-        detail.addToList(this.data.noteList); 
-        // wx.request({
-        //     url: 'yourApiurl', //仅为示例，并非真实的接口地址
-        //     data: {
-        //         page: this.data.currentPage,
-        //     },
-        //     success (res) {
-        //         detail.addToList(res.data); //调用detail.addToList将新数据累加到组件内部数据
-        //     }
-        // })
+
+    swiperChange: function (e) {
+        console.log(e)
+        this.setData({
+            currentSwiperIndex: e.detail.current
+        })
     },
 
     /**
@@ -65,7 +51,7 @@ Page({
      */
     onLoad: function (options) {
         var that = this
-        if (app.globalData.openId!=''){
+        if (app.globalData.isLogin) {
             db.collection("myNote").where({
                 _openid: app.globalData.openId,
             }).get({
@@ -81,14 +67,13 @@ Page({
                     console.error(err)
                 }
             })
-        }
-        else{
+        } else {
             that.setData({
-                noteNumber:'',
+                noteNumber: '',
                 noteList: ''
             })
             wx.showToast({
-              title: '请先登录',
+                title: '请先登录',
             })
         }
     },

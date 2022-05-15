@@ -1,6 +1,19 @@
 <!--pages/records/records.wxml-->
 <l-tab-bar list="{{list}}" />
-<view class="container center">
-    <CardSwiper data="{{swiperData}}" bindloadmore="loadMore"> </CardSwiper>
+<view class="container">
+    <!-- <view class="title">书摘回顾</view> -->
+    <swiper interval="3000" duration="500" previous-margin="90rpx" next-margin="90rpx" circular="true" bindchange="swiperChange" current="{{currentSwiperIndex}}"  class="swiper">
+        <block wx:for="{{noteList}}" wx:key="{{item._id}}">
+            <swiper-item class="swiper-item">
+                <view class="item {{currentSwiperIndex == index ? 'zoom-in' : 'zoom-out'}}">
+                    <view class="time">{{item.date}}</view>
+                    <view class="words">{{item.words}}</view>
+                    <view wx:for="{{item.image}}" wx:for-item="items" class="img">
+                        <image src="{{items}}"  class="image" mode="widthFix"></image>
+                    </view>    
+                    <view class="title">{{'<<'+item.title+'>>'}}</view>                
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
 </view>
-
