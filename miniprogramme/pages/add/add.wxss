@@ -1,39 +1,58 @@
 /* pages/add/add.wxss */
-.choose{
+.choose {
     width: 96vw;
     margin: 1vh 2vw 0.5vh;
     background-color: #fff;
     border-radius: 10rpx;
     border: 1rpx solid #d8dee5
 }
-.l-icon{
+
+.l-icon {
     margin-left: 5vw;
     margin-right: 5vw;
 }
-.logo{
+
+.logo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.lin-image-picker__image{
+
+.lin-image-picker__image {
     width: 50rpx;
 }
-.lin-image-picker__container{
+
+.lin-image-picker__container {
     margin-left: 13rpx;
 }
-.tagList{
+
+.tagList {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.buttons{
+
+.buttons {
     position: fixed;
     bottom: 2vh;
 }
-.btn{
-    margin:auto 5vw;
+
+.btn {
+    margin: auto 5vw;
 }
-.tags{
+
+.tags {
     margin-right: 5rpx !important;
+}
+
+.text {
+    height: 400rpx !important;
+}
+
+.item {
+    padding: 10rpx 0 !important;
+    font-size: 28rpx !important;
+    min-height: 68rpx !important;
+    margin-left: 23rpx !important;
 }

@@ -58,6 +58,11 @@
     word-wrap: break-word !important;
 }
 
+.check{
+    padding-right: 20rpx !important;
+}
+
+
 /* .l-form-btn-class{
    justify-content: center !important;
 } */

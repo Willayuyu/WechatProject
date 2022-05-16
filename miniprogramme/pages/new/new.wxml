@@ -25,7 +25,7 @@
             </l-form-item>
             <l-form-item label="选择分组:" name="group" label-width="200rpx">
                 <l-checkbox-group bind:linchange="change" id="group" placement="row">
-                    <l-checkbox l-class="l-checkbox-color" wx:for="{{groups}}" wx:key="{{item.id}}" key="{{item.name}}" checked="{{item.checked}}">
+                    <l-checkbox l-class="l-checkbox-color" wx:for="{{groups}}" wx:key="{{item.id}}" key="{{item.name}}" checked="{{item.checked}}" l-class="check">
                         {{item.name}}
                     </l-checkbox>
                     <!-- <l-icon name="add" size="40" bindtap="modalinput" />

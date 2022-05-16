@@ -19,7 +19,7 @@
             <view class="tab-content">
                 <view class="choose">
                     <l-collapse>
-                        <l-collapse-item title="想读">
+                        <l-collapse-item title="想读" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true" bind:lintap="onShowDetail">
                                 <l-grid-item wx:if="{{item.status==0}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -28,7 +28,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="在读">
+                        <l-collapse-item title="在读" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:if="{{item.status==1}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -37,7 +37,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="读完">
+                        <l-collapse-item title="读完" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:if="{{item.status==2}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -46,7 +46,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="弃读">
+                        <l-collapse-item title="弃读" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:if="{{item.status==3}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -62,7 +62,7 @@
             <view class="tab-content">
                 <view class="choose">
                     <l-collapse>
-                        <l-collapse-item title="纸质书">
+                        <l-collapse-item title="纸质书" l-class="item">
                                 <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:if="{{item.category==0}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -70,7 +70,7 @@
                                 </l-grid-item>
                             </l-grid>
                         </l-collapse-item>
-                        <l-collapse-item title="电子书">
+                        <l-collapse-item title="电子书" l-class="item">
                                 <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:if="{{item.category==1}}" wx:for="{{defaultBook}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -86,7 +86,7 @@
             <view class="tab-content">
                 <view class="choose">
                     <l-collapse>
-                        <l-collapse-item title="文学">
+                        <l-collapse-item title="文学" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:for="{{book_1}}" wx:key="index" key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -95,7 +95,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="流行">
+                        <l-collapse-item title="流行" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:for="{{book_2}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -104,7 +104,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="文化">
+                        <l-collapse-item title="文化" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:for="{{book_3}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -113,7 +113,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="生活">
+                        <l-collapse-item title="生活" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:for="{{book_4}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -122,7 +122,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="经管">
+                        <l-collapse-item title="经管" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                 <l-grid-item wx:for="{{book_5}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>
@@ -131,7 +131,7 @@
                             </l-grid>
                         </l-collapse-item>
                         <view class="line"></view>
-                        <l-collapse-item title="科技">
+                        <l-collapse-item title="科技" l-class="item">
                             <l-grid l-class="grid" row-num="3" show-border="true">
                                     <l-grid-item wx:for="{{book_6}}" wx:key="index"  key="{{item.isbn}}" slot="{{item.isbn}}" bind:linitemtap="onShowDetail">
                                     <image class="bookimg" src="{{item.cover_url}}" mode="aspectFit"></image>

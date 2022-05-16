@@ -12,7 +12,7 @@ page {
 }
 
 .swiper {
-    height: 800rpx;
+    min-height: 800rpx;
     width: 100%;
     margin-top: 100rpx;
 }
@@ -31,7 +31,7 @@ page {
     border-color: #e7f2f8;
     border-width: 5rpx;
     border-radius: 30rpx;
-    height: 800rpx;
+    min-height: 800rpx;
     width: 800rpx;
     padding-right: 50rpx;
     padding-left: 50rpx;
@@ -74,6 +74,7 @@ page {
 
 .title {
     margin-top: 30rpx;
+    margin-bottom: 30rpx;
     text-align: center;
     font-size: 28rpx;
     color: rgb(125, 135, 146);

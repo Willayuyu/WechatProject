@@ -29,5 +29,11 @@
     border-top: solid Silver 1px;
 
 }
+.item {
+    padding: 10rpx 0 !important;
+    font-size: 28rpx !important;
+    min-height: 68rpx !important;
+    margin-left: 23rpx !important;
+}
 
 

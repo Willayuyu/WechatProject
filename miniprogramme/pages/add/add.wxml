@@ -6,18 +6,18 @@
             <l-list class="list" title="{{bookList.title}}" icon="order" icon-size="30" wx:if="{{choosed}}"/>
         </view>
         <view class="choose">
-            <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="200" value="{{words}}" bind:linblur="getContent"></l-textarea>
+            <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="300" value="{{words}}" bind:linblur="getContent" l-class="text"></l-textarea>
         </view>
         <view class="choose">
             <l-collapse>
-                <l-collapse-item title="图片">
+                <l-collapse-item title="图片" l-class="item">
                     <l-image-picker count="3" size="3" bind:linchange="onChangeTap" size-type="compressed" />
                 </l-collapse-item>
             </l-collapse>
         </view>
         <view class="choose">
             <l-collapse>
-                <l-collapse-item title="标签">
+                <l-collapse-item title="标签" l-class="item">
                     <view class="tagList">
                         <view class="tags"  wx:for="{{tagList}}"><l-tag plain="{{item.plain}}" select="{{item.select}}" l-select-class="select" bind:lintap="onSelect" name="{{item.name}}">{{item.name}}</l-tag></view>
                         <l-icon name="add" size="40" bindtap="modalinput" />

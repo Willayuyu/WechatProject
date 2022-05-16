@@ -37,3 +37,10 @@
 .tags{
     margin-right: 5rpx !important;
 }
+
+.item {
+    padding: 10rpx 0 !important;
+    font-size: 28rpx !important;
+    min-height: 68rpx !important;
+    margin-left: 23rpx !important;
+}

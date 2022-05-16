@@ -11,6 +11,7 @@
 .label-left {
     flex-direction: row
 }
+
 .label-right {
     flex-direction: row-reverse;
     justify-content: space-between
@@ -21,7 +22,7 @@
 }
 
 .label-placement-row {
-    padding-right: 20rpx
+    padding-right: 30rpx
 }
 
 .checkbox-left {
