@@ -3,63 +3,78 @@ page {
     height: 100%;
     overflow: hidden;
 }
+
 .container {
     height: 100%;
     overflow: hidden;
     padding: 0;
     /* background-color: #fff !important;*/
-} 
+}
 
-.swiper{
-    height: 800rpx; 
+.swiper {
+    height: 800rpx;
     width: 100%;
     margin-top: 100rpx;
 }
-.swiper-item{
+
+.swiper-item {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.item{
+
+.item {
     background-color: #FFFBEB;
     transition: all .3s ease-out;
     z-index: 0;
-    border-style:double;
+    border-style: double;
     border-color: #e7f2f8;
     border-width: 5rpx;
     border-radius: 30rpx;
-    height: 800rpx; 
+    height: 800rpx;
     width: 800rpx;
     padding-right: 50rpx;
     padding-left: 50rpx;
     /* margin: 0 30rpx; */
 }
 
-.zoom-in{
+.zoom-in {
     transform: scale(1);
     transition: all 0.5s ease-in 0s;
 }
-.zoom-out{
+
+.zoom-out {
     transform: scale(0.8);
     transition: all 0.5s ease-out 0s;
 }
-.time{
+
+.time {
     font-size: 30rpx;
     font-weight: bold;
     margin: 30rpx 0;
 }
-.words{
+
+.words {
     font-size: 32rpx;
-    margin:30rpx 0;
+    margin: 30rpx 0;
 }
 
-.image{
+.img {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.image {
     width: 150rpx;
     height: 150rpx;
+    margin-right: 5rpx;
 }
 
-.title{
+.title {
     margin-top: 30rpx;
     text-align: center;
-    font-size: 30rpx;
+    font-size: 28rpx;
+    color: rgb(125, 135, 146);
 }
