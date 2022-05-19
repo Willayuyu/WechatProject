@@ -35,7 +35,7 @@ Page({
         ],
         noteNumber: '',
         noteList: [],
-        currentSwiperIndex:0
+        currentSwiperIndex:0,
 
     },
 
@@ -43,6 +43,14 @@ Page({
         console.log(e)
         this.setData({
             currentSwiperIndex: e.detail.current
+        })
+    },
+
+    onPosterSuccess(e) {
+        const { detail } = e;
+        wx.previewImage({
+            current: detail,
+            urls: [detail]
         })
     },
 

@@ -31,11 +31,47 @@ Page({
         ],
         noteNumber: '',
         bookNumber: '',
-        recordNumber:'',
-        readNumber:'',
+        recordNumber: '',
+        readNumber: '',
         openId: '',
         noteList: [],
         bookList: []
+    },
+
+    showBooks: function (e) {
+        console.log(e)
+        db.collection("myBook").where({
+            isbn: e.currentTarget.id
+        }).get({
+            success: res => {
+                console.log(res.data[0])
+                var dataList = encodeURIComponent(JSON.stringify(res.data[0]));
+                wx.navigateTo({
+                    url: '/pages/updateBooks/updateBooks?dataList=' + dataList,
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
+    },
+
+    showNotes: function (e) {
+        console.log(e)
+        db.collection("myNote").where({
+            _id: e.currentTarget.id
+        }).get({
+            success: res => {
+                console.log(res.data[0])
+                var dataList = encodeURIComponent(JSON.stringify(res.data[0]));
+                wx.navigateTo({
+                    url: '/pages/updateNotes/updateNotes?dataList=' + dataList,
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
     },
 
     /**
@@ -75,7 +111,7 @@ Page({
             //     }
             // })
 
-            
+
             let n = 0
             db.collection("myBook").where({
                 _openid: app.globalData.openId,
@@ -128,8 +164,8 @@ Page({
                         }
                     }
                     that.setData({
-                       bookList: res.data,
-                       readNumber: res.data.length
+                        bookList: res.data,
+                        readNumber: res.data.length
                     })
                     // console.log(that.data.bookNumber)
                 },
@@ -141,7 +177,7 @@ Page({
             that.setData({
                 noteNumber: '',
                 noteList: [],
-                recordNumber:'',
+                recordNumber: '',
                 bookNumber: '',
                 bookList: [],
                 readNumber: ''

@@ -12,7 +12,7 @@ page {
 }
 
 .swiper {
-    min-height: 800rpx;
+    min-height: 1000rpx;
     width: 100%;
     margin-top: 100rpx;
 }
@@ -31,7 +31,7 @@ page {
     border-color: #e7f2f8;
     border-width: 5rpx;
     border-radius: 30rpx;
-    min-height: 800rpx;
+    min-height: 1000rpx;
     width: 800rpx;
     padding-right: 50rpx;
     padding-left: 50rpx;
@@ -58,24 +58,19 @@ page {
     font-size: 32rpx;
     margin: 30rpx 0;
 }
-
-.img {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
 .image {
-    width: 150rpx;
-    height: 150rpx;
-    margin-right: 5rpx;
+    width: 500rpx;
+    height: 500rpx;
 }
 
 .title {
-    margin-top: 30rpx;
+    margin-top: 50rpx;
     margin-bottom: 30rpx;
     text-align: center;
     font-size: 28rpx;
     color: rgb(125, 135, 146);
+}
+.image-item{
+    margin-top: 30rpx;
+    margin-bottom: 10rpx;
 }

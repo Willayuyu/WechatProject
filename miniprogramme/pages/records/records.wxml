@@ -2,18 +2,29 @@
 <l-tab-bar list="{{list}}" />
 <view class="container">
     <!-- <view class="title">书摘回顾</view> -->
-    <swiper interval="3000" duration="500" previous-margin="90rpx" next-margin="90rpx" circular="true" bindchange="swiperChange" current="{{currentSwiperIndex}}"  class="swiper">
+    <swiper interval="3000" duration="500" previous-margin="90rpx" next-margin="90rpx" circular="true" bindchange="swiperChange" current="{{currentSwiperIndex}}" class="swiper">
         <block wx:for="{{noteList}}" wx:key="{{item._id}}">
             <swiper-item class="swiper-item">
                 <view class="item {{currentSwiperIndex == index ? 'zoom-in' : 'zoom-out'}}">
+                    <view class="image-swiper" wx:if="{{item.image.length >0}}">
+                        <swiper indicator-dots="true" autoplay="true" circular="false" vertical="false" interval="2000" duration="500" previous-margin="0rpx" next-margin="0rpx">
+                            <block wx:for="{{item.image}}" wx:for-item="items">
+                                <swiper-item>
+                                    <view class="image-item">
+                                        <image src="{{items}}" class="image" mode="widthFix"></image>
+                                    </view>
+                                </swiper-item>
+                            </block>
+                        </swiper>
+                    </view>
                     <view class="time">{{item.date}}</view>
                     <view class="words">{{item.words}}</view>
-                    <view class="img">
+                    <!-- <view class="img">
                         <view wx:for="{{item.image}}" wx:for-item="items">
-                        <image src="{{items}}"  class="image" mode="widthFix"></image>
-                    </view>   
-                    </view> 
-                    <view class="title">{{'<<'+item.title+'>>'}}</view>                
+                            <image src="{{items}}" class="image" mode="widthFix"></image>
+                        </view>
+                    </view> -->
+                    <view class="title">{{'<<'+item.title+'>>'}}</view>
                 </view>
             </swiper-item>
         </block>

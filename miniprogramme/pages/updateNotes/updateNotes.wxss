@@ -37,6 +37,9 @@
 .tags{
     margin-right: 5rpx !important;
 }
+.text {
+    height: 400rpx !important;
+}
 
 .item {
     padding: 10rpx 0 !important;
