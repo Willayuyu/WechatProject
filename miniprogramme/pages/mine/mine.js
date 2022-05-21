@@ -35,6 +35,15 @@ Page({
         userInfo: '',
         isLogin: false,
     },
+
+    showInfo: function (e) {
+        var that = this
+        console.log(that.data.userInfo)
+        var info = encodeURIComponent(JSON.stringify(that.data.userInfo));
+        wx.navigateTo({
+            url: '/pages/info/info?info=' + info,
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -67,48 +76,77 @@ Page({
         let openId = app.globalData.openId;
         let userInfo = app.globalData.userInfo;
         console.log(openId)
-        if (userInfo == '') {
-            wx.getUserProfile({
-                desc: '授权',
-                success: res => {
-                    that.setData({
-                        userInfo: res.userInfo,
-                        isLogin: true
-                    })
-                    console.log(that.data.userInfo)
-                    // that.data.userInfo.openId = openId
-                    wx.setStorageSync('user', res.userInfo)
-                    app.globalData.isLogin = true
+        wx.getSetting({
+            success(res) {
+                if (res.authSetting['scope.userInfo']) {
+                    console.log('已经授权')
                     db.collection('user').where({
-                            _openid: openId
-                        })
-                        .get({
-                            success: res => {
-                                if (res.data.length == 0) {
-                                    let userInfo = that.data.userInfo
-                                    db.collection('user').add({
-                                        data: {
-                                            nickName: userInfo.nickName,
-                                            avatarUrl: userInfo.avatarUrl,
-                                        },
-                                        success: res => {
-                                            console.log('用户信息已保存到数据库', res)
-                                        },
-                                        fail: err => {
-                                            console.log('用户信息保存失败', err)
+                        _openid: openId
+                    }).get({
+                        success: res => {
+                            that.setData({
+                                userInfo: res.data[0],
+                                isLogin: true
+                            })
+                            app.globalData.isLogin = true
+                            console.log(res.data[0])
+                            app.globalData.userInfo = res.data[0]
+                            wx.setStorageSync('user', res.data[0])
+                        },
+                        fail: err => {
+                            console.error(err)
+                        }
+                    })
+                } else {
+                    console.log('未授权')
+                    wx.getUserProfile({
+                        desc: '授权',
+                        success: res => {
+                            that.setData({
+                                userInfo: res.userInfo,
+                                isLogin: true
+                            })
+                            console.log(that.data.userInfo)
+                            // that.data.userInfo.openId = openId
+                            wx.setStorageSync('user', res.userInfo)
+                            app.globalData.isLogin = true
+                            db.collection('user').where({
+                                    _openid: openId
+                                })
+                                .get({
+                                    success: res => {
+                                        if (res.data.length == 0) {
+                                            let userInfo = that.data.userInfo
+                                            db.collection('user').add({
+                                                data: {
+                                                    nickName: userInfo.nickName,
+                                                    avatarUrl: userInfo.avatarUrl,
+                                                },
+                                                success: res => {
+                                                    console.log('用户信息已保存到数据库', res)
+                                                },
+                                                fail: err => {
+                                                    console.log('用户信息保存失败', err)
+                                                }
+                                            })
+                                        } else {
+                                            console.log("此用户已被记录过！")
                                         }
-
-                                    })
-                                } else {
-                                    console.log("此用户已被记录过！")
-                                }
-                            }
-                        })
-                },
-
-            })
-        }
+                                    },
+                                    fail: err => {
+                                        console.error(err)
+                                    }
+                                })
+                        },
+                        fail: err => {
+                            console.error(err)
+                        }
+                    })
+                }
+            }
+        })
     },
+
     loginOut() {
         this.setData({
             userInfo: '',
@@ -127,9 +165,9 @@ Page({
         console.log(res);
         return {
             // 分享的标题如果没有则自定义为小程序名称全写
-            // title: "我是分享界面",
+            title: "小鱼书摘",
             //分享之后的路径如果没有则自定义为首页可以用模板字符串语法加入变量
-            // path: `pages/index/index`,
+            path: '/pages/mine/mine',
             //分享图片的本地地址如果不写则为默认当前屏幕截图可以是网络地址
             imageUrl: '/image/logo.png'
         }
@@ -145,6 +183,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.onLoad()
 
     },
 
