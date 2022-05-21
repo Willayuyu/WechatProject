@@ -11,7 +11,7 @@
                             <block wx:for="{{item.image}}" wx:for-item="items">
                                 <swiper-item>
                                     <view class="image-item">
-                                        <image src="{{items}}" class="image" mode="widthFix"></image>
+                                        <image src="{{items}}" class="image" mode="aspectFit"></image>
                                     </view>
                                 </swiper-item>
                             </block>
