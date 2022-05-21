@@ -48,6 +48,7 @@ Page({
 
     onChangeTap(e) {
         console.log(e.detail.current)
+        console.log(e.detail.current.toString())
         var that = this
         wx.cloud.uploadFile({
             cloudPath: new Date().getTime() + '.png', // 上传至云端的路径
@@ -150,12 +151,41 @@ Page({
                         })
                     })
                 } else {
-                    wx.navigateBack({
-                        delta: 1,
+                    db.collection('books').where({
+                        _openid: app.globalData.openId,
+                        isbn: that.data.dataList.isbn
+                    }).get({
+                        success: res => {
+                            console.log(res.data)
+                            for (let i = 0; i < res.data.length; i++) {
+                                db.collection('books').doc(res.data[i]._id).update({
+                                    data: {
+                                        author: bookData.author,
+                                        cover_url: that.data.bookImage,
+                                        isbn: bookData.isbn,
+                                        publish: bookData.publish,
+                                        publishDate: bookData.publishDate,
+                                        status: bookData.status,
+                                        title: bookData.title,
+                                    },
+                                }).then(res => {
+                                    console.log(res)
+                                }).catch(err => {
+                                    console.log(err)
+                                })
+                            }
+                            wx.navigateBack({
+                                delta: 1,
+                            })
+                        },
+                        fail: err => {
+                            console.error(err)
+                            wx.navigateBack({
+                                delta: 1,
+                            })
+                        }
                     })
                 }
-
-
             })
             .catch(err => {
                 console.log('更新数据失败')

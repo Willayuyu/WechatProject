@@ -1,0 +1,45 @@
+/* pages/mine/mine.wxss */
+.photobg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 30vh;
+    background-color: #fff;
+    white-space: pre-wrap;
+}
+.detail {
+    background-color: #fff;
+    height: 30vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+    font-size: 28rpx;
+    color: #394044 !important;
+}
+.lin-image-picker__item {
+    width: 220rpx !important;
+    padding-bottom: 250rpx !important;
+}
+
+.lin-image-picker__item {
+    margin: 20rpx auto;
+}
+
+.pickimg {
+    width: 200rpx;
+}
+
+.name{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+}
+
+.other{
+    margin: 5vh 0;
+    background-color: #fff;
+}
+
+

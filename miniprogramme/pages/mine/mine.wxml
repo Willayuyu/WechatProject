@@ -20,7 +20,7 @@
             </view>
         </view>
         <view class="other">
-            <l-list title="账户信息" icon="edit" icon-size="30"/>
+            <l-list title="账户信息" icon="edit" icon-size="30" bind:lintap="showInfo"/>
         </view>
         <view class="other">
             <l-button size="long" plain="true" open-type="share">推荐给好友</l-button>

@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index",
-    "poster": "/miniprogram_npm/wxa-plugin-canvas/poster"
+    "l-tab-bar":"/miniprogram_npm/lin-ui/tab-bar/index"
   }
 }
