@@ -10,8 +10,7 @@
         "pages/detail/detail",
         "pages/existBooks/existBooks",
         "pages/updateNotes/updateNotes",
-        "pages/updateBooks/updateBooks",
-        "pages/info/info"
+        "pages/updateBooks/updateBooks"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -35,6 +34,5 @@
     },
     "usingComponents": {},
     "style": "v2",
-    "sitemapLocation": "sitemap.json",
-    "lazyCodeLoading": "requiredComponents"
+    "sitemapLocation": "sitemap.json"
 }
