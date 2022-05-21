@@ -1,9 +1,0 @@
-{
-    "usingComponents": {
-        "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
-        "l-list": "/miniprogram_npm/lin-ui/list/index",
-        "l-button": "/miniprogram_npm/lin-ui/button/index",
-        "l-image-picker": "/miniprogram_npm/lin-ui/image-picker/index",
-        "l-input": "/miniprogram_npm/lin-ui/input/index"
-    }
-}

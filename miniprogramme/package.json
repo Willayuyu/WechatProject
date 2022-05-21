@@ -1,0 +1,21 @@
+{
+    "name": "miniprogramme",
+    "version": "1.0.0",
+    "description": "",
+    "main": ".eslintrc.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@paddlejs-mediapipe/opencv": "^0.0.4",
+        "@paddlejs-models/ocr": "^1.2.3",
+        "lin-ui": "^0.9.8",
+        "mp-html": "^2.3.0",
+        "paddlejs": "^1.0.17",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.6",
+        "wxa-plugin-canvas": "^1.1.12"
+    }
+}
