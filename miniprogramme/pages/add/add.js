@@ -87,8 +87,30 @@ Page({
     onChangeTap: function (e) {
         console.log(e.detail.all)
         var that = this
+        var imgArray = new Array()
+        for (let i = 0; i < e.detail.all.length; i++) {
+            wx.cloud.uploadFile({
+                cloudPath: new Date().getTime() + '.png', // 上传至云端的路径
+                filePath: e.detail.all[i], // 小程序临时文件路径
+                success: res => {
+                    // 返回文件 ID
+                    console.log("上传成功", res)
+                    //获取文件路径
+                    imgArray.push(res.fileID)
+                    wx.showToast({
+                        title: '图片上传成功',
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                    wx.showToast({
+                        title: '图片上传失败',
+                    })
+                }
+            })
+        }
         that.setData({
-            bookImage: e.detail.all
+            bookImage: imgArray
         })
     },
 
@@ -126,20 +148,6 @@ Page({
                 wx.switchTab({
                     url: '/pages/index/index',
                 })
-                // db.collection("notes").add({
-                //     data: {
-                //         isbn: that.data.bookList.isbn,
-                //         title: that.data.bookList.title,
-                //         words: that.data.words,
-                //         image: that.data.bookImage,
-                //         date: util.formatTime(new Date())
-                //     }
-                // }).then(res => {
-                //     console.log(res)
-                    
-                // }).catch(err => {
-                //     console.log(err)
-                // })
             }).catch(err => {
                 console.log(err)
             })

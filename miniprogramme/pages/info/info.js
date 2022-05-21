@@ -16,8 +16,26 @@ Page({
     onChangeTap(e) {
         console.log(e.detail.current.toString())
         var that = this
-        that.setData({
-            avatarUrl: e.detail.current.toString()
+        wx.cloud.uploadFile({
+            cloudPath: new Date().getTime() + '.png', // 上传至云端的路径
+            filePath: e.detail.current.toString(), // 小程序临时文件路径
+            success: res => {
+                // 返回文件 ID
+                console.log("上传成功", res)
+                //获取文件路径
+                that.setData({
+                    avatarUrl: res.fileID
+                })
+                wx.showToast({
+                    title: '图片上传成功',
+                })
+            },
+            fail: err=>{
+                console.error(err)
+                wx.showToast({
+                    title: '图片上传失败',
+                })
+            }
         })
     },
 
@@ -48,20 +66,20 @@ Page({
                     wx.setStorageSync('user', obj)
                     app.globalData.userInfo = wx.getStorageSync('user')
                     wx.navigateBack({
-                      delta: 1,
+                        delta: 1,
                     })
-                }).catch(err=>{
+                }).catch(err => {
                     console.error(err)
                     wx.navigateBack({
                         delta: 1,
-                      })
+                    })
                 })
             },
-            fail:err=>{
+            fail: err => {
                 console.error(err)
                 wx.navigateBack({
                     delta: 1,
-                  })
+                })
             }
         })
 
@@ -79,8 +97,8 @@ Page({
         console.log(app.globalData.userInfo)
         that.setData({
             userInfo: dataList,
-            avatarUrl:dataList.avatarUrl,
-            nickName:dataList.nickName
+            avatarUrl: dataList.avatarUrl,
+            nickName: dataList.nickName
         })
 
     },

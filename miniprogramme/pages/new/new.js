@@ -49,8 +49,26 @@ Page({
     onChangeTap(e) {
         console.log(e.detail.current)
         var that = this
-        that.setData({
-            bookImage: e.detail.current
+        wx.cloud.uploadFile({
+            cloudPath: new Date().getTime() + '.png', // 上传至云端的路径
+            filePath: e.detail.current.toString(), // 小程序临时文件路径
+            success: res => {
+                // 返回文件 ID
+                console.log("上传成功", res)
+                //获取文件路径
+                that.setData({
+                    bookImage: res.fileID
+                })
+                wx.showToast({
+                    title: '图片上传成功',
+                })
+            },
+            fail: err=>{
+                console.error(err)
+                wx.showToast({
+                    title: '图片上传失败',
+                })
+            }
         })
     },
 

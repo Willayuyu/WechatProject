@@ -69,8 +69,58 @@ Page({
     onChangeTap: function (e) {
         console.log(e.detail.all)
         var that = this
+        var imgArray = new Array()
+        for (let i = 0; i < e.detail.all.length; i++) {
+            wx.cloud.downloadFile({
+                fileID: e.detail.all[i],
+                success: res => {
+                    console.log(res.tempFilePath)
+
+                    wx.cloud.uploadFile({
+                        cloudPath: new Date().getTime() + '.png', // 上传至云端的路径
+                        filePath: res.tempFilePath, // 小程序临时文件路径
+                        success: result => {
+                            // 返回文件 ID
+                            console.log("上传成功", result)
+                            //获取文件路径
+                            imgArray.push(result.fileID)
+                            wx.showToast({
+                                title: '图片上传成功',
+                            })
+                        },
+                        fail: err => {
+                            console.error(err)
+                            wx.showToast({
+                                title: '图片上传失败',
+                            })
+                        }
+                    })
+                },
+                fail:err=>{
+                    wx.cloud.uploadFile({
+                        cloudPath: new Date().getTime() + '.png', // 上传至云端的路径
+                        filePath:  e.detail.all[i], // 小程序临时文件路径
+                        success: result => {
+                            // 返回文件 ID
+                            console.log("上传成功", result)
+                            //获取文件路径
+                            imgArray.push(result.fileID)
+                            wx.showToast({
+                                title: '图片上传成功',
+                            })
+                        },
+                        fail: err => {
+                            console.error(err)
+                            wx.showToast({
+                                title: '图片上传失败',
+                            })
+                        }
+                    })
+                }
+            })
+        }
         that.setData({
-            bookImage: e.detail.all
+            bookImage: imgArray
         })
     },
 
