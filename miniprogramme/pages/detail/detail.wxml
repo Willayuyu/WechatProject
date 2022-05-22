@@ -7,21 +7,25 @@
             <view class="number">{{number}}条书摘</view>
         </view>
     </l-card>
+    <l-search-bar placeholder="查询标签" bg-color="#fff" show-cancel="{{false}}" bind:linconfirm="onSearch" l-class="search" l-container-class="search-container" bind:linclear="showAll">
+    </l-search-bar>
     <view class="notes">
-        <l-collapse> 
-            <l-collapse-item title="书摘">
-                <view  wx:for="{{noteList}}" bindtap="showNotes" id="{{item._id}}">
-                <view class="album">
-                    <l-avatar class="avatar" size='80' shape="square" src="{{userInfo.avatarUrl}}" />
-                    <view class="right">
-                        <view class="name">{{userInfo.nickName}}</view>
-                        <view class='content'>{{item.words}}</view>
-                        <l-album urls='{{item.image}}' multiple-mode='scaleToFill' single-size="300"></l-album>
-                        <view class="tags"><l-tag plain="{{true}}" size="super-mini" wx:for="{{item.tags}}" wx:for-item="items" l-class="tag">{{items}}</l-tag></view>
+        <l-collapse>
+            <l-collapse-item title="书摘" l-class="item">
+                <view wx:for="{{noteList}}" bindtap="showNotes" id="{{item._id}}">
+                    <view class="album">
+                        <l-avatar class="avatar" size='80' shape="square" src="{{userInfo.avatarUrl}}" />
+                        <view class="right">
+                            <view class="name">{{userInfo.nickName}}</view>
+                            <view class='content'>{{item.words}}</view>
+                            <l-album urls='{{item.image}}' multiple-mode='scaleToFill' single-size="300"></l-album>
+                            <view class="tags">
+                                <l-tag plain="{{true}}" size="super-mini" wx:for="{{item.tags}}" wx:for-item="items" l-class="tag">{{items}}</l-tag>
+                            </view>
+                        </view>
                     </view>
+                    <view class="line"></view>
                 </view>
-                <view class="line"></view>
-            </view>
             </l-collapse-item>
         </l-collapse>
     </view>

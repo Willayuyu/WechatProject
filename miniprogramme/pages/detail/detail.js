@@ -81,6 +81,47 @@ Page({
         })
     },
 
+    showAll(e) {
+        var that = this
+        db.collection("myNote").where({
+            _openid: app.globalData.openId,
+            isbn: that.data.dataList.isbn
+        }).get({
+            success: res => {
+                console.log(res.data)
+                that.setData({
+                    noteList: res.data
+                })
+            },
+            fail: err => {
+                console.error(err)
+            }
+        })
+
+    },
+
+    onSearch(e) {
+        var that = this
+        console.log(e.detail.value)
+        if(e.detail.value !=''){
+            db.collection('myNote').where({
+                _openid: app.globalData.openId,
+                isbn: that.data.dataList.isbn,
+                tags: e.detail.value
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        noteList: res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+        }
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -92,7 +133,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        var that = this 
+        var that = this
         db.collection("myNote").where({
             _openid: app.globalData.openId,
             isbn: that.data.dataList.isbn

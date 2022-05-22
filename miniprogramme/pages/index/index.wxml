@@ -1,5 +1,4 @@
 <!--index.wxml-->
-<l-tab-bar list="{{list}}" />
 <view class="show">
     <view class="counts">
         <view class="count">
@@ -15,9 +14,9 @@
             <view class="num">{{bookNumber}}本</view>
         </view>
     </view>
-    <l-tabs bind:linchange="changeTabs" swipeable="{{true}}" active-color="#2c61b4" scrollable="{{truetrue}}">
-        <l-tabpanel tab="书摘时间线" key="one" slot="one">
-            <view class="tab-content">
+    <view class="panel">
+        <van-tabs active="{{ active }}" bind:change="changeTabs" color="#2c61b4" line-width="80px">
+            <van-tab title="书摘时间线">
                 <l-steps direction="column" active-index="{{noteNumber-1}}" reverse="flase">
                     <l-step title="{{item.date +'  '+ item.title}}" wx:for="{{noteList}}">
                         <view class="describe-container" slot="describe">
@@ -30,10 +29,8 @@
                         </view>
                     </l-step>
                 </l-steps>
-            </view>
-        </l-tabpanel>
-        <l-tabpanel tab="书籍时间线" key="two" slot="two">
-            <view class="tab-content">
+            </van-tab>
+            <van-tab title="书籍时间线">
                 <l-steps direction="column" active-index="{{readNumber-1}}" reverse="flase">
                     <l-step title="{{item.date +'  '+ item.status}}" wx:for="{{bookList}}">
                         <view class="describe-container" slot="describe">
@@ -48,7 +45,8 @@
                         </view>
                     </l-step>
                 </l-steps>
-            </view>
-        </l-tabpanel>
-    </l-tabs>
+            </van-tab>
+        </van-tabs>
+    </view>
 </view>
+<l-tab-bar list="{{list}}" />

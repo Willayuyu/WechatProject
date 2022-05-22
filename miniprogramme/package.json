@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@vant/weapp": "^1.10.3",
+    "lin-ui": "^0.9.10",
+    "request-promise": "^4.2.6"
+  },
+  "setting": {
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./"
+      }
+    ]
+  }
+}

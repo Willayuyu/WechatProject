@@ -50,9 +50,6 @@ Page({
             wx.showToast({
                 title: '请先登录',
             })
-            // wx.switchTab({
-            //   url: '/pages/mine/mine',
-            // })
         }
     },
     onShowDetail(e) {
@@ -79,56 +76,105 @@ Page({
      */
     onLoad: function (options) {
         var that = this
-        var book_1 = new Array()
-        var book_2 = new Array()
-        var book_3 = new Array()
-        var book_4 = new Array()
-        var book_5 = new Array()
-        var book_6 = new Array()
         if (app.globalData.isLogin) {
             db.collection('myBook').where({
                 _openid: app.globalData.openId,
             }).get({
                 success: res => {
                     console.log(res.data)
-                    for (let i = 0; i < res.data.length; i++) {
-                        for (let j = 0; j < res.data[i].group.length; j++) {
-                            if (res.data[i].group[j] == '文化') {
-                                book_1.push(res.data[i])
-                            }
-                            if (res.data[i].group[j] == '流行') {
-                                book_2.push(res.data[i])
-                            }
-                            if (res.data[i].group[j] == '文化') {
-                                book_3.push(res.data[i])
-                            }
-                            if (res.data[i].group[j] == '生活') {
-                                book_4.push(res.data[i])
-                            }
-                            if (res.data[i].group[j] == '经管') {
-                                book_5.push(res.data[i])
-                            }
-                            if (res.data[i].group[j] == '科技') {
-                                book_6.push(res.data[i])
-                            }
-                        }
-                    }
                     that.setData({
-                        defaultBook: res.data,
-                        book_1: book_1,
-                        book_2: book_2,
-                        book_3: book_3,
-                        book_4: book_4,
-                        book_5: book_5,
-                        book_6: book_6,
+                        defaultBook:res.data
                     })
                 },
                 fail: err => {
                     console.error(err)
                 }
             })
-        }
-        else{
+            db.collection('myBook').where({
+                _openid: app.globalData.openId,
+                group:'文学'
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        book_1:res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+            db.collection('myBook').where({
+                _openid: app.globalData.openId,
+                group:'流行'
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        book_2:res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+            db.collection('myBook').where({
+                _openid: app.globalData.openId,
+                group:'文化'
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        book_3:res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+            db.collection('myBook').where({
+                _openid: app.globalData.openId,
+                group:'生活'
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        book_4:res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+            db.collection('myBook').where({
+                _openid: app.globalData.openId,
+                group:'经管'
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        book_5:res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+            db.collection('myBook').where({
+                _openid: app.globalData.openId,
+                group:'科技'
+            }).get({
+                success: res => {
+                    console.log(res.data)
+                    that.setData({
+                        book_6:res.data
+                    })
+                },
+                fail: err => {
+                    console.error(err)
+                }
+            })
+        } else {
             that.setData({
                 defaultBook: [],
                 book_1: [],
@@ -139,7 +185,7 @@ Page({
                 book_6: [],
             })
             wx.showToast({
-              title: '请先登录',
+                title: '请先登录',
             })
         }
 

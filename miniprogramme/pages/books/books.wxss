@@ -1,11 +1,14 @@
 /* pages/books/books.wxss */
-.tabs {
-    position: absolute;
+page {
     height: 100%;
-    width: 100%;
 }
-.tab-content{
-    overflow-y: scroll;
+
+.show {
+    color: #394044 !important;
+    background-color: #F0F2F7;
+    font-size: 28rpx;
+    height: 100%;
+    max-height: auto;
 }
 .bookimg{
     height: 240rpx;
@@ -34,6 +37,9 @@
     font-size: 28rpx !important;
     min-height: 68rpx !important;
     margin-left: 23rpx !important;
+}
+.panel{
+    margin-bottom: 120rpx;
 }
 
 

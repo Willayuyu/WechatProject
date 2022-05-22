@@ -78,3 +78,19 @@
 .tag{
     margin-right: 10rpx !important;
 }
+
+.item {
+    padding: 10rpx 0 !important;
+    font-size: 28rpx !important;
+    min-height: 68rpx !important;
+    margin-left: 23rpx !important;
+}
+
+.search-container{
+    padding:0 !important;
+    margin-top: 10rpx !important;
+}
+.search{
+    padding:0 !important;
+    height: 80rpx !important;
+}

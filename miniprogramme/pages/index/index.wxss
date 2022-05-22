@@ -81,3 +81,7 @@ page {
     margin-left: 30rpx;
     margin-top: 40rpx;
 }
+
+.panel{
+    margin-bottom: 120rpx;
+}

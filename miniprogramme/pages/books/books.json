@@ -7,7 +7,8 @@
     "l-tabs": "/miniprogram_npm/lin-ui/tabs/index",
     "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index",
     "l-collapse":"/miniprogram_npm/lin-ui/collapse/index",
-    "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index"
-  },
-  "disableScroll":false
+    "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index",
+    "van-tab": "/miniprogram_npm/@vant/weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/@vant/weapp/tabs/index"
+  }
 }
