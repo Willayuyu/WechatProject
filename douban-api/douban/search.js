@@ -1,5 +1,6 @@
 const got = require('got');
 const headers = require('./libs/getHeaders')();
+const descrypt = require('./libs/decrypt')
 
 //根据书名获取图书信息
 async function getSearchResultFromOnline(text) {
@@ -7,7 +8,8 @@ async function getSearchResultFromOnline(text) {
         method: 'GET',
         headers,
     });
-    const result = /window\.__DATA__ = "(.*?)";/.exec(response.body)[1];
+    const r = /window\.__DATA__ = "(.*?)";/.exec(response.body)[1];
+    const result = descrypt(r);
     return result.payload.items;
 }
 

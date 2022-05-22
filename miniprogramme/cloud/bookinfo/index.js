@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
     // const wxContext = cloud.getWXContext()
     console.log(event);
     // return event.isbn
-    var res = rp('https://book-1826000-1310697903.ap-shanghai.run.tcloudbase.com/isbn/' + event.isbn).then(html => {
+    var res = rp('https://douban-1826000-1310697903.ap-shanghai.run.tcloudbase.com/book?isbn=' + event.isbn).then(html => {
         return html;
     }).catch(err => {
         console.log(err)

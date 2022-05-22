@@ -35,7 +35,8 @@ Page({
         readNumber: '',
         openId: '',
         noteList: [],
-        bookList: []
+        bookList: [],
+
     },
 
     showBooks: function (e) {
@@ -95,23 +96,6 @@ Page({
                     console.error(err)
                 }
             })
-            // db.collection("notes").where({
-            //     _openid: app.globalData.openId,
-            // }).get({
-            //     success: res => {
-            //         console.log(res.data)
-            //         console.log(res.data.length)
-            //         that.setData({
-            //             noteList: res.data,
-            //             recordNumber:res.data.length
-            //         })
-            //     },
-            //     fail: err => {
-            //         console.error(err)
-            //     }
-            // })
-
-
             let n = 0
             db.collection("myBook").where({
                 _openid: app.globalData.openId,
@@ -202,7 +186,6 @@ Page({
     onShow() {
         var that = this
         that.onLoad()
-
     },
 
     /**

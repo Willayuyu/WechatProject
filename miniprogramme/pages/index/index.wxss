@@ -1,26 +1,29 @@
 /**index.wxss**/
-.show{
+page {
+    height: 100%;
+}
+
+.show {
     color: #394044 !important;
     font-size: 32rpx;
-    height: 100vh;
-    min-height: 100vh;
+    height: 100%;
     max-height: auto;
 }
 
-.describe-container{
+.describe-container {
     text-align: center;
     width: 80vw;
-
     background-color: #fff;
     border-style: outset;
     border-color: #e7f2f8;
     border-width: 5rpx;
 }
 
-.right-card{
+.right-card {
     height: 150rpx !important;
     width: 120rpx !important;
 }
+
 .book-title {
     font-size: 30rpx !important;
     text-align: left;
@@ -37,7 +40,7 @@
     text-align: left;
 }
 
-.counts{
+.counts {
     background-color: #F0F2F7;
     width: 100vw;
     height: 240rpx;
@@ -46,29 +49,34 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    
+
 }
-.count{
+
+.count {
     width: 45%;
     height: 200rpx;
     background-color: #fff;
     border-radius: 10rpx;
 }
-.title{
+
+.title {
     font-size: 32rpx;
-    margin:20rpx 30rpx 5rpx;
+    margin: 20rpx 30rpx 5rpx;
 }
-.img{
+
+.img {
     width: 40rpx !important;
     height: 40rpx !important;
     margin-left: 100rpx;
 }
-.date{
+
+.date {
     font-size: 20rpx !important;
     color: #aeb0b6 !important;
     margin-left: 30rpx;
 }
-.num{
+
+.num {
     font-size: 28rpx;
     margin-left: 30rpx;
     margin-top: 40rpx;
