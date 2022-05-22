@@ -75,7 +75,9 @@ Page({
     },
 
     onCreate: function (e) {
-
+        var that = this
+        app.globalData.bookList = JSON.stringify(that.data.dataList);
+        app.globalData.choosed = true
         wx.switchTab({
             url: '/pages/add/add',
         })

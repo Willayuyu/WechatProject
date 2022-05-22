@@ -26,6 +26,12 @@ Page({
         console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
     },
 
+    onBack(){
+        wx.switchTab({
+          url: '/pages/books/books',
+        })
+    },
+
     onSelect(e) {
         var that = this;
         console.log(e.detail.name)
