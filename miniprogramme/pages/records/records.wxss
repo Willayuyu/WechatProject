@@ -59,8 +59,8 @@ page {
     margin: 30rpx 0;
 }
 .image {
-    width: 500rpx;
-    height: 500rpx;
+    width: 460rpx;
+    height: 300rpx;
 }
 
 .title {
