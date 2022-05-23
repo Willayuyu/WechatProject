@@ -329,11 +329,11 @@ Page({
                         for (let i = 0; i < JSON.parse(res.result).words_result_num; i++) {
                             word.push(JSON.parse(res.result).words_result[i].words)
                         }
-                        console.log(word)
-                        console.log(word.toString())
-                        console.log(word.toString().replace(/,/g, " "))
+                        console.log(word.join(' '))
+                        // console.log(word.toString())
+                        // console.log(word.toString().replace(/,/g, " "))
                         that.setData({
-                            words: word.toString().replace(/,/g, " ")
+                            words: word.join(' ')
                         })
                         wx.hideLoading()
                     },
