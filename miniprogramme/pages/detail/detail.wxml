@@ -20,7 +20,7 @@
                             <view class='content'>{{item.words}}</view>
                             <l-album urls='{{item.image}}' multiple-mode='scaleToFill' single-size="300"></l-album>
                             <view class="tags">
-                                <l-tag plain="{{true}}" size="super-mini" wx:for="{{item.tags}}" wx:for-item="items" l-class="tag">{{items}}</l-tag>
+                                <l-tag plain="{{true}}" size="mini" wx:for="{{item.tags}}" wx:for-item="items" l-class="tag">{{items}}</l-tag>
                             </view>
                         </view>
                     </view>

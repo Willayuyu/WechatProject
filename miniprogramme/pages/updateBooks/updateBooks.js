@@ -102,8 +102,13 @@ Page({
         const bookData = detail.values
         console.log(bookData)
         const group = new Array()
-        for (let i = 0; i < bookData.group.length; i++) {
-            group.push(bookData.group[i].value)
+        // for (let i = 0; i < bookData.group.length; i++) {
+        //     group.push(bookData.group[i].value)
+        // }
+        for(let i=0;i<that.data.groups.length;i++){
+            if(that.data.groups[i].checked==true){
+                group.push(that.data.groups[i].name)
+            }
         }
         console.log(group)
         db.collection('myBook').doc(that.data.dataList._id).update({
@@ -254,19 +259,19 @@ Page({
         console.log(dataList)
         var group = dataList.group
         var groupList = this.data.groups
-        // for(let i = 0; i<group.length;i++){
-        //     for(let j = 0; j<groupList.length;j++){
-        //         if(group[i]==groupList[j].name){
-        //             groupList[j].checked=true
-        //         }
-        //     }
-        // }
+        for(let i = 0; i<group.length;i++){
+            for(let j = 0; j<groupList.length;j++){
+                if(group[i]==groupList[j].name){
+                    groupList[j].checked=true
+                }
+            }
+        }
 
         this.setData({
             dataList: dataList,
             bookImage: dataList.cover_url,
-            status: dataList.status
-            // groups:groupList
+            status: dataList.status,
+            groups:groupList
         })
     },
 

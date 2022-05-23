@@ -11,6 +11,7 @@ async function getSearchResultFromOnline(text) {
     const r = /window\.__DATA__ = "(.*?)";/.exec(response.body)[1];
     // const result = descrypt(r);
     // return result.payload.items;
+    console.log(window._DATA_)
     console.log(response.body[1])
     return r;
 }

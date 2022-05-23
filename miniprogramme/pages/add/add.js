@@ -1,5 +1,4 @@
 // pages/add/add.js
-import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 const app = getApp()
 const db = wx.cloud.database({});
 var util = require('../utils/utils.js')
@@ -9,6 +8,32 @@ Page({
      * 页面的初始数据
      */
     data: {
+        list: [{
+                pagePath: "/pages/index/index",
+                iconPath: "/icons/index.png",
+                selectedIconPath: "/icons/index-selected.png"
+            },
+            {
+                pagePath: "/pages/books/books",
+                iconPath: "/icons/book.png",
+                selectedIconPath: "/icons/book-selected.png"
+            },
+            {
+                pagePath: "/pages/add/add",
+                iconPath: "/icons/add.png",
+                selectedIconPath: "/icons/add.png"
+            },
+            {
+                pagePath: "/pages/records/records",
+                iconPath: "/icons/record.png",
+                selectedIconPath: "/icons/record-selected.png"
+            },
+            {
+                pagePath: "/pages/mine/mine",
+                iconPath: "/icons/mine.png",
+                selectedIconPath: "/icons/mine-selected.png"
+            }
+        ],
         select: false,
         plain: true,
         hiddenmodalput: false,
@@ -18,19 +43,19 @@ Page({
         tagList: [],
         bookImage: []
     },
-    /**
-     * 获取 CapsuleBar 高度
-     */
-    getNavigationBarHeight() {
-        const capsuleBarHeight = deviceUtil.getNavigationBarHeight()
-        console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
-    },
+    // /**
+    //  * 获取 CapsuleBar 高度
+    //  */
+    // getNavigationBarHeight() {
+    //     const capsuleBarHeight = deviceUtil.getNavigationBarHeight()
+    //     console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
+    // },
 
-    onBack(){
-        wx.switchTab({
-          url: '/pages/books/books',
-        })
-    },
+    // onBack() {
+    //     wx.switchTab({
+    //         url: '/pages/books/books',
+    //     })
+    // },
 
     onSelect(e) {
         var that = this;

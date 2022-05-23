@@ -1,36 +1,37 @@
 <!--pages/add/add.wxml-->
-<l-capsule-bar home-page="/pages/index/index" title="书摘编辑" bind:linlefttap="onBack">
-    <view class="container">
-        <view class="choose" bindtap="showExistBook">
-            <l-list class="list" title="请先选择一本书来保存书摘" icon="order" icon-size="30" wx:if="{{!choosed}}"/>
-            <l-list class="list" title="{{bookList.title}}" icon="order" icon-size="30" wx:if="{{choosed}}"/>
-        </view>
-        <view class="choose">
-            <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="300" value="{{words}}" bind:linblur="getContent" l-class="text"></l-textarea>
-        </view>
-        <view class="choose">
-            <l-collapse>
-                <l-collapse-item title="图片" l-class="item">
-                    <l-image-picker count="3" size="3" bind:linchange="onChangeTap" size-type="compressed" />
-                </l-collapse-item>
-            </l-collapse>
-        </view>
-        <view class="choose">
-            <l-collapse>
-                <l-collapse-item title="标签" l-class="item">
-                    <view class="tagList">
-                        <view class="tags"  wx:for="{{tagList}}"><l-tag plain="{{item.plain}}" select="{{item.select}}" l-select-class="select" bind:lintap="onSelect" name="{{item.name}}">{{item.name}}</l-tag></view>
-                        <l-icon name="add" size="40" bindtap="modalinput" />
-                        <l-dialog show="{{hiddenmodalput}}" type="confirm" title="请输入想要添加的标签" confirm-text="提交" cancel-text="取消" bind:lincancel="modelinput" bind:linconfirm="confirm">
-                            <l-input placeholder="新的标签" hide-label="{{true}}" bind:linblur="confirmTag" />
-                        </l-dialog>
-                    </view>
-                </l-collapse-item>
-            </l-collapse>
-        </view>
-        <view class="buttons">
-            <l-button class="btn" size="medium" plain="true" bind:lintap="onOCR">OCR</l-button>
-            <l-button class="btn" size="medium" plain="true" bind:lintap="onSave">保存</l-button>
-        </view>
+<view class="container">
+    <view class="choose" bindtap="showExistBook">
+        <l-list class="list" title="请先选择一本书来保存书摘" icon="order" icon-size="30" wx:if="{{!choosed}}" />
+        <l-list class="list" title="{{bookList.title}}" icon="order" icon-size="30" wx:if="{{choosed}}" />
     </view>
-</l-capsule-bar>
+    <view class="choose">
+        <l-textarea placeholder="摘录" indicator="{{true}}" maxlength="300" value="{{words}}" bind:linblur="getContent" l-class="text"></l-textarea>
+    </view>
+    <view class="choose">
+        <l-collapse>
+            <l-collapse-item title="图片" l-class="item">
+                <l-image-picker count="3" size="3" bind:linchange="onChangeTap" size-type="compressed" />
+            </l-collapse-item>
+        </l-collapse>
+    </view>
+    <view class="choose">
+        <l-collapse>
+            <l-collapse-item title="标签" l-class="item">
+                <view class="tagList">
+                    <view class="tags" wx:for="{{tagList}}">
+                        <l-tag plain="{{item.plain}}" select="{{item.select}}" l-select-class="select" bind:lintap="onSelect" name="{{item.name}}">{{item.name}}</l-tag>
+                    </view>
+                    <l-icon name="add" size="40" bindtap="modalinput" />
+                    <l-dialog show="{{hiddenmodalput}}" type="confirm" title="请输入想要添加的标签" confirm-text="提交" cancel-text="取消" bind:lincancel="modelinput" bind:linconfirm="confirm">
+                        <l-input placeholder="新的标签" hide-label="{{true}}" bind:linblur="confirmTag" />
+                    </l-dialog>
+                </view>
+            </l-collapse-item>
+        </l-collapse>
+    </view>
+    <view class="buttons">
+        <l-button class="btn" size="medium" plain="true" bind:lintap="onOCR">OCR</l-button>
+        <l-button class="btn" size="medium" plain="true" bind:lintap="onSave">保存</l-button>
+    </view>
+</view>
+<l-tab-bar list="{{list}}" />

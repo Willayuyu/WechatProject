@@ -199,14 +199,16 @@ Page({
      */
     onLoad(options) {
         wx.lin.initValidateForm(this)
-        console.log(options.dataList)
-        var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
-        var dataList = JSON.parse(dataTemp);
-        console.log(dataList)
-        this.setData({
-            dataList: dataList,
-            bookImage: dataList.cover_url
-        })
+        if(options.dataList){
+            console.log(options.dataList)
+            var dataTemp = decodeURIComponent(options.dataList); //函数可把字符串作为 URI 组件进行解码。
+            var dataList = JSON.parse(dataTemp);
+            console.log(dataList)
+            this.setData({
+                dataList: dataList,
+                bookImage: dataList.cover_url
+            })
+        }
     },
 
     /**

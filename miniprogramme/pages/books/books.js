@@ -19,7 +19,7 @@ Page({
             {
                 pagePath: "/pages/add/add",
                 iconPath: "/icons/add.png",
-                selectedIconPath: ""
+                selectedIconPath: "/icons/add.png"
             },
             {
                 pagePath: "/pages/records/records",
@@ -203,7 +203,6 @@ Page({
      */
     onShow: function () {
         this.onLoad()
-
     },
 
     /**
