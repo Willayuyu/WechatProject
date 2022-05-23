@@ -4,8 +4,6 @@
         "l-step": "/miniprogram_npm/lin-ui/step/index",
         "l-card": "/miniprogram_npm/lin-ui/card/index",
         "l-tab-bar": "/miniprogram_npm/lin-ui/tab-bar/index",
-        "l-tabs": "/miniprogram_npm/lin-ui/tabs/index",
-        "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index",
         "van-tab": "/miniprogram_npm/@vant/weapp/tab/index",
         "van-tabs": "/miniprogram_npm/@vant/weapp/tabs/index"
     }

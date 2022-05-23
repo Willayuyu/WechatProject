@@ -76,75 +76,80 @@ Page({
         let openId = app.globalData.openId;
         let userInfo = app.globalData.userInfo;
         console.log(openId)
-        wx.getSetting({
-            success(res) {
-                if (res.authSetting['scope.userInfo']) {
-                    console.log('已经授权')
+        if (userInfo == '') {
+            wx.getUserProfile({
+                desc: '授权',
+                success: res => {
+                    var information = res.userInfo
+                    // that.setData({
+                    //     userInfo: res.userInfo,
+                    //     isLogin: true
+                    // })
+                    // console.log(that.data.userInfo)
+                    // // that.data.userInfo.openId = openId
+                    // wx.setStorageSync('user', res.userInfo)
+                    // app.globalData.isLogin = true
                     db.collection('user').where({
-                        _openid: openId
-                    }).get({
-                        success: res => {
-                            that.setData({
-                                userInfo: res.data[0],
-                                isLogin: true
-                            })
-                            app.globalData.isLogin = true
-                            console.log(res.data[0])
-                            app.globalData.userInfo = res.data[0]
-                            wx.setStorageSync('user', res.data[0])
-                        },
-                        fail: err => {
-                            console.error(err)
-                        }
-                    })
-                } else {
-                    console.log('未授权')
-                    wx.getUserProfile({
-                        desc: '授权',
-                        success: res => {
-                            that.setData({
-                                userInfo: res.userInfo,
-                                isLogin: true
-                            })
-                            console.log(that.data.userInfo)
-                            // that.data.userInfo.openId = openId
-                            wx.setStorageSync('user', res.userInfo)
-                            app.globalData.isLogin = true
-                            db.collection('user').where({
-                                    _openid: openId
-                                })
-                                .get({
-                                    success: res => {
-                                        if (res.data.length == 0) {
-                                            let userInfo = that.data.userInfo
-                                            db.collection('user').add({
-                                                data: {
-                                                    nickName: userInfo.nickName,
-                                                    avatarUrl: userInfo.avatarUrl,
-                                                },
-                                                success: res => {
-                                                    console.log('用户信息已保存到数据库', res)
-                                                },
-                                                fail: err => {
-                                                    console.log('用户信息保存失败', err)
-                                                }
+                            _openid: openId
+                        })
+                        .get({
+                            success: res => {
+                                if (res.data.length == 0) {
+                                    let userInfo = information
+                                    db.collection('user').add({
+                                        data: {
+                                            nickName: userInfo.nickName,
+                                            avatarUrl: userInfo.avatarUrl,
+                                        },
+                                        success: res => {
+                                            console.log('用户信息已保存到数据库', res)
+                                            var obj = {}
+                                            obj.avatarUrl = userInfo.avatarUrl
+                                            obj.nickName = userInfo.nickName
+                                            wx.setStorageSync('user', obj)
+                                            that.setData({
+                                                userInfo: obj,
+                                                isLogin: true
                                             })
-                                        } else {
-                                            console.log("此用户已被记录过！")
+                                            app.globalData.userInfo = wx.getStorageSync('user')
+                                            app.globalData.isLogin = true
+                                        },
+                                        fail: err => {
+                                            console.log('用户信息保存失败', err)
                                         }
-                                    },
-                                    fail: err => {
-                                        console.error(err)
-                                    }
-                                })
-                        },
-                        fail: err => {
-                            console.error(err)
-                        }
-                    })
+                                    })
+                                } else {
+                                    db.collection('user').where({
+                                        _openid: openId
+                                    }).get({
+                                        success: res => {
+                                            that.setData({
+                                                userInfo: res.data[0],
+                                                isLogin: true
+                                            })
+                                            app.globalData.isLogin = true
+                                            console.log(res.data[0])
+                                            app.globalData.userInfo = res.data[0]
+                                            wx.setStorageSync('user', res.data[0])
+                                        },
+                                        fail: err => {
+                                            console.error(err)
+                                        }
+                                    })
+                                    console.log("此用户已被记录过！")
+                                }
+                            },
+                            fail: err => {
+                                console.error(err)
+                            }
+                        })
+                },
+                fail: err => {
+                    console.error(err)
                 }
-            }
-        })
+            })
+        }
+
     },
 
     loginOut() {
@@ -154,24 +159,12 @@ Page({
         })
         //清理本地缓存
         wx.setStorageSync('user', null)
-        // app.globalData.openId = ''
+        app.globalData.userInfo = ''
         wx.setStorageSync('openId', null)
         app.globalData.isLogin = false
         console.log("退出登录！")
     },
 
-    onShareAppMessage: function (res) {
-        //可以通过res.from来判断是button分享还是menu分享（右上角）
-        console.log(res);
-        return {
-            // 分享的标题如果没有则自定义为小程序名称全写
-            title: "小鱼书摘",
-            //分享之后的路径如果没有则自定义为首页可以用模板字符串语法加入变量
-            path: '/pages/mine/mine',
-            //分享图片的本地地址如果不写则为默认当前屏幕截图可以是网络地址
-            imageUrl: '/image/logo.png'
-        }
-    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -218,7 +211,17 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    onShareAppMessage: function (res) {
+        //可以通过res.from来判断是button分享还是menu分享（右上角）
+        console.log(res);
+        return {
+            // 分享的标题如果没有则自定义为小程序名称全写
+            title: "小鱼书摘",
+            //分享之后的路径如果没有则自定义为首页可以用模板字符串语法加入变量
+            path: '/pages/mine/mine',
+            //分享图片的本地地址如果不写则为默认当前屏幕截图可以是网络地址
+            imageUrl: '/image/logo.png'
+        }
 
     }
 })
