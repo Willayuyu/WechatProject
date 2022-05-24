@@ -19,11 +19,6 @@
                     </view>
                     <view class="time">{{item.date}}</view>
                     <view class="words">{{item.words}}</view>
-                    <!-- <view class="img">
-                        <view wx:for="{{item.image}}" wx:for-item="items">
-                            <image src="{{items}}" class="image" mode="widthFix"></image>
-                        </view>
-                    </view> -->
                     <view class="title">{{'<<'+item.title+'>>'}}</view>
                 </view>
             </swiper-item>

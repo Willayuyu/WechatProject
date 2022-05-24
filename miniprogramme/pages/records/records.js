@@ -36,7 +36,6 @@ Page({
         noteNumber: '',
         noteList: [],
         currentSwiperIndex:0,
-
     },
 
     swiperChange: function (e) {

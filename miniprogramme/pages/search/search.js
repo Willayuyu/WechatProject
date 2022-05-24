@@ -24,11 +24,13 @@ Page({
         console.log(1)
         // 允许从相机和相册扫码
         wx.scanCode({
-            onlyFromCamera: true,
             scanType: ['barCode'],
             success: res => {
                 console.log(res.result)
                 const isbn = res.result;
+                wx.showLoading({
+                    title: '搜索中...',
+                })
                 wx.cloud.callFunction({
                     // 要调用的云函数名称
                     name: 'bookinfo',
@@ -68,17 +70,32 @@ Page({
                                         }
                                     }).then(res => {
                                         console.log(res)
+                                        wx.hideLoading({
+                                            success: (res) => {},
+                                          })
                                     }).catch(err => {
                                         console.log(err)
+                                        wx.hideLoading({
+                                            success: (res) => {},
+                                          })
                                     })
                                 } else {
                                     console.log("此书已存在！")
+                                    wx.hideLoading({
+                                        success: (res) => {},
+                                      })
                                 }
                             }
+                        })
+                        wx.hideLoading({
+                          success: (res) => {},
                         })
                     },
                     fail: err => {
                         console.error(err)
+                        wx.hideLoading({
+                          success: (res) => {},
+                        })
                     }
                 })
             },
@@ -98,6 +115,9 @@ Page({
         console.log(value)
         //正则表达式验证是否为ISBN
         var reg = new RegExp("^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$");
+        wx.showLoading({
+            title: '搜索中...',
+        })
         if (reg.test(value)) {
             const isbn = value
             wx.cloud.callFunction({
@@ -136,17 +156,29 @@ Page({
                                     }
                                 }).then(res => {
                                     console.log(res)
+                                    wx.hideLoading({
+                                      success: (res) => {},
+                                    })
                                 }).catch(err => {
                                     console.log(err)
+                                    wx.hideLoading({
+                                      success: (res) => {},
+                                    })
                                 })
                             } else {
                                 console.log("此书已存在！")
+                                wx.hideLoading({
+                                  success: (res) => {},
+                                })
                             }
                         }
                     })
                 },
                 fail: err => {
                     console.error(err)
+                    wx.hideLoading({
+                        success: (res) => {},
+                      })
                 }
             })
 
@@ -205,20 +237,35 @@ Page({
                                                     }
                                                 }).then(res => {
                                                     console.log(res)
+                                                    wx.hideLoading({
+                                                        success: (res) => {},
+                                                      })
                                                 }).catch(err => {
                                                     console.log(err)
+                                                    wx.hideLoading({
+                                                        success: (res) => {},
+                                                      })
                                                 })
                                             } else {
                                                 console.log("此书已存在！")
+                                                wx.hideLoading({
+                                                    success: (res) => {},
+                                                  })
                                             }
                                         },
                                         fail: err => {
                                             console.error(err)
+                                            wx.hideLoading({
+                                              success: (res) => {},
+                                            })
                                         }
                                     })
                                 },
                                 fail: err => {
                                     console.error(err)
+                                    wx.hideLoading({
+                                        success: (res) => {},
+                                      })
                                 }
                             })
                         }
@@ -227,6 +274,9 @@ Page({
                 },
                 fail: err => {
                     console.error(err)
+                    wx.hideLoading({
+                        success: (res) => {},
+                      })
                 }
             })
         }

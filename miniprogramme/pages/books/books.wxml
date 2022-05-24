@@ -14,7 +14,7 @@
                     </l-grid-item>
                 </l-grid>
             </van-tab>
-            <van-tab title="默认">
+            <van-tab title="状态">
                 <view class="choose">
                     <l-collapse>
                         <l-collapse-item title="想读" l-class="item">
